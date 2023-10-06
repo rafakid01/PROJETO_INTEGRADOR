@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --light-yellow: #FFFCE7;
+    --normal-yellow: #FAE86F;
+    --dark-yellow: #F3DC3E;
+
+    --light-blue: #7079E3;
+    --normal-blue: #3B45BC;
+    --dark-blue: #140E2E;
+
+    --red: #E04141;
+    --green: #4DBF3A;
+
+    --white: #FFFFFF;
+    --black: #000000;
+}
+
+@font-face {
+    font-family: "Quicksand";
+    src: url("assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "Nunito";
+    src: url("assets/fonts/Nunito/Nunito-VariableFont_wght.ttf");
+}
