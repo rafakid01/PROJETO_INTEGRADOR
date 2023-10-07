@@ -1,27 +1,40 @@
 <div class="container">
-    <nav class="navbar">
-        <div class="img-container">
-            <img src="/assets/img/u-teach-icon.png" alt="" />
-        </div>
-        <div class="login-container">
-            <p class="h3">{{ "Login" | uppercase }}</p>
-        </div>
-        <div class="registro-container">
-            <p class="h3">{{ "Registre-se" | uppercase }}</p>
-        </div>
-        <div class="how-works-container">
-            <p class="h3">{{ "Como Funciona" | uppercase }}</p>
-        </div>
-        <div class="contact-container">
-            <p class="h3">{{ "Contato" | uppercase }}</p>
-        </div>
-        <div class="change-theme-container">
-            <div class = 'toggle-switch'>
-                <label>
-                    <input type = 'checkbox'>
-                    <span class = 'slider'></span>
-                </label>
-            </div>
-        </div>
-    </nav>
+  <nav class="navbar">
+    <div class="img-container home">
+      <a routerLink="/" class="image-link">
+        <img src="/assets/img/u-teach-complete.png" alt="" />
+      </a>
+    </div>
+    <div class="login-container">
+      <p class="h4">
+        <a routerLink="/login" class="anchor-link home">
+          {{ "Login" | uppercase }}
+        </a>
+      </p>
+    </div>
+    <div class="registro-container">
+      <p class="h4">
+        <a routerLink="/register" class="anchor-link home">
+          {{ "Registre-se" | uppercase }}
+        </a>
+      </p>
+    </div>
+    <div class="how-works-container">
+      <p class="h4">
+        <a routerLink="/how-works" class="anchor-link home">
+          {{ "Como Funciona" | uppercase }}
+        </a>
+      </p>
+    </div>
+    <div class="contact-container">
+      <p class="h4">
+        <a routerLink="/contact" class="anchor-link home">
+          {{ "Contato" | uppercase }}
+        </a>
+      </p>
+    </div>
+    <div class="change-theme-container">
+      <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+    </div>
+  </nav>
 </div>

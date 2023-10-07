@@ -1,0 +1,36 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.half {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.uni-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.uni-container p {
+    border-radius: 75px;
+    border: 5px solid var(--normal-blue);
+    padding: .4em;
+    font-family: "Quicksand";
+    width: 100%;
+    text-align: center;
+    font-size: calc(1vw + 2em);
+}
+
+.text-container p {
+    font-family: "Nunito";
+    font-size: calc(1vw + 1em);
+}
+
+.text-container p span {
+    color: var(--dark-yellow);
+    font-weight: bold;
+}

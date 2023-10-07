@@ -1,1 +1,43 @@
-home-page works!
+<app-navbar></app-navbar>
+<div class="container">
+  <section class="left-section half">
+    <div class="right-container">
+      <div class="title-container row justify-content-center">
+        <div class="uni-container col-8">
+          <p class="h1 quick">
+            {{ "UNI MONITOR" | uppercase }}
+          </p>
+        </div>
+      </div>
+      <div class="text-container row">
+        <p class="h4 nuni col-12">
+          Encontre o melhor <span>monitor</span> para as suas dúvidas e
+          <span>aprendizado</span>
+        </p>
+      </div>
+      <div class="search-bar row">
+        <div class="form-floating col-10 p-0">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Pesquisar matéria/assunto"
+          />
+          <label for="floatingInput">Pesquisar matéria/assunto </label>
+        </div>
+        <div class="search-icon col-2 p-0">
+          <i class="bi-search"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="right-section half">
+    <div class="logo logo-outside"></div>
+    <div class="logo logo-middle"></div>
+    <div class="logo logo-center">
+      <div class="logo-container">
+        <img src="/assets/img/logo-uniso.png" alt="" />
+      </div>
+    </div>
+  </section>
+</div>
