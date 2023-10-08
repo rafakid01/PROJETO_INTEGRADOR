@@ -1,3 +1,7 @@
+body {
+    min-height: 100vh;
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -33,4 +37,56 @@
 .text-container p span {
     color: var(--dark-yellow);
     font-weight: bold;
+}
+
+.form-control {
+    border-radius: 50px 0 0 50px;
+    border: 1px solid var(--normal-blue);
+    background-color: transparent;
+    height: 2em;
+    font-size: calc(1vw + 1em);
+}
+
+.search-icon {
+    width: 4em;
+    height: 4em;
+    flex-shrink: 0;
+    border-radius: 0px 50px 50px 0px;
+    border: 1px solid var(--normal-yellow);
+    background: var(--normal-yellow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-icon .bi-search {
+    font-size: calc(1vw + 1em);
+}
+
+.logo {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-outside {
+    width: 80%;
+    background: var(--normal-yellow);
+    aspect-ratio: 1/1;
+}
+
+.logo-middle {
+    width: 80%;
+    height: 80%;
+    background: var(--light-yellow);
+}
+
+.logo-center {
+    width: 80%;
+    background-color: var(--white);
+}
+
+.logo-center img {
+    width: 100%;
 }
