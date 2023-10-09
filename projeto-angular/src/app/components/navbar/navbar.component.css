@@ -10,26 +10,24 @@ label {
   cursor: pointer;
   text-indent: -9999px;
   min-height: 20px;
-  height: calc(50px - .5vw);
-  /* height: 50px; */
+  height: 3vw;
   aspect-ratio: 2.5/1;
   background: transparent;
   display: block;
   border-radius: 100px;
   position: relative;
-  border: 5px solid var(--normal-yellow);
+  border: .3vw solid var(--normal-yellow);
 }
 
 label:after {
   content: '';
   position: absolute;
-  top: 5px;
-  left: 5px;
-  min-width: 20px;
-  width: calc(30px - .5vw);
+  top: .4vw;
+  left: .3vw;
+  height: 1.6vw;
   aspect-ratio: 1/1;
   background: #fff;
-  border: 5px solid var(--normal-yellow);
+  border: .3vw solid var(--normal-yellow);
   border-radius: 50%;
   transition: 0.3s;
 }
@@ -46,10 +44,20 @@ input:checked+label:after {
   border-color: var(--white);
 }
 
+.toggle-button {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+}
+
 /* TAMANHO LOGOTIPO */
 
 .img-container {
-  width: 200px;
+  width: 15vw;
 }
 
 .img-container img {

@@ -1,5 +1,6 @@
 body {
     min-height: 100vh;
+    background-color: var(--light-yellow);
 }
 
 .container {
@@ -21,17 +22,20 @@ body {
 
 .uni-container p {
     border-radius: 75px;
-    border: 5px solid var(--normal-blue);
-    padding: .4em;
+    border: .3vw solid var(--normal-blue);
+    color: var(--normal-blue);
+    padding: .2em;
     font-family: "Quicksand";
     width: 100%;
     text-align: center;
     font-size: calc(1vw + 2em);
+    width: 80%;
 }
 
-.text-container p {
+.text-container p:not(span) {
     font-family: "Nunito";
     font-size: calc(1vw + 1em);
+    color: var(--normal-blue);
 }
 
 .text-container p span {
@@ -42,24 +46,42 @@ body {
 .form-control {
     border-radius: 50px 0 0 50px;
     border: 1px solid var(--normal-blue);
+    border-right: none;
     background-color: transparent;
     font-size: calc(1vw + 1em);
+    text-overflow: ellipsis;
+    box-shadow: none;
+}
+
+.form-control::placeholder {
+    opacity: 50%;
 }
 
 .search-icon {
-    width: 4em;
-    height: 4em;
-    flex-shrink: 0;
+    aspect-ratio: 2/1;
     border-radius: 0px 50px 50px 0px;
-    border: 1px solid var(--normal-yellow);
+    border: 1px solid var(--normal-blue);
+    border-left: none;
     background: var(--normal-yellow);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.search-icon .bi-search {
-    font-size: calc(1vw + 1em);
+.search-icon button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-radius: 0px 50px 50px 0px;
+}
+
+.search-icon button.bi-search {
+    font-size: calc(1vw + .6em);
 }
 
 .logo {
@@ -76,13 +98,13 @@ body {
 }
 
 .logo-middle {
-    width: 80%;
-    height: 80%;
-    background: var(--light-yellow);
+    width: 87.5%;
+    height: 87.5%;
+    background: var(--alternative-yellow);
 }
 
 .logo-center {
-    width: 80%;
+    width: 85%;
     background-color: var(--white);
 }
 
