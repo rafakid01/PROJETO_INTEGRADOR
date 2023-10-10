@@ -1,6 +1,8 @@
 body {
-    min-height: 100vh;
-    background-color: var(--light-yellow);
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    padding-top: 2em;
 }
 
 .container {
@@ -22,8 +24,8 @@ body {
 
 .uni-container p {
     border-radius: 75px;
-    border: .3vw solid var(--normal-blue);
-    color: var(--normal-blue);
+    border: .3vw solid var(--text-two-color);
+    color: var(--text-two-color);
     padding: .2em;
     font-family: "Quicksand";
     width: 100%;
@@ -35,7 +37,8 @@ body {
 .text-container p:not(span) {
     font-family: "Nunito";
     font-size: calc(1vw + 1em);
-    color: var(--normal-blue);
+    color: var(--detail-one-color);
+    text-align: center;
 }
 
 .text-container p span {
@@ -45,7 +48,7 @@ body {
 
 .form-control {
     border-radius: 50px 0 0 50px;
-    border: 1px solid var(--normal-blue);
+    border: 1px solid var(--text-one-color);
     border-right: none;
     background-color: transparent;
     font-size: calc(1vw + 1em);
@@ -60,7 +63,7 @@ body {
 .search-icon {
     aspect-ratio: 2/1;
     border-radius: 0px 50px 50px 0px;
-    border: 1px solid var(--normal-blue);
+    border: 1px solid var(--text-one-color);
     border-left: none;
     background: var(--normal-yellow);
     display: flex;
@@ -80,7 +83,7 @@ body {
     border-radius: 0px 50px 50px 0px;
 }
 
-.search-icon button.bi-search {
+.search-icon button .bi-search {
     font-size: calc(1vw + .6em);
 }
 
@@ -93,14 +96,14 @@ body {
 
 .logo-outside {
     width: 80%;
-    background: var(--normal-yellow);
+    background: var(--detail-two-color);
     aspect-ratio: 1/1;
 }
 
 .logo-middle {
     width: 87.5%;
     height: 87.5%;
-    background: var(--alternative-yellow);
+    background: var(--detail-three-color);
 }
 
 .logo-center {

@@ -1,5 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
-:root {
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: var(--dark-yellow) var(--background-color);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #f3dc3e;
+    border-radius: 10px;
+    border: 3px solid var(--background-color);
+}
+
+:root,
+.light:root {
     --light-yellow: #FFFCE7;
     --normal-yellow: #FAE86F;
     --dark-yellow: #F3DC3E;
@@ -10,9 +34,31 @@
 
     --red: #E04141;
     --green: #4DBF3A;
-
     --white: #FFFFFF;
-    --black: #000000;
+
+
+    --title-color: #140E2E;
+    --subtitle-color: #140E2E;
+    --text-one-color: #140E2E;
+    --text-two-color: #3B45BC;
+    --background-color: #FFFCE7;
+    --detail-one-color: #3B45BC;
+    --detail-two-color: #F3DC3E;
+    --detail-three-color: #FEF4B2;
+    --detail-four-color: #FFFFFF;
+
+}
+
+.dark:root {
+    --title-color: #FFFCE7;
+    --subtitle-color: #FFFCE7;
+    --text-one-color: #FFFFFF;
+    --text-two-color: #F3DC3E;
+    --background-color: #140E2E;
+    --detail-one-color: #FFFFFF;
+    --detail-two-color: #333DAB;
+    --detail-three-color: #434FDE;
+    --detail-four-color: #000000;
 }
 
 @font-face {
@@ -24,6 +70,8 @@
     font-family: "Nunito";
     src: url("assets/fonts/Nunito/Nunito-VariableFont_wght.ttf");
 }
+
+
 
 h1,
 h2,

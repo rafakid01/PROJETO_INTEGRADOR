@@ -7,9 +7,17 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
   styles: [],
 })
 export class NavbarComponent implements OnInit {
+  toggleChecked: Boolean = false;
+  theme: String = 'light';
+
+  buttonToggle: any = (document.documentElement.className = 'toggle-button');
+
   constructor(private renderer: Renderer2) {}
 
-  changeColorTheme() {}
+  changeColorTheme() {
+    this.toggleChecked = !this.toggleChecked;
+    this.toggleChecked == true ? (this.theme = 'dark') : (this.theme = 'light');
+  }
 
   ngOnInit(): void {}
 }
