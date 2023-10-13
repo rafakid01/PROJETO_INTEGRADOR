@@ -54,10 +54,12 @@ body {
     font-size: calc(1vw + 1em);
     text-overflow: ellipsis;
     box-shadow: none;
+    color: var(--text-one-color);
 }
 
 .form-control::placeholder {
     opacity: 50%;
+    color: var(--text-one-color);
 }
 
 .search-icon {
