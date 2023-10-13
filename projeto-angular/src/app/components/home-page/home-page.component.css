@@ -2,7 +2,7 @@ body {
     background-color: var(--background-color);
     display: flex;
     justify-content: center;
-    padding-top: 2em;
+    padding: 6em 0;
 }
 
 .container {

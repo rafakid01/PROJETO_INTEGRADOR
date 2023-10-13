@@ -1,6 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, Renderer2, inject } from '@angular/core';
-import { ChangeThemeService } from 'src/app/services/change-theme.service';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
@@ -16,7 +14,6 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private localStorage: LocalStorageService,
-    private ChangeTheme: ChangeThemeService,
     private renderer: Renderer2
   ) {}
 
@@ -30,14 +27,12 @@ export class NavbarComponent implements OnInit {
       this.localStorage.setItem('checked', false);
     }
 
-    this.localStorage.viewItems();
-
     // O tema local será definido a partir do valor contido na LocalStorage, assim como o booleano do toggle checado
     this.theme = this.localStorage.getItem('theme');
     this.toggleChecked = this.localStorage.getItem('checked');
 
-    // O tema será passado para o método de passagem de tema para o service
-    this.passThemeService(this.theme);
+    // O tema será passado para o método que fará a mudança de tema
+    this.modifyTheme(this.theme);
   }
 
   // Método que será executado com o pressionamento do toggle no HTML
@@ -52,14 +47,8 @@ export class NavbarComponent implements OnInit {
     this.localStorage.setItem('theme', this.theme);
     this.localStorage.setItem('checked', this.toggleChecked);
 
-    // O tema será passado para o método de passagem de tema para o service
-    this.passThemeService(this.theme);
-  }
-
-  passThemeService(theme: string) {
-    // O tema será passado para o service, onde será processado
-    // this.ChangeTheme.modifyTheme(theme);
-    this.modifyTheme(theme);
+    // O tema será passado para o método que fará a mudança de tema
+    this.modifyTheme(this.theme);
   }
 
   modifyTheme(theme: string) {
