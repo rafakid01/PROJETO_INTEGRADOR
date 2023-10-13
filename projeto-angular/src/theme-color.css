@@ -1,0 +1,24 @@
+:root {
+    --light-yellow: #FFFCE7;
+    --normal-yellow: #FAE86F;
+    --dark-yellow: #F3DC3E;
+    --alternative-yellow: #FEF4B2;
+    --light-blue: #7079E3;
+    --normal-blue: #3B45BC;
+    --dark-blue: #140E2E;
+
+    --red: #E04141;
+    --green: #4DBF3A;
+    --white: #FFFFFF;
+
+
+    --title-color: #140E2E;
+    --subtitle-color: #140E2E;
+    --text-one-color: #140E2E;
+    --text-two-color: #3B45BC;
+    --background-color: #FFFCE7;
+    --detail-one-color: #3B45BC;
+    --detail-two-color: #F3DC3E;
+    --detail-three-color: #FEF4B2;
+    --detail-four-color: #FFFFFF;
+}

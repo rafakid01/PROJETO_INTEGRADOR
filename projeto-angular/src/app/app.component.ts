@@ -1,8 +1,5 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { LocalStorageService } from './services/local-storage.service';
-
-declare function atualizarTemaCores(className: string): any;
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,19 +11,35 @@ export class AppComponent {
 
   constructor(
     private localStorage: LocalStorageService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private el: ElementRef
   ) {}
 
   ngOnInit(): void {
-    this.theme_class = this.localStorage.getItem('theme');
-    atualizarTemaCores(this.theme_class);
-
-    this.renderer.setProperty(document, 'class', this.theme_class);
-
+    // this.theme_class = this.localStorage.getItem('theme');
+    // atualizarTemaCores(this.theme_class);
+    // this.setThemeColor(this.theme_class);
     // if (this.theme_class == undefined) {
     //   this.theme_class = this.localStorage.getItem('theme');
     // } else {
     //   this.theme_class = this.ThemeService.importTheme();
     // }
   }
+
+  // setThemeColor(theme: string) {
+  //   if (theme == 'dark') {
+  //     this.renderer.setStyle(
+  //       this.el.nativeElement.ownerDocument.body.body,
+  //       '--title-color',
+  //       '#FFFCE7'
+  //     );
+  //   }
+  //   if (theme == 'light') {
+  //     this.renderer.setStyle(
+  //       this.el.nativeElement.ownerDocument.body.body,
+  //       '--title-color',
+  //       '#140E2E'
+  //     );
+  //   }
+  // }
 }

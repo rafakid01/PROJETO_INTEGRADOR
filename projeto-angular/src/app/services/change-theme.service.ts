@@ -1,17 +1,18 @@
-import { Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ChangeThemeService {
+export class ChangeThemeService implements OnInit {
   theme_final: any;
-  constructor() {}
+  constructor(@Inject(DOCUMENT) private document: Document) {}
 
-  getTheme(theme: String) {
+  ngOnInit(): void {}
+
+  modifyTheme(theme: String) {
     this.theme_final = theme;
-  }
-
-  importTheme() {
-    return this.theme_final;
+    const body = this.document.getElementsByTagName('body')[0];
+    console.log(body);
   }
 }
