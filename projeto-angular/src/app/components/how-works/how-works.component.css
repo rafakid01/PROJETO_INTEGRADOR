@@ -16,27 +16,38 @@ body {
     justify-content: center;
 }
 
-.explanation {
+.explanation-main {
     width: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 }
 
-.arrow {
+.arrow-container {
     display: flex;
     justify-content: center;
 }
 
-.arr-1 {
+.arr-1,
+.arr-2 {
     width: 200px;
     height: 200px;
 }
 
-.arr-2 {
+.arr-3,
+.arr-4 {
     width: 40;
     height: 70px;
 }
+
+.ex-2,
+.ex-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .ex-2 p,
 .ex-3 p {
