@@ -1,3 +1,55 @@
 body {
     background-color: var(--background-color);
 }
+
+.title {
+    padding-bottom: 3em;
+}
+
+.title p {
+    color: var(--title-color);
+    font-size: calc(1vw + 1em);
+    font-weight: bold;
+}
+
+.container {
+    justify-content: center;
+}
+
+.explanation {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.arrow {
+    display: flex;
+    justify-content: center;
+}
+
+.arr-1 {
+    width: 200px;
+    height: 200px;
+}
+
+.arr-2 {
+    width: 40;
+    height: 70px;
+}
+
+.ex-2 p,
+.ex-3 p {
+    font-weight: bold;
+    font-size: calc(1vw + .4em);
+}
+
+.ex-1,
+.ex-4,
+.ex-5 {
+    font-size: calc(1vw + .3em);
+}
+
+.text {
+    color: var(--text-two-color);
+}
