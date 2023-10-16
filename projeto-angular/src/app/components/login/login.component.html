@@ -1,38 +1,31 @@
-<div class="container">
-  <section>
-    <div class="title-container">
-      <h1>{{ "login" | uppercase }}</h1>
-    </div>
-    <form action="">
-      <div class="inputbox">
-        <i class="bi bi-envelope"></i>
-        <input type="email" required />
-        <label for="">email</label>
+<main>
+  <div class="container">
+    <section class="container">
+      <div class="title-container">
+        <h1>{{ "login" | uppercase }}</h1>
       </div>
-      <div class="inputbox">
-        <i class="bi bi-lock"></i>
-        <input type="password" required />
-        <label for="">senha</label>
-      </div>
+      <form class="form container" action="">
+        <div class="inputbox row">
+          <div class="col-11">
+            <input class="form-control" type="email" id="email" required />
+          </div>
+          <div class="col-1 d-flex justify-content-center">
+            <i class="bi bi-envelope"></i>
+          </div>
+        </div>
+        <div class="inputbox row">
+          <i class="bi bi-lock col-2"></i>
+          <input class="form-control" type="password" required />
+        </div>
+        <button>login</button>
+      </form>
       <div class="forget">
         <label for=""><input type="checkbox" />lembrar</label>
         <a href="#">esqueci minha senha</a>
       </div>
-      <button>login</button>
       <div class="register">
         <p>não tenho uma conta <a href="#">registrar</a></p>
       </div>
-    </form>
-  </section>
-  <section class="right-section half">
-    <div class="logo logo-outside">
-      <div class="logo logo-middle">
-        <div class="logo logo-center">
-          <div class="logo-container">
-            <img src="/assets/img/logo-uniso.webp" alt="" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
+    </section>
+  </div>
+</main>
