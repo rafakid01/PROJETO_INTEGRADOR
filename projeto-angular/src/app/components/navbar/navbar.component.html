@@ -1,47 +1,50 @@
 <div class="container">
-  <nav class="navbar">
-    <div class="img-container home">
-      <a routerLink="/" class="image-link">
-        <img src="/assets/img/u-teach-complete.png" alt="" />
-      </a>
+  <div class="row justify-content-center">
+    <div class="fixed col-9">
+      <nav class="navbar">
+        <div class="img-container home">
+          <a routerLink="/" class="image-link">
+            <img src="/assets/img/u-teach-complete.png" alt="" />
+          </a>
+        </div>
+        <div class="login-container px-sm-1">
+          <p class="h4">
+            <a routerLink="/login" class="anchor-link home">
+              {{ "Login" | uppercase }}
+            </a>
+          </p>
+        </div>
+        <div class="registro-container px-sm-1">
+          <p class="h4">
+            <a routerLink="/register" class="anchor-link home">
+              {{ "Registre-se" | uppercase }}
+            </a>
+          </p>
+        </div>
+        <div class="how-works-container px-sm-1">
+          <p class="h4">
+            <a routerLink="/how-works" class="anchor-link home">
+              {{ "Como Funciona" | uppercase }}
+            </a>
+          </p>
+        </div>
+        <div class="contact-container">
+          <p class="h4">
+            <a routerLink="/contact" class="anchor-link home">
+              {{ "Contato" | uppercase }}
+            </a>
+          </p>
+        </div>
+        <div class="change-theme-container">
+          <input
+            (click)="changeColorTheme()"
+            type="checkbox"
+            [(checked)]="toggleChecked"
+            id="switch"
+            class="toggle"
+          /><label id="switch-theme" for="switch">Toggle</label>
+        </div>
+      </nav>
     </div>
-    <div class="login-container px-sm-1">
-      <p class="h4">
-        <a routerLink="/login" class="anchor-link home">
-          {{ "Login" | uppercase }}
-        </a>
-      </p>
-    </div>
-    <div class="registro-container px-sm-1">
-      <p class="h4">
-        <a routerLink="/register" class="anchor-link home">
-          {{ "Registre-se" | uppercase }}
-        </a>
-      </p>
-    </div>
-    <div class="how-works-container px-sm-1">
-      <p class="h4">
-        <a routerLink="/how-works" class="anchor-link home">
-          {{ "Como Funciona" | uppercase }}
-        </a>
-      </p>
-    </div>
-    <div class="contact-container">
-      <p class="h4">
-        <a routerLink="/contact" class="anchor-link home">
-          {{ "Contato" | uppercase }}
-        </a>
-      </p>
-    </div>
-    <div class="change-theme-container">
-      <button class="toggle-button" onclick="changeColorTheme()">
-        <input
-          type="checkbox"
-          [checked]="toggleChecked"
-          id="switch"
-          class="toggle"
-        /><label id="switch-theme" for="switch">Toggle</label>
-      </button>
-    </div>
-  </nav>
+  </div>
 </div>
