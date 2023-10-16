@@ -1,3 +1,10 @@
-body {
-    padding-top: 7em;
+.container {
+    padding: 7em 0;
+    background-color: var(--background-color);
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
