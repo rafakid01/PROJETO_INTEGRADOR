@@ -1,15 +1,17 @@
 body {
     background-color: var(--background-color);
+    padding: 7em 0;
+    height: 100vh;
 }
 
 .title {
     padding-bottom: 3em;
 }
 
-.title p {
+.title h1 {
     color: var(--title-color);
-    font-size: calc(1vw + 1em);
     font-weight: bold;
+    font-family: "Quicksand";
 }
 
 .container {
