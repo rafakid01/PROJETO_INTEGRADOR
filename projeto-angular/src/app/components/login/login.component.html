@@ -1,31 +1,32 @@
 <main>
   <div class="container">
-    <section class="container">
+    <div class="login-container">
       <div class="title-container">
-        <h1>{{ "login" | uppercase }}</h1>
+        <h1 class="title">{{ "Login" | uppercase }}</h1>
       </div>
-      <form class="form container" action="">
-        <div class="inputbox row">
-          <div class="col-11">
-            <input class="form-control" type="email" id="email" required />
-          </div>
-          <div class="col-1 d-flex justify-content-center">
-            <i class="bi bi-envelope"></i>
-          </div>
+      <div class="data-container">
+        <div class="email-container">
+          <input placeholder="Email" type="email" class="form-control email" />
         </div>
-        <div class="inputbox row">
-          <i class="bi bi-lock col-2"></i>
-          <input class="form-control" type="password" required />
+        <div class="pass-container">
+          <input placeholder="Senha" type="password" class="form-control" />
         </div>
-        <button>login</button>
-      </form>
-      <div class="forget">
-        <label for=""><input type="checkbox" />lembrar</label>
-        <a href="#">esqueci minha senha</a>
+        <div class="connection-container form-check px-4">
+          <input class="form-check-input" type="checkbox" id="conn" />
+          <label class="form-check-label" for="conn">Manter-me conectado</label>
+        </div>
+        <div class="button-login-container">
+          <button class="btn">Entrar</button>
+        </div>
       </div>
-      <div class="register">
-        <p>não tenho uma conta <a href="#">registrar</a></p>
+      <div class="button-bottom-container">
+        <div class="no-account-container">
+          <button class="no-account btn">Não possuo conta</button>
+        </div>
+        <div class="forget-container">
+          <button class="forget-pass btn">Esqueci minha senha</button>
+        </div>
       </div>
-    </section>
+    </div>
   </div>
 </main>
