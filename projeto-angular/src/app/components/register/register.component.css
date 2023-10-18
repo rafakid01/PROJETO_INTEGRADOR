@@ -1,17 +1,104 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'inter', sans-serif;
+}
+
 body {
-    padding-top: 7em;
+
     background-color: #b467a5;
     background-image: linear-gradient(43deg, #b467a5 0%, #785bb5 46%, #3e4bab 100%);
 
     background-repeat: no-repeat;
-    background-size: cover;
+    /* background-size: cover; */
     width: 100%;
     height: 100vh;
-}
-.form {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90%;
-    margin-top: 2em;
+    margin: auto;
+}
+.formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2em;
+}
+
+.title {
+
+    color: var(--detail-one-color);
+    font-family: "Quicksand";
+    font-weight: bold;
+}
+
+.box {
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.input-group  {
+    display: grid;
+    column-gap: 50px;
+
+
+}
+.group-one {
+    grid-column-start: 1;
+
+}
+.group-two {
+    grid-column-start: 2;
+}
+
+#email,#curso,#comfirmpasseord {
+    margin-top: 20px;
+}
+
+
+label{
+    color: var(--text-one-color);
+}
+.input-box.input-box.password{
+    text-rendering: 5;
+}
+
+#cadastrese {
+    text-align: center;
+
+}
+#cadastrese-text {
+    margin-top: 0px;
+    font-family: 'Quicksand', sans-serif;
+    color: #3B45BC;
+}
+
+.gender-title h4 {
+    margin: 10px;
+}
+
+.continue-button {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.login-button {
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#cadastrar {
+    margin: 2px;
+    margin-top: 20px;
+    font-family: 'Quicksand', sans-serif;
 }
