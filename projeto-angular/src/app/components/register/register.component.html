@@ -1,85 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Testing</title>
+</head>
 <body>
-  <div class="form">
-    <form action="#">
-      <div class="form-header">
-        <div title="title">
-          <h1>cadastre-se</h1>
-          <div class="login-button">
-            <button><a href="#">ja possuo conta</a></button>
+    <link rel="stylesheet" href="registro.css">
+    <div class="father">
+        <div class="formulario">
+                <form action="#" class="">
+                    <div class = "container">
+                <div class="group-of-inputs">
+                    <div class="box">
+                        <div id="cadastrese">
+                            <div title="title">
+                            <h1 id="cadastrese-text">REGISTRE-SE</h1>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div class="group-one">
+                                <div class="input-box">
+                                <label for="name"></label>
+                                <input
+                                    id="name"
+                                    type="text"
+                                    name="name"
+                                    placeholder="nome completo"
+                                    required
+                                />
+                                </div>
+                                <div class="input-box">
+                                <label for="email"></label>
+                                <input
+                                    id="email"
+                                    type="email"
+                                    name="email"
+                                    placeholder="email"
+                                    required
+                                />
+                                </div>
+                                <div class="input-box">
+                                <label for="curso"></label>
+                                <input
+                                    id="curso"
+                                    type="text"
+                                    name="curso"
+                                    placeholder="curso matriculado"
+                                    required
+                                />
+                                </div>
+                            </div>
+
+                            <div class="group-two">
+                                <div class="input-box">
+                                <label for="password"></label>
+                                <input
+                                    id="password"
+                                    type="password"
+                                    name="password"
+                                    placeholder="senha"
+                                    required
+                                />
+                                </div>
+                                <div class="input-box">
+                                <label for="comfirmpasseord"></label>
+                                <input
+                                    id="comfirmpasseord"
+                                    type="password"
+                                    name="comfirmpasseord"
+                                    placeholder="comfirme sua senha"
+                                    required
+                                />
+                                </div>
+                                <h4 id="cadastrar">cadastrar como</h4>
+                                <div class="monitor_ou_estudante">
+                                    <div class="gender-title">
+                                    
+                                    </div>
+                                    <div class="gender-group">
+                                    <div class="gender-input">
+                                        <input type="radio" id="moniror" name="study_or_monitor" />
+                                        <label for="monitor">monitor</label>
+                                        <input type="radio" id="estudant" name="study_or_monitor" />
+                                        <label for="estudant">estudante</label>
+                                    </div>
+                                    <div class="gender-input">
+                                    </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="continue-button">
+                        <button><a href="#">continuar</a></button>
+                    </div>
+                    <div class="login-button">
+                        <button><a href="#">ja possuo conta</a></button>
+                    </div>
+              </div>
+                  </div>
+                </div>
+              </form>
           </div>
-        </div>
       </div>
-      <div class="input-group">
-        <div class="input-box">
-          <label for="name"></label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            placeholder="nome completo"
-            required
-          />
-        </div>
-        <div class="input-box">
-          <label for="email"></label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            placeholder="email"
-            required
-          />
-        </div>
-        <div class="input-box">
-          <label for="curso"></label>
-          <input
-            id="curso"
-            type="text"
-            name="curso"
-            placeholder="curso matriculado"
-            required
-          />
-        </div>
-        <div class="input-box">
-          <label for="password"></label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            placeholder="senha"
-            required
-          />
-        </div>
-        <div class="input-box">
-          <label for="comfirmpasseord"></label>
-          <input
-            id="comfirmpasseord"
-            type="password"
-            name="comfirmpasseord"
-            placeholder="comfirme sua senha"
-            required
-          />
-        </div>
-      </div>
-      <div class="monitor_ou_estudante">
-        <div class="gender-title">
-          <h4>cadastrar como</h4>
-        </div>
-        <div class="gender-group">
-          <div class="gender-input">
-            <input type="radio" id="moniror" name="study_or_monitor" />
-            <label for="monitor">monitor</label>
-          </div>
-          <div class="gender-input">
-            <input type="radio" id="estudant" name="study_or_monitor" />
-            <label for="estudant">estudante</label>
-          </div>
-        </div>
-      </div>
-      <div class="continue-button">
-        <button><a href="#">continuar</a></button>
-      </div>
-    </form>
-  </div>
 </body>
 </html>
