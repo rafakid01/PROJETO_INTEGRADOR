@@ -12,7 +12,6 @@ export class LocalStorageService {
 
   setItem(key: string, value: any) {
     localStorage.setItem(key, JSON.stringify(value));
-    console.log(`Key: ${key} Value: ${value}`);
   }
 
   getItem(key: string) {

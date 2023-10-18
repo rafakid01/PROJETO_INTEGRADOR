@@ -1,0 +1,96 @@
+main {
+    padding-top: 7em;
+    background-color: #b467a5;
+    background-image: linear-gradient(43deg, #b467a5 0%, #785bb5 46%, #3e4bab 100%);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    margin-top: 2em;
+}
+
+.login-container {
+    width: 60%;
+    padding: 5em 5em .5em 5em;
+    border-radius: 50px;
+    background-color: var(--detail-five-color);
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2em;
+}
+
+.title {
+    color: var(--detail-one-color);
+    font-family: "Quicksand";
+    font-weight: bold;
+}
+
+.data-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.data-container div {
+    padding: 2em 0;
+}
+
+.form-control {
+    border-radius: 0px;
+    border: 1px solid var(--text-one-color);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: transparent;
+    text-overflow: ellipsis;
+    box-shadow: none;
+}
+
+label,
+.form-control,
+.form-control::placeholder,
+button:hover,
+.forget-pass:active,
+.no-account:active,
+button,
+.button-login-container button {
+    color: var(--text-one-color);
+}
+
+.form-check-input:checked {
+    box-shadow: none;
+}
+
+.button-login-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button-login-container button {
+    background-color: var(--detail-two-color);
+    padding: .5em 3em;
+    font-size: calc(1vw + .1em);
+    border-radius: 20px;
+}
+
+.button-bottom-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.no-account {
+    background-color: var(--detail-three-color);
+    border-radius: 20px;
+    padding: .5em 2em;
+}
