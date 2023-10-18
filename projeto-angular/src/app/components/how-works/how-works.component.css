@@ -1,37 +1,77 @@
+/* DETERMINAR O TAMANHO DA TELA */
+
 body {
     background-color: var(--background-color);
+    padding: 7em 0;
+    height: 100vh;
 }
 
-.title {
-    padding-bottom: 3em;
+/* FONTE */
+
+p {
+    font-family: "Nunito";
 }
 
-.title p {
-    color: var(--title-color);
-    font-size: calc(1vw + 1em);
-    font-weight: bold;
-}
+/* CENTRALIZAÇÃO DO CONTAINER */
 
 .container {
     justify-content: center;
 }
 
+/* CONFIGURAÇÃO DO TÍTULO */
+
+.title {
+    padding-bottom: 3em;
+}
+
+.title h1 {
+    color: var(--title-color);
+    font-weight: bold;
+    font-family: "Quicksand";
+}
+
+/* CONTAINER IMAGEM */
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    margin-top: -3em;
+    width: 250px;
+}
+
+/* CONTAINER DE EXPLICAÇÃO GERAL*/
+
 .explanation-main {
     width: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: .5fr 1fr .5fr;
 }
 
-.arrow-container {
+/* CONTAINER DAS SETAS */
+
+.arrow-container-one,
+.arrow-container-two {
     display: flex;
-    justify-content: center;
+}
+
+.arrow-container-one {
+    justify-content: flex-end;
+}
+
+.arrow-container-two {
+    justify-content: flex-start;
 }
 
 .arr-1,
 .arr-2 {
     width: 200px;
     height: 200px;
+    padding: 0 1em;
 }
 
 .arr-3,
@@ -40,20 +80,31 @@ body {
     height: 70px;
 }
 
+/* CONTAINERS 1 - 5 */
+
+.explanation-container p {
+    background-color: var(--detail-two-color);
+    padding: .5em;
+    border-radius: 20px;
+}
+
+/* CONTAINER 2 E 3 */
+
 .ex-2,
 .ex-3 {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: space-evenly;
 }
-
 
 .ex-2 p,
 .ex-3 p {
     font-weight: bold;
     font-size: calc(1vw + .4em);
 }
+
+/* CONTAINER 1, 4 E 5 */
 
 .ex-1,
 .ex-4,
@@ -63,4 +114,5 @@ body {
 
 .text {
     color: var(--text-two-color);
+    text-align: justify;
 }
