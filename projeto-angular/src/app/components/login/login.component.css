@@ -13,13 +13,12 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90%;
-    margin-top: 2em;
+    height: 100%;
 }
 
 .login-container {
     width: 60%;
-    padding: 5em 5em .5em 5em;
+    padding: 3em 3em .5em 3em;
     border-radius: 50px;
     background-color: var(--detail-five-color);
 }
@@ -46,7 +45,7 @@ main {
 }
 
 .data-container>div {
-    padding: 2em 0;
+    padding: 1.5em 0;
 }
 
 /* CONTAINER DO DADO DE SENHA */
@@ -119,6 +118,7 @@ button,
 .button-login-container {
     display: flex;
     justify-content: center;
+    padding: 1em 0;
 }
 
 .button-login-container button {
