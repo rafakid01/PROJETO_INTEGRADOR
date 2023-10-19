@@ -1,6 +1,6 @@
 /* EXTENDER A TELA PARA TODA A TELA DO USUÁRIO */
 main {
-    padding-top: 7em;
+    padding-top: 6.5em;
     background-color: #b467a5;
     background-image: linear-gradient(43deg, #b467a5 0%, #785bb5 46%, #3e4bab 100%);
     width: 100%;

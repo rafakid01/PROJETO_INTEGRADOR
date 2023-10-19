@@ -3,7 +3,7 @@
 body {
     background-color: var(--background-color);
     padding: 7em 0;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* FONTE */
@@ -49,7 +49,7 @@ p {
 .explanation-main {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr .5fr 1fr;
     grid-template-rows: .5fr 1fr .5fr;
     padding: 0;
 }
@@ -71,15 +71,19 @@ p {
 
 .arr-1,
 .arr-2 {
-    width: 200px;
-    height: 200px;
-    padding: 0 1em;
+    max-width: 200px;
+    max-height: 200px;
+    width: calc(200px - 1vw);
+    margin: 0 5.8em;
 }
 
 .arr-3,
 .arr-4 {
-    width: 40;
-    height: 70px;
+    max-width: 40px;
+
+    aspect-ratio: 1/2;
+    width: calc(40px - vw);
+
 }
 
 /* CONTAINERS 1 - 5 */
