@@ -16,13 +16,12 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90%;
-    margin-top: 2em;
+    height: 100%;
 }
 
 .register-container {
     width: 80%;
-    padding: 5em 5em .5em 5em;
+    padding: 3em 3em .5em 3em;
     border-radius: 50px;
     background-color: var(--detail-five-color);
 }
@@ -32,7 +31,7 @@ main {
 .title-container {
     display: flex;
     justify-content: center;
-    padding-bottom: 2em;
+    padding-bottom: 1em;
 }
 
 .title {
@@ -138,7 +137,7 @@ button,
 .button-register-container {
     display: flex;
     justify-content: center;
-    padding: 2em 0;
+    padding-bottom: 1em;
 }
 
 .button-register-container button {
@@ -146,6 +145,11 @@ button,
     padding: .5em 3em;
     font-size: calc(1vw + .1em);
     border-radius: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-one-color);
 }
 
 /* CONTAINER BOTAO NA BASE */
@@ -159,7 +163,7 @@ button,
 .already-account {
     background-color: var(--detail-three-color);
     border-radius: 20px;
-    padding: .5em 2em;
+    padding: .25em 1em;
 }
 
 /* ______________________________________________________ */
