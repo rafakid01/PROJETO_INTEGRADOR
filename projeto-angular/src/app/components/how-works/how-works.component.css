@@ -40,16 +40,18 @@ p {
 
 .image-container img {
     margin-top: -3em;
-    width: 250px;
+    max-width: 250px;
+    width: calc(250px - 2vw);
 }
 
 /* CONTAINER DE EXPLICAÇÃO GERAL*/
 
 .explanation-main {
-    width: 80%;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: .5fr 1fr .5fr;
+    padding: 0;
 }
 
 /* CONTAINER DAS SETAS */
