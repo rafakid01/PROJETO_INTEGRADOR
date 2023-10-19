@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   toggleChecked: any;
   theme: any;
   storedValue: any;
+  backColor: string = 'transparent';
 
   constructor(
     private localStorage: LocalStorageService,
@@ -67,6 +68,10 @@ export class NavbarComponent implements OnInit {
   }
 
   changeBackground() {
-    console.log(this.scroll.getScrollPosition());
+    const positionY = this.scroll.getScrollPosition()[1];
+
+    positionY > 0
+      ? (this.backColor = 'colored')
+      : (this.backColor = 'transparent');
   }
 }

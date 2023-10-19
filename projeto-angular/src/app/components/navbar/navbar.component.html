@@ -1,4 +1,4 @@
-<nav class="fixed" (click)="changeBackground()">
+<nav class="fixed" [class]="backColor" (window:scroll)="changeBackground()">
   <div class="container">
     <div class="row justify-content-center align-content-center">
       <nav class="navbar">
