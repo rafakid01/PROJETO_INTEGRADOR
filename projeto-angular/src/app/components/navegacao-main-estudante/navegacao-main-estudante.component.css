@@ -1,0 +1,18 @@
+main {
+    padding-top: 6em;
+    min-height: 100vh;
+}
+
+.header-content-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2em;
+}
+
+.compressed {
+    display: none;
+}
+
+.descompressed {
+    display: block;
+}
