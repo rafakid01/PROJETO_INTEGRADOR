@@ -1,0 +1,125 @@
+<main>
+  <div class="container">
+    <div class="header-content-container">
+      <div class="top-container">
+        <p class="result">
+          Resultados para: <span class="h5"> {{ "busca_span" }} </span>
+        </p>
+      </div>
+      <div class="middle-container">
+        <div class="selects-container">
+          <div class="first-select-container select">
+            <button (click)="compressOne()">
+              <div class="select-title">
+                <p class="h4">Curso</p>
+              </div>
+              <div class="icon-container">
+                <i class="bi bi-arrow-down"></i>
+              </div>
+            </button>
+            <div
+              class="select-first"
+              [class]="compressedDivOne"
+              *ngFor="let course of coursesList"
+            >
+              <input type="checkbox" class="form-check-input" />
+              <label for="" class="form-check-label"> {{ course.name }} </label>
+            </div>
+          </div>
+          <div class="second-select-container select">
+            <button (click)="compressTwo()">
+              <div class="select-title">
+                <p class="h4">Avaliação</p>
+              </div>
+              <div class="icon-container">
+                <i class="bi bi-arrow-down"></i>
+              </div>
+            </button>
+            <div
+              class="select-second"
+              [class]="compressedDivTwo"
+              *ngFor="let rate of ratingList"
+            >
+              <input type="checkbox" class="form-check-input" />
+              <label for="" class="form-check-label">
+                {{ rate.value }}/5 <i class="bi bi-star-fill"> </i>
+              </label>
+            </div>
+          </div>
+          <div class="third-select-container select">
+            <button (click)="compressThree()">
+              <div class="select-title">
+                <p class="h4">Categoria</p>
+              </div>
+              <div class="icon-container">
+                <i class="bi bi-arrow-down"></i>
+              </div>
+            </button>
+            <div
+              class="select-third"
+              [class]="compressedDivThree"
+              *ngFor="let category of categoryList"
+            >
+              <input type="checkbox" class="form-check-input" />
+              <label for="" class="form-check-label">
+                {{ category.name }}
+              </label>
+            </div>
+          </div>
+          <div class="fourth-select-container select">
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="search-container">
+          <div class="input-container">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Pesquisar assunto/matéria"
+            />
+          </div>
+          <div class="lupa-container">
+            <div class="lupa">
+              <i class="bi bi-search"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-container">
+        <p class="number-monitor">
+          <span class="h5"> {{ "number_monitor" }}</span> Monitores disponíveis
+        </p>
+      </div>
+    </div>
+    <div class="monitors-container">
+      <div class="single-container" *ngFor="let monitor of testList">
+        <div class="img-container">
+          <img src="{{ monitor.image }}" alt="" />
+        </div>
+        <div class="info-container">
+          <p class="h4">{{ monitor.name }}</p>
+          <p class="h5">{{ monitor.course }}</p>
+        </div>
+        <div class="rating-container">
+          <p class="h6">{{ monitor.rating }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

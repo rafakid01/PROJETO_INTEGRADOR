@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { InitialPageComponent } from './components/initial-page/initial-page.component';
+import { NavegacaoMainEstudanteComponent } from './components/navegacao-main-estudante/navegacao-main-estudante.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { InitialPageComponent } from './components/initial-page/initial-page.com
     NavbarComponent,
     RegisterComponent,
     LoginComponent,
-    InitialPageComponent
+    InitialPageComponent,
+    NavegacaoMainEstudanteComponent
   ],
   imports: [
     BrowserModule,
