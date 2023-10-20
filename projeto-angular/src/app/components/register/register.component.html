@@ -1,106 +1,88 @@
-<body>
-  <div class="form">
-    <form action="#">
-      <div class="form-header">
-        <div title="title">
-          <h1>cadastre-se</h1>
-          <div class="login-button">
-            <button><a href="#">ja possuo conta</a></button>
+<main>
+  <div class="container">
+    <div class="register-container">
+      <div class="title-container">
+        <h1 class="title">{{ "Registro" | uppercase }}</h1>
+      </div>
+      <div class="data-container">
+        <!-- CONTAINER NOME -->
+        <div class="name-container">
+          <input
+            placeholder="Nome completo"
+            type="text"
+            class="form-control name"
+          />
+        </div>
+        <!-- CONTAINER SENHA -->
+        <div class="pass-container">
+          <input
+            placeholder="Senha"
+            [type]="typeInputPass"
+            class="form-control password"
+          />
+          <div class="visibility-container">
+            <button class="" (click)="changeVisibility()">
+              <i [class]="typeEye"></i>
+            </button>
           </div>
         </div>
-        <main>
-          <div class="container">
-            <div class="register-container">
-              <div class="title-container">
-                <h1 class="title">{{ "Registro" | uppercase }}</h1>
-              </div>
-              <div class="data-container">
-                <!-- CONTAINER NOME -->
-                <div class="name-container">
-                  <input
-                    placeholder="Nome completo"
-                    type="text"
-                    class="form-control name"
-                  />
-                </div>
-                <!-- CONTAINER SENHA -->
-                <div class="pass-container">
-                  <input
-                    placeholder="Senha"
-                    [type]="typeInputPass"
-                    class="form-control password"
-                  />
-                  <div class="visibility-container">
-                    <button class="" (click)="changeVisibility()">
-                      <i [class]="typeEye"></i>
-                    </button>
-                  </div>
-                </div>
-                <!-- CONTAINER EMAIL -->
-                <div class="email-container">
-                  <input
-                    placeholder="Email"
-                    type="email"
-                    class="form-control email"
-                  />
-                </div>
-                <!-- CONTAINER CONFIRMAÇÃO SENHA -->
-                <div class="confirm-pass-container">
-                  <input
-                    placeholder="Confirme sua senha"
-                    [type]="typeInputPass"
-                    class="form-control con-password"
-                  />
-                </div>
-                <!-- CONTAINER CURSO -->
-                <div class="course-container">
-                  <input
-                    type="text"
-                    placeholder="Curso matriculado"
-                    class="form-control name"
-                  />
-                </div>
-                <!-- CONTAINER CATEGORIA -->
-                <div class="category-container">
-                  <div class="cat-title-container">
-                    <p class="h6 cat-title">Cadastrar como:</p>
-                  </div>
-                  <div class="category-input-container">
-                    <div class="monitor-container">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        id="monitor"
-                        name="study_or_monitor"
-                      />
-                      <label for="monitor">Monitor</label>
-                    </div>
-                    <div class="student-container">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        id="student"
-                        name="study_or_monitor"
-                      />
-                      <label for="student">Estudante</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="button-register-container">
-                <button class="btn">Registrar</button>
-              </div>
-              <div class="button-bottom-container">
-                <div class="already-account-container">
-                  <a routerLink="/login">
-                    <button class="already-account btn">Já possuo conta</button>
-                  </a>
-                </div>
-              </div>
+        <!-- CONTAINER EMAIL -->
+        <div class="email-container">
+          <input placeholder="Email" type="email" class="form-control email" />
+        </div>
+        <!-- CONTAINER CONFIRMAÇÃO SENHA -->
+        <div class="confirm-pass-container">
+          <input
+            placeholder="Confirme sua senha"
+            [type]="typeInputPass"
+            class="form-control con-password"
+          />
+        </div>
+        <!-- CONTAINER CURSO -->
+        <div class="course-container">
+          <input
+            type="text"
+            placeholder="Curso matriculado"
+            class="form-control name"
+          />
+        </div>
+        <!-- CONTAINER CATEGORIA -->
+        <div class="category-container">
+          <div class="cat-title-container">
+            <p class="h6 cat-title">Cadastrar como:</p>
+          </div>
+          <div class="category-input-container">
+            <div class="monitor-container">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="monitor"
+                name="study_or_monitor"
+              />
+              <label for="monitor">Monitor</label>
+            </div>
+            <div class="student-container">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="student"
+                name="study_or_monitor"
+              />
+              <label for="student">Estudante</label>
             </div>
           </div>
-        </main>
+        </div>
       </div>
-    </form>
+      <div class="button-register-container">
+        <button class="btn">Registrar</button>
+      </div>
+      <div class="button-bottom-container">
+        <div class="already-account-container">
+          <a routerLink="/login">
+            <button class="already-account btn">Já possuo conta</button>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
-</body>
+</main>
