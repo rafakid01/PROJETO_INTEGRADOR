@@ -1,28 +1,29 @@
+/* EXTENDER A TELA PARA TODA A TELA DO USUÁRIO */
 main {
-    padding-top: 7em;
+    padding-top: 6.5em;
     background-color: #b467a5;
     background-image: linear-gradient(43deg, #b467a5 0%, #785bb5 46%, #3e4bab 100%);
-
-    background-repeat: no-repeat;
-    background-size: cover;
     width: 100%;
     height: 100vh;
 }
+
+/* CENTRALIZAÇÃO DO CONTAINER DE LOGIN E PASSAGEM DO TAMANHO */
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90%;
-    margin-top: 2em;
+    height: 100%;
 }
 
 .login-container {
     width: 60%;
-    padding: 5em 5em .5em 5em;
+    padding: 3em 3em .5em 3em;
     border-radius: 50px;
     background-color: var(--detail-five-color);
 }
+
+/* CONTAINER DO TITULO */
 
 .title-container {
     display: flex;
@@ -36,14 +37,41 @@ main {
     font-weight: bold;
 }
 
+/* CONTAINER GERAL DOS DADOS */
+
 .data-container {
     display: flex;
     flex-direction: column;
 }
 
-.data-container div {
-    padding: 2em 0;
+.data-container>div {
+    padding: 1.5em 0;
 }
+
+/* CONTAINER DO DADO DE SENHA */
+
+.pass-container {
+    display: flex;
+}
+
+.password {
+    width: 95%;
+}
+
+.visibility-container {
+    width: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.visibility-container button {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+}
+
+/* INPUTS DE EMAIL E SENHA */
 
 .form-control {
     border-radius: 0px;
@@ -67,13 +95,30 @@ button,
     color: var(--text-one-color);
 }
 
+.btn {
+    position: relative;
+    bottom: 0;
+    transition: all 250ms ease;
+}
+
+.btn:hover {
+    bottom: .5em;
+    transition: bottom 250ms ease;
+}
+
+
+/* CHECKBOX INPUT */
+
 .form-check-input:checked {
     box-shadow: none;
 }
 
+/* BOTAO DE ENTRADA LOGIN */
+
 .button-login-container {
     display: flex;
     justify-content: center;
+    padding: 1em 0;
 }
 
 .button-login-container button {
@@ -83,11 +128,14 @@ button,
     border-radius: 20px;
 }
 
+/* CONTAINER BOTOES NA BASE */
+
 .button-bottom-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 
 .no-account {
     background-color: var(--detail-three-color);

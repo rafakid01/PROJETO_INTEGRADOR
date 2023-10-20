@@ -10,7 +10,16 @@
           <input placeholder="Email" type="email" class="form-control email" />
         </div>
         <div class="pass-container">
-          <input placeholder="Senha" type="password" class="form-control" />
+          <input
+            placeholder="Senha"
+            [type]="typeInputPass"
+            class="form-control password"
+          />
+          <div class="visibility-container">
+            <button class="" (click)="changeVisibility()">
+              <i [class]="typeEye"></i>
+            </button>
+          </div>
         </div>
         <div class="connection-container form-check px-4">
           <input class="form-check-input" type="checkbox" id="conn" />

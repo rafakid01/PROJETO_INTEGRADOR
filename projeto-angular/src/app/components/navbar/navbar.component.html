@@ -1,9 +1,9 @@
-<nav class="fixed">
+<nav class="fixed" [class]="backColor" (window:scroll)="changeBackground()">
   <div class="container">
     <div class="row justify-content-center align-content-center">
       <nav class="navbar">
         <div class="img-container home">
-          <a routerLink="/" class="image-link">
+          <a routerLink="/" href="#home" class="image-link">
             <img src="/assets/img/u-teach-complete.png" alt="" />
           </a>
         </div>
