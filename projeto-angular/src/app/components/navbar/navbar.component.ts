@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -11,10 +12,12 @@ export class NavbarComponent implements OnInit {
   toggleChecked: any;
   theme: any;
   storedValue: any;
+  backColor: string = 'transparent';
 
   constructor(
     private localStorage: LocalStorageService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private scroll: ViewportScroller
   ) {}
 
   ngOnInit(): void {
@@ -62,5 +65,13 @@ export class NavbarComponent implements OnInit {
       this.renderer.removeClass(html, 'light');
       this.renderer.addClass(html, theme);
     }
+  }
+
+  changeBackground() {
+    const positionY = this.scroll.getScrollPosition()[1];
+
+    positionY > 0
+      ? (this.backColor = 'colored')
+      : (this.backColor = 'transparent');
   }
 }

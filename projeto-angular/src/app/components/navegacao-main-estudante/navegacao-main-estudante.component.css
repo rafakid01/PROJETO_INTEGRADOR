@@ -1,0 +1,38 @@
+main {
+    padding-top: 6em;
+    min-height: 100vh;
+}
+
+.header-content-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2em;
+}
+
+.selects-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.select>button {
+    border: 2px solid var(--detail-one-color);
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: var(--background-color);
+    padding: .2em 1em;
+}
+
+.select>button>div {
+    padding: 0 .2em;
+}
+
+
+.compressed {
+    display: none;
+}
+
+.descompressed {
+    display: block;
+}

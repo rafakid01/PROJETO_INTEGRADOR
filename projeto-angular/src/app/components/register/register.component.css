@@ -1,3 +1,164 @@
-body {
+/* ESTRUTURAÇÃO MAIN */
+main {
     padding-top: 7em;
+    background-color: #b467a5;
+    background-image: linear-gradient(43deg, #b467a5 0%, #785bb5 46%, #3e4bab 100%);
+    width: 100%;
+    height: 100vh;
+}
+
+/* CENTRALIZAÇÃO DO CONTAINER DE REGISTRO E PASSAGEM DO TAMANHO */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.register-container {
+    width: 80%;
+    padding: 3em 3em .5em 3em;
+    border-radius: 50px;
+    background-color: var(--detail-five-color);
+}
+
+/* CONTAINER DO TITULO */
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1em;
+}
+
+.title {
+    color: var(--detail-one-color);
+    font-family: "Quicksand";
+    font-weight: bold;
+}
+
+/* CONTAINER GERAL DOS DADOS */
+
+.data-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.data-container>div {
+    padding: 2em 1em;
+}
+
+/* CONTAINER DO DADO DE SENHA */
+
+.pass-container {
+    display: flex;
+}
+
+.password {
+    width: 95%;
+}
+
+.visibility-container {
+    width: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.visibility-container button {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+}
+
+/* INPUTS DE EMAIL E SENHA */
+
+.form-control {
+    border-radius: 0px;
+    border: 1px solid var(--text-one-color);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: transparent;
+    text-overflow: ellipsis;
+    box-shadow: none;
+}
+
+label,
+.form-control,
+.form-control::placeholder,
+button:hover,
+.forget-pass:active,
+.no-account:active,
+button,
+.button-login-container button,
+.h6 {
+    color: var(--text-one-color);
+}
+
+.btn {
+    position: relative;
+    bottom: 0;
+    transition: all 250ms ease;
+}
+
+.btn:hover {
+    bottom: .5em;
+    transition: bottom 250ms ease;
+}
+
+/* CONTAINER DO DADO DE CATEGORIA */
+
+.cat-title-container,
+.category-input-container {
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+}
+
+.category-input-container {
+    display: flex;
+}
+
+
+.category-input-container>div {
+    margin-right: 1em;
+    display: flex;
+}
+
+.category-input-container>div input {
+    margin-right: .5em;
+}
+
+/* BOTAO DE ENTRADA LOGIN */
+
+.button-register-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1em;
+}
+
+.button-register-container button {
+    background-color: var(--detail-two-color);
+    padding: .5em 3em;
+    font-size: calc(1vw + .1em);
+    border-radius: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-one-color);
+}
+
+/* CONTAINER BOTAO NA BASE */
+
+.button-bottom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.already-account {
+    background-color: var(--detail-three-color);
+    border-radius: 20px;
+    padding: .25em 1em;
 }
