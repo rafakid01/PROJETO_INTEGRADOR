@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-=======
-/* ESTRUTURAÇÃO MAIN */
-main {
-    padding-top: 7em;
-    background-color: #b467a5;
-    background-image: linear-gradient(43deg, #b467a5 0%, #785bb5 46%, #3e4bab 100%);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
-}
-
->>>>>>> 98e1305bf66609621da3a462c30383dce553c530
 /* CENTRALIZAÇÃO DO CONTAINER DE REGISTRO E PASSAGEM DO TAMANHO */
 
 .container {
@@ -166,7 +152,7 @@ a {
     background-color: var(--detail-three-color);
     border-radius: 20px;
     padding: .25em 1em;
-<<<<<<< HEAD
+
 }
 
 /* ______________________________________________________ */
