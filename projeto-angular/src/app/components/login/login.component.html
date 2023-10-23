@@ -4,7 +4,7 @@
       <div class="title-container">
         <h1 class="title">{{ "Login" | uppercase }}</h1>
       </div>
-      <div class="data-container">
+      <form class="data-container">
         <div class="email-container">
           <input placeholder="Email" type="email" class="form-control email" />
         </div>
@@ -15,9 +15,9 @@
             class="form-control password"
           />
           <div class="visibility-container">
-            <button class="" (click)="changeVisibility()">
+            <a class="" (click)="changeVisibility()">
               <i [class]="typeEye"></i>
-            </button>
+            </a>
           </div>
         </div>
         <div class="connection-container form-check px-4">
@@ -27,7 +27,7 @@
         <div class="button-login-container">
           <button class="btn">Entrar</button>
         </div>
-      </div>
+      </form>
       <div class="button-bottom-container">
         <div class="no-account-container">
           <button class="no-account btn">Não possuo conta</button>

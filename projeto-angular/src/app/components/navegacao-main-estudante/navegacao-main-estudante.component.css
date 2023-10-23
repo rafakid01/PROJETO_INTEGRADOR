@@ -14,7 +14,7 @@ main {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.select>button {
+.select>a {
     border: 2px solid var(--detail-one-color);
     border-radius: 15px;
     display: flex;
@@ -22,6 +22,11 @@ main {
     align-items: center;
     background: var(--background-color);
     padding: .2em 1em;
+
+}
+
+.select>a:hover {
+    cursor: pointer;
 }
 
 .select>button>div {

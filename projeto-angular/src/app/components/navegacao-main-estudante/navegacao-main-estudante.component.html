@@ -7,16 +7,16 @@
         </p>
       </div>
       <div class="middle-container">
-        <div class="selects-container">
+        <form class="selects-container">
           <div class="first-select-container select">
-            <button (click)="compressOne()">
+            <a (click)="compressOne()">
               <div class="select-title">
                 <p class="h4">Curso</p>
               </div>
               <div class="icon-container">
                 <i class="bi bi-arrow-down"></i>
               </div>
-            </button>
+            </a>
             <div
               class="select-first"
               [class]="compressedDivOne"
@@ -27,14 +27,14 @@
             </div>
           </div>
           <div class="second-select-container select">
-            <button (click)="compressTwo()">
+            <a (click)="compressTwo()">
               <div class="select-title">
                 <p class="h4">Avaliação</p>
               </div>
               <div class="icon-container">
                 <i class="bi bi-arrow-down"></i>
               </div>
-            </button>
+            </a>
             <div
               class="select-second"
               [class]="compressedDivTwo"
@@ -47,14 +47,14 @@
             </div>
           </div>
           <div class="third-select-container select">
-            <button (click)="compressThree()">
+            <a (click)="compressThree()">
               <div class="select-title">
                 <p class="h4">Categoria</p>
               </div>
               <div class="icon-container">
                 <i class="bi bi-arrow-down"></i>
               </div>
-            </button>
+            </a>
             <div
               class="select-third"
               [class]="compressedDivThree"
@@ -66,7 +66,7 @@
               </label>
             </div>
           </div>
-        </div>
+        </form>
         <div class="search-container">
           <div class="input-container">
             <input
