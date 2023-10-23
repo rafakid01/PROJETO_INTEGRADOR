@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavDataService } from 'src/app/services/nav-data.service';
 
 @Component({
@@ -6,34 +6,40 @@ import { NavDataService } from 'src/app/services/nav-data.service';
   templateUrl: './navegacao-main-estudante.component.html',
   styleUrls: ['./navegacao-main-estudante.component.css'],
 })
-export class NavegacaoMainEstudanteComponent {
+export class NavegacaoMainEstudanteComponent implements OnInit {
+  monitorList: any;
+  coursesList: any;
+  categoryList: any;
+  ratingList: any;
+  monitorsNumber: any;
+
+  constructor(private navData: NavDataService) {}
+
   compressedDivOne: string = 'compressed';
   compressedDivTwo: string = 'compressed';
   compressedDivThree: string = 'compressed';
 
-  constructor(private navData: NavDataService) {}
-
-  monitorList = this.navData.monitorList;
-
-  coursesList = this.navData.coursesList;
-
-  categoryList = this.navData.categoryList;
-
-  ratingList = this.navData.ratingList;
+  ngOnInit(): void {
+    this.monitorList = this.navData.monitorsList;
+    this.coursesList = this.navData.coursesList;
+    this.categoryList = this.navData.categoryList;
+    this.ratingList = this.navData.ratingList;
+    this.monitorsNumber = this.navData.monitorsList.length;
+  }
 
   compressOne() {
     this.compressedDivOne == 'compressed'
-      ? (this.compressedDivOne = 'descompressed')
+      ? (this.compressedDivOne = 'uncompressed')
       : (this.compressedDivOne = 'compressed');
   }
   compressTwo() {
     this.compressedDivTwo == 'compressed'
-      ? (this.compressedDivTwo = 'descompressed')
+      ? (this.compressedDivTwo = 'uncompressed')
       : (this.compressedDivTwo = 'compressed');
   }
   compressThree() {
     this.compressedDivThree == 'compressed'
-      ? (this.compressedDivThree = 'descompressed')
+      ? (this.compressedDivThree = 'uncompressed')
       : (this.compressedDivThree = 'compressed');
   }
 }

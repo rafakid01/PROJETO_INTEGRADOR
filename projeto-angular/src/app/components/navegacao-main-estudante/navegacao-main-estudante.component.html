@@ -17,13 +17,17 @@
                 <i class="bi bi-arrow-down"></i>
               </div>
             </a>
-            <div
-              class="select-first dropdown"
-              [class]="compressedDivOne"
-              *ngFor="let course of coursesList"
-            >
-              <input type="checkbox" class="form-check-input" />
-              <label for="" class="form-check-label"> {{ course.name }} </label>
+            <div class="select-container" [class]="compressedDivOne">
+              <div class="dropdown" *ngFor="let course of coursesList">
+                <input
+                  type="checkbox"
+                  id="dropdownOne"
+                  class="form-check-input"
+                />
+                <label for="dropdownOne" class="form-check-label">
+                  {{ course.name }}
+                </label>
+              </div>
             </div>
           </div>
           <div class="second-select-container select">
@@ -35,15 +39,17 @@
                 <i class="bi bi-arrow-down"></i>
               </div>
             </a>
-            <div
-              class="select-second dropdown"
-              [class]="compressedDivTwo"
-              *ngFor="let rate of ratingList"
-            >
-              <input type="checkbox" class="form-check-input" />
-              <label for="" class="form-check-label">
-                {{ rate.value }}/5 <i class="bi bi-star-fill"> </i>
-              </label>
+            <div class="select-container" [class]="compressedDivTwo">
+              <div class="dropdown" *ngFor="let rate of ratingList">
+                <input
+                  type="checkbox"
+                  id="dropdownTwo"
+                  class="form-check-input"
+                />
+                <label for="dropdownTwo" class="form-check-label">
+                  {{ rate.value }}/5 <i class="bi bi-star-fill"> </i>
+                </label>
+              </div>
             </div>
           </div>
           <div class="third-select-container select">
@@ -55,19 +61,21 @@
                 <i class="bi bi-arrow-down"></i>
               </div>
             </a>
-            <div
-              class="select-third dropdown"
-              [class]="compressedDivThree"
-              *ngFor="let category of categoryList"
-            >
-              <input type="checkbox" class="form-check-input" />
-              <label for="" class="form-check-label">
-                {{ category.name }}
-              </label>
+            <div class="select-container" [class]="compressedDivThree">
+              <div class="dropdown" *ngFor="let category of categoryList">
+                <input
+                  type="checkbox"
+                  id="dropdownThree"
+                  class="form-check-input"
+                />
+                <label for="dropdownThree" class="form-check-label">
+                  {{ category.name }}
+                </label>
+              </div>
             </div>
           </div>
           <div class="button-submit">
-            <button class="btn-btn-light">APLICAR</button>
+            <button type="submit" class="btn btn-light">APLICAR</button>
           </div>
         </form>
         <div class="search-container">
@@ -87,23 +95,23 @@
       </div>
       <div class="bottom-container">
         <p class="number-monitor">
-          <span class="h5"> {{ "number_monitor" }}</span> Monitores disponíveis
+          <span class="h5"> {{ monitorsNumber }}</span> Monitores disponíveis
         </p>
       </div>
     </div>
     <div class="monitors-container">
-      <div class="single-container" *ngFor="let monitor of monitorList">
+      <a class="single-container" *ngFor="let monitor of monitorList">
         <div class="img-container">
           <img src="{{ monitor.image }}" alt="" />
         </div>
         <div class="info-container">
           <p class="h4">{{ monitor.name }}</p>
-          <p class="h5">{{ monitor.course }}</p>
+          <p class="h6">{{ monitor.course }}</p>
         </div>
         <div class="rating-container">
-          <p class="h6">{{ monitor.rating }}</p>
+          <p class="h6"><i class="bi bi-star-fill"></i>{{ monitor.rate }}/5</p>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </main>

@@ -1,6 +1,6 @@
 /* Firefox */
 * {
-    scrollbar-width: auto;
+    scrollbar-width: 15px;
     scrollbar-color: var(--dark-yellow) var(--background-color);
 }
 
