@@ -18,7 +18,7 @@
               </div>
             </a>
             <div
-              class="select-first"
+              class="select-first dropdown"
               [class]="compressedDivOne"
               *ngFor="let course of coursesList"
             >
@@ -36,7 +36,7 @@
               </div>
             </a>
             <div
-              class="select-second"
+              class="select-second dropdown"
               [class]="compressedDivTwo"
               *ngFor="let rate of ratingList"
             >
@@ -56,7 +56,7 @@
               </div>
             </a>
             <div
-              class="select-third"
+              class="select-third dropdown"
               [class]="compressedDivThree"
               *ngFor="let category of categoryList"
             >
@@ -65,6 +65,9 @@
                 {{ category.name }}
               </label>
             </div>
+          </div>
+          <div class="button-submit">
+            <button class="btn-btn-light">APLICAR</button>
           </div>
         </form>
         <div class="search-container">
@@ -89,7 +92,7 @@
       </div>
     </div>
     <div class="monitors-container">
-      <div class="single-container" *ngFor="let monitor of testList">
+      <div class="single-container" *ngFor="let monitor of monitorList">
         <div class="img-container">
           <img src="{{ monitor.image }}" alt="" />
         </div>

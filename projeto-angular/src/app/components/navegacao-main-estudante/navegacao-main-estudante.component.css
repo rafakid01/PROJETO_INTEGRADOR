@@ -3,36 +3,14 @@ main {
     min-height: 100vh;
 }
 
-.header-content-container {
+.middle-container {
     display: flex;
-    flex-direction: column;
-    padding-bottom: 2em;
+    justify-content: space-between;
 }
 
-.selects-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.select>a {
-    border: 2px solid var(--detail-one-color);
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: var(--background-color);
-    padding: .2em 1em;
-
-}
-
-.select>a:hover {
-    cursor: pointer;
-}
-
-.select>button>div {
-    padding: 0 .2em;
-}
-
+/* .dropdown {
+    position: absolute;
+} */
 
 .compressed {
     display: none;
