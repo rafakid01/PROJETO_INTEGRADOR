@@ -1,3 +1,70 @@
-main{
-    min-height: 100vh;
+*{
+    font-family: "nunito";
+}
+
+.tudo1{
+    display: flex;
+    flex-direction: column;
+}
+
+.tudo{
+    align-items: center;
+    display: flex;
+    margin-left: 300px;
+    margin-bottom: 180px;
+}
+
+.container_geral1{
+    width: 700px;
+    background-color: #7079E3;
+}
+
+.container_geral1 p{
+    margin-top: 60px;
+    font-size: 23px;
+}
+
+.barra_de_input{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+}
+
+.barra_de_input input{
+    width: 700px;
+    margin-top: 100px;
+    border: none;
+    border-bottom: 1px solid #000;
+    background-color: unset;
+    outline: none;
+    font-size: 1em;
+    color: #000;
+}
+
+.container_informacoes{
+    margin-left: 60px;
+    background-color: #F3DC3E;
+    height: 500px;
+    width: 600px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container_button{
+    background-color: #7079E3;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom:100px ;
+}
+
+.button_entrar{
+    background-color: #FEF4B2;
+    border-radius: 20px;
+    border: none;
 }
