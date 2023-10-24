@@ -224,7 +224,7 @@ export class NavDataService {
     { name: 'Gestão Comercial', id: 36 },
     { name: 'Gestão da Qualidade', id: 37 },
     { name: 'Gestão de Equinocultura', id: 38 },
-    { name: 'Gestão de Recursos Humanos', id: 39 },
+    { name: 'Gestão de RH', id: 39 },
     { name: 'Gestão Financeira', id: 40 },
     { name: 'História', id: 41 },
     { name: 'Hotelaria', id: 42 },
