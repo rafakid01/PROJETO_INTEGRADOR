@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { InitialPageComponent } from './components/initial-page/initial-page.component';
 import { NavegacaoMainEstudanteComponent } from './components/navegacao-main-estudante/navegacao-main-estudante.component';
 import { SingleClassComponent } from './components/single-class/single-class.component';
+import { FooterNavComponent } from './components/footer-nav/footer-nav.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SingleClassComponent } from './components/single-class/single-class.com
     LoginComponent,
     InitialPageComponent,
     NavegacaoMainEstudanteComponent,
-    SingleClassComponent
+    SingleClassComponent,
+    FooterNavComponent
   ],
   imports: [
     BrowserModule,
