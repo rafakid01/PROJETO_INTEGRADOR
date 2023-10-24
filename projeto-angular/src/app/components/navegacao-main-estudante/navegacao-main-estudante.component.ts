@@ -31,15 +31,30 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
     this.compressedDivOne == 'compressed'
       ? (this.compressedDivOne = 'uncompressed')
       : (this.compressedDivOne = 'compressed');
+
+    if (this.compressedDivOne == 'uncompressed') {
+      this.compressedDivTwo = 'compressed';
+      this.compressedDivThree = 'compressed';
+    }
   }
   compressTwo() {
     this.compressedDivTwo == 'compressed'
       ? (this.compressedDivTwo = 'uncompressed')
       : (this.compressedDivTwo = 'compressed');
+
+    if (this.compressedDivTwo == 'uncompressed') {
+      this.compressedDivOne = 'compressed';
+      this.compressedDivThree = 'compressed';
+    }
   }
   compressThree() {
     this.compressedDivThree == 'compressed'
       ? (this.compressedDivThree = 'uncompressed')
       : (this.compressedDivThree = 'compressed');
+
+    if (this.compressedDivThree == 'uncompressed') {
+      this.compressedDivTwo = 'compressed';
+      this.compressedDivOne = 'compressed';
+    }
   }
 }

@@ -1,0 +1,42 @@
+main {
+    padding-top: 6em;
+    min-width: 100vh;
+}
+
+.search-container {
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    width: 40%;
+    justify-content: space-between;
+    border: 2px solid var(--title-color);
+    border-radius: 20px;
+    background-color: transparent;
+}
+
+.lupa-container,
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lupa-container {
+    background-color: var(--dark-yellow);
+    border-radius: 0 18px 18px 0;
+    padding: .5em;
+}
+
+.form-control::placeholder,
+.form-control {
+    color: var(--text-one-color);
+}
+
+.input-container>input {
+    background: transparent;
+    padding: 0 1em;
+    border: none;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}

@@ -46,21 +46,22 @@ main {
 
 .selects-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1.2fr .5fr;
-    width: 80%;
+    grid-template-columns: 4fr 3fr 4fr 1fr;
+    width: 50%;
 }
 
 .selects-container .select {
-    padding: 0 1em;
+    margin: 0 1em;
     position: relative;
 }
 
 .select>a {
     display: flex;
     justify-content: center;
-    border: 2px solid var(--text-two-color);
-    padding: .3em;
+    border: 2px solid var(--normal-blue);
+    padding: 0 1em .2em 1em;
     border-radius: 20px;
+    background-color: var(--detail-three-color);
 }
 
 .select>a:hover {
@@ -68,14 +69,10 @@ main {
 }
 
 .select .icon-container {
-    margin: 0 .8em;
-    width: 28.8px;
-    aspect-ratio: 1/1;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    background-color: var(--detail-three-color);
+    margin-left: .4em;
 }
 
 .select-title>p,
@@ -86,12 +83,16 @@ main {
 .select-container {
     position: absolute;
     max-height: 500px;
-    width: 100%;
+    width: auto;
     overflow: auto;
     background-color: var(--title-color);
     border-radius: 20px;
     margin-top: 1em;
     padding: 1em 0;
+}
+
+.select-container:not(.rate) {
+    min-width: 250%;
 }
 
 .dropdown {
@@ -118,7 +119,6 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 2.5em;
 }
 
 .button-submit>button {
@@ -135,9 +135,9 @@ main {
     grid-template-columns: 6fr 1fr;
     width: 20%;
     justify-content: space-between;
-    border: 2px solid var(--text-one-color);
+    border: 2px solid var(--title-color);
     border-radius: 20px;
-    background-color: var(--detail-four-color);
+    background-color: transparent
 }
 
 .lupa-container,
@@ -147,7 +147,11 @@ main {
     justify-content: center;
 }
 
-.lupa-container i,
+.lupa-container {
+    background-color: var(--dark-yellow);
+    border-radius: 0 20px 20px 0;
+}
+
 .form-control::placeholder,
 .form-control {
     color: var(--text-one-color);
