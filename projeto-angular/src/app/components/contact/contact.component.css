@@ -2,36 +2,39 @@
     font-family: "nunito";
 }
 
-.tudo1 {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-
 .tudo {
-    margin-top: 112px;
+    margin-top: 3em;
     align-items: center;
     display: flex;
+    justify-content: space-between;
 }
 
 .container_geral1 {
-    width: 700px;
+    width: 50%;
 }
 
-.container_geral1 p {
-    margin-top: 60px;
+.container_geral1>div {
     font-size: 23px;
 }
 
+.title-container h1 {
+    margin-bottom: 1em;
+}
+
+.contact {
+    font-family: "Quicksand";
+    font-weight: bold;
+}
+
 .barra_de_input {
-    margin-top: 30px;
+    margin-top: 5em;
     display: flex;
     flex-direction: column;
-    width: 700px;
+    width: 100%;
 }
 
 .barra_de_input input {
-    width: 700px;
+    width: 100%;
     margin-top: 100px;
     border: none;
     border-bottom: 1px solid #000;
@@ -42,43 +45,63 @@
 }
 
 .container_informacoes {
-    margin-left: 80px;
-    background-color: var(--dark-yellow);
-    height: 500px;
-    width: 500px;
-    border-radius: 70px;
     display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    align-self: flex-start;
 }
 
-.container_informacoes p {
-    margin-left: 40px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    font-size: 20px;
+.container-box {
+    background-color: var(--dark-yellow);
+    width: 100%;
+    height: 100%;
+    border-radius: 70px;
+    align-self: flex-start;
+}
+
+.container-box p {
+    margin: 3em;
+    font-size: calc(1vw + .3em);
+}
+
+.info {
+    text-align: center;
+    font-weight: bold;
+}
+
+.container-box img {
+    float: right;
+    margin-top: -2em;
 }
 
 .container_button {
-    background-color: #7079E3;
-    height: 125px;
+    height: 8em;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     margin-top: 50px;
-    margin-bottom: 50px;
-    width: 100%;
+    z-index: 1;
 }
 
 .button_entrar {
-    margin-left: 358px;
     background-color: #FEF4B2;
     border-radius: 20px;
-    width: 700px;
+    width: 100%;
     height: 40px;
     border: none;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 20px;
+    z-index: 2;
+}
+
+/* BARRA AZUL INFERIOR */
+
+.blue-strip-container {
+    background-color: #7079E3;
+    height: 8em;
+    width: calc(100vw - 15px);
+    position: absolute;
+    margin-top: -8em;
+    z-index: 0;
 }
