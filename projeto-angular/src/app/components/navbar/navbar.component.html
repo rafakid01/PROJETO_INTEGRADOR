@@ -3,7 +3,12 @@
     <div class="row justify-content-center align-content-center">
       <nav class="navbar">
         <div class="img-container home">
-          <a routerLink="/" href="#home" class="image-link">
+          <a
+            routerLink="/"
+            href="#home"
+            class="image-link"
+            (click)="scrollToTop()"
+          >
             <img src="/assets/img/u-teach-complete.png" alt="" />
           </a>
         </div>
@@ -30,7 +35,7 @@
         </div>
         <div class="contact-container">
           <p class="h4">
-            <a routerLink="/contact" class="anchor-link home">
+            <a href="#contact" class="anchor-link home">
               {{ "Contato" | uppercase }}
             </a>
           </p>
