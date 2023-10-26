@@ -1,0 +1,84 @@
+* {
+    font-family: "nunito";
+}
+
+.tudo1 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.tudo {
+    margin-top: 112px;
+    align-items: center;
+    display: flex;
+}
+
+.container_geral1 {
+    width: 700px;
+}
+
+.container_geral1 p {
+    margin-top: 60px;
+    font-size: 23px;
+}
+
+.barra_de_input {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+}
+
+.barra_de_input input {
+    width: 700px;
+    margin-top: 100px;
+    border: none;
+    border-bottom: 1px solid #000;
+    background-color: unset;
+    outline: none;
+    font-size: 1em;
+    color: var(--title-color);
+}
+
+.container_informacoes {
+    margin-left: 80px;
+    background-color: var(--dark-yellow);
+    height: 500px;
+    width: 500px;
+    border-radius: 70px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container_informacoes p {
+    margin-left: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.container_button {
+    background-color: #7079E3;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.button_entrar {
+    margin-left: 358px;
+    background-color: #FEF4B2;
+    border-radius: 20px;
+    width: 700px;
+    height: 40px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+}

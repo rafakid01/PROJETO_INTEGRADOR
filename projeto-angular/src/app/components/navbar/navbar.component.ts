@@ -74,4 +74,8 @@ export class NavbarComponent implements OnInit {
       ? (this.backColor = 'colored')
       : (this.backColor = 'transparent');
   }
+
+  scrollToTop() {
+    this.scroll.scrollToPosition([0, 0]);
+  }
 }
