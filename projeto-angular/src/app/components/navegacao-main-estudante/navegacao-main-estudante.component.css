@@ -24,6 +24,10 @@ main {
     min-height: 100vh;
 }
 
+.container {
+    margin-bottom: 2em;
+}
+
 /* CONTAINER DE INDICAÇÃO DA PESQUISA */
 
 .top-container>p {
@@ -150,6 +154,7 @@ main {
 .lupa-container {
     background-color: var(--dark-yellow);
     border-radius: 0 20px 20px 0;
+    border: none;
 }
 
 .form-control::placeholder,
@@ -185,10 +190,12 @@ main {
 .monitors-container>a {
     text-decoration: none;
     cursor: pointer;
+    background-color: var(--detail-three-color);
+    border-radius: 30px;
 }
 
 .img-container {
-    padding: 1em 0;
+    padding-bottom: 1em;
 }
 
 .img-container img {
@@ -198,12 +205,15 @@ main {
 
 .info-container .h4 {
     color: var(--text-two-color);
+    margin-left: 16px;
 }
 
 .h6 {
     color: var(--text-one-color);
     font-weight: normal;
     padding: .4em 0;
+    margin-left: 16px;
+
 }
 
 .rating-container>.h6 {

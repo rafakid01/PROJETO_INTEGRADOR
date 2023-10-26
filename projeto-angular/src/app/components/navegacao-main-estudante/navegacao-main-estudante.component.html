@@ -78,7 +78,7 @@
             <button type="submit" class="btn btn-light">APLICAR</button>
           </div>
         </form>
-        <div class="search-container">
+        <form class="search-container">
           <div class="input-container">
             <input
               type="text"
@@ -86,12 +86,12 @@
               placeholder="Pesquisar assunto/matéria"
             />
           </div>
-          <div class="lupa-container">
+          <button class="lupa-container">
             <div class="lupa">
               <i class="bi bi-search"></i>
             </div>
-          </div>
-        </div>
+          </button>
+        </form>
       </div>
       <div class="bottom-container">
         <p class="number-monitor">
@@ -100,7 +100,11 @@
       </div>
     </div>
     <div class="monitors-container">
-      <a class="single-container" *ngFor="let monitor of monitorList">
+      <a
+        class="single-container"
+        *ngFor="let monitor of monitorList"
+        routerLink="/aula"
+      >
         <div class="img-container">
           <img src="{{ monitor.image }}" alt="" />
         </div>
