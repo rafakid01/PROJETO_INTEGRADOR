@@ -4,7 +4,7 @@
       <div class="title-container">
         <h1 class="title">{{ "Registro" | uppercase }}</h1>
       </div>
-      <div class="data-container">
+      <form class="data-container">
         <!-- CONTAINER NOME -->
         <div class="name-container">
           <input
@@ -21,9 +21,9 @@
             class="form-control password"
           />
           <div class="visibility-container">
-            <button class="" (click)="changeVisibility()">
+            <a class="" (click)="changeVisibility()">
               <i [class]="typeEye"></i>
-            </button>
+            </a>
           </div>
         </div>
         <!-- CONTAINER EMAIL -->
@@ -72,7 +72,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </form>
       <div class="button-register-container">
         <button class="btn">Registrar</button>
       </div>

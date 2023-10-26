@@ -1,0 +1,49 @@
+footer {
+    background: var(--normal-blue);
+    padding: 1em;
+}
+
+/* CONTAINER GERAL */
+
+.container {
+    display: grid;
+    grid-template-columns: 1.2fr 7.8fr 1fr;
+    column-gap: 1em;
+    padding: 0;
+}
+
+/* CONTAINER DO LOGOTIPO */
+
+.logo-container img {
+    width: 100%;
+}
+
+
+/* CONTAINER DO TEXTO INFORMATIVO */
+
+.info-uniso-container {
+    display: flex;
+    align-items: center;
+}
+
+.info-uniso-container p {
+    color: var(--white);
+}
+
+/* CONTAINER LINKS SOCIAIS */
+
+.links-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1em;
+}
+
+.links-container>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.links-container>div img {
+    width: 100%;
+}

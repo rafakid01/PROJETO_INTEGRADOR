@@ -1,38 +1,216 @@
+/* Firefox */
+* {
+    scrollbar-width: 15px;
+    scrollbar-color: var(--dark-yellow) var(--title-color);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--title-color);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #f3dc3e;
+    border-radius: 10px;
+    border: 3px solid var(--title-color);
+}
+
 main {
     padding-top: 6em;
     min-height: 100vh;
 }
 
-.header-content-container {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 2em;
+/* CONTAINER DE INDICAÇÃO DA PESQUISA */
+
+.top-container>p {
+    color: var(--text-one-color);
+    padding-bottom: 1em;
 }
+
+.top-container>p>span {
+    color: var(--text-two-color);
+}
+
+/* CONTAINER COM DROPDOWN E BARRA DE PESQUISA */
+
+.middle-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* CONTAINER DO DROPDOWN */
 
 .selects-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 4fr 3fr 4fr 1fr;
+    width: 50%;
 }
 
-.select>button {
-    border: 2px solid var(--detail-one-color);
-    border-radius: 15px;
+.selects-container .select {
+    margin: 0 1em;
+    position: relative;
+}
+
+.select>a {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    border: 2px solid var(--normal-blue);
+    padding: 0 1em .2em 1em;
+    border-radius: 20px;
+    background-color: var(--detail-three-color);
+}
+
+.select>a:hover {
+    cursor: pointer;
+}
+
+.select .icon-container {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    background: var(--background-color);
-    padding: .2em 1em;
+    margin-left: .4em;
 }
 
-.select>button>div {
-    padding: 0 .2em;
+.select-title>p,
+.icon-container i {
+    color: var(--title-color);
 }
 
+.select-container {
+    position: absolute;
+    max-height: 500px;
+    width: auto;
+    overflow: auto;
+    background-color: var(--title-color);
+    border-radius: 20px;
+    margin-top: 1em;
+    padding: 1em 0;
+}
+
+.select-container:not(.rate) {
+    min-width: 250%;
+}
+
+.dropdown {
+    padding: 0 1em;
+}
+
+.dropdown>input {
+    margin-right: .5em;
+}
+
+.dropdown>label {
+    color: var(--detail-four-color);
+}
 
 .compressed {
     display: none;
 }
 
-.descompressed {
+.uncompressed {
     display: block;
+}
+
+.button-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-submit>button {
+    border-radius: 15px;
+    background: var(--detail-one-color);
+    color: var(--background-color);
+    padding: .2em 1em;
+}
+
+/* CONTAINER DA BARRA DE PESQUISA */
+
+.search-container {
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    width: 20%;
+    justify-content: space-between;
+    border: 2px solid var(--title-color);
+    border-radius: 20px;
+    background-color: transparent
+}
+
+.lupa-container,
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lupa-container {
+    background-color: var(--dark-yellow);
+    border-radius: 0 20px 20px 0;
+}
+
+.form-control::placeholder,
+.form-control {
+    color: var(--text-one-color);
+}
+
+.input-container>input {
+    background: transparent;
+    padding: 0 1em;
+    border: none;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+/* CONTAINER DE NUMERO DE MONITORES */
+
+.bottom-container>p {
+    color: var(--text-one-color);
+    padding: .5em 0;
+}
+
+/* CONTAINER DE MONITORES */
+
+.monitors-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1em;
+}
+
+.monitors-container>a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.img-container {
+    padding: 1em 0;
+}
+
+.img-container img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.info-container .h4 {
+    color: var(--text-two-color);
+}
+
+.h6 {
+    color: var(--text-one-color);
+    font-weight: normal;
+    padding: .4em 0;
+}
+
+.rating-container>.h6 {
+    text-align: center;
+}
+
+.rating-container .h6>i {
+    color: var(--text-two-color);
+    margin-right: .5em;
 }
