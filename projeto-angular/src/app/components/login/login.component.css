@@ -136,9 +136,13 @@ button,
     align-items: center;
 }
 
-
 .no-account {
     background-color: var(--detail-three-color);
     border-radius: 20px;
     padding: .5em 2em;
+}
+
+.no-account a {
+    text-decoration: none;
+    color: var(--text-one-color);
 }

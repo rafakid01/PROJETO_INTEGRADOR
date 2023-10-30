@@ -8,7 +8,6 @@ input[type=checkbox] {
 
 label {
   cursor: pointer;
-  text-indent: -9999px;
   min-height: 20px;
   height: 2.5vw;
   aspect-ratio: 2.5/1;
