@@ -11,8 +11,10 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class NavbarComponent implements OnInit {
   toggleChecked: any;
   theme: any;
-  storedValue: any;
+  storedTheme: any;
   backColor: string = 'transparent';
+
+  storedProfile: any = true;
 
   constructor(
     private localStorage: LocalStorageService,
@@ -21,11 +23,21 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // this.alterationProfileLocalStorage();
+    this.alterationThemeLocalStorage();
+    this.localStorage.viewItems();
+  }
+
+  alterationProfileLocalStorage() {
+    this.storedProfile = this.localStorage.getItem('logged');
+  }
+
+  alterationThemeLocalStorage() {
     // Será capturado o valor do LocalStorage onde está o booleano para o toggle checado
-    this.storedValue = localStorage.getItem('checked');
+    this.storedTheme = localStorage.getItem('checked');
 
     // Se o toggle estiver checado, será mudado para False, o valor do tema para Light
-    if (!this.storedValue) {
+    if (!this.storedTheme) {
       this.localStorage.setItem('theme', 'light');
       this.localStorage.setItem('checked', false);
     }
@@ -56,7 +68,6 @@ export class NavbarComponent implements OnInit {
 
   modifyTheme(theme: string) {
     const html = document.getElementsByTagName('html')[0];
-    console.log(html);
     if (theme == 'light') {
       this.renderer.removeClass(html, 'dark');
       this.renderer.addClass(html, theme);
@@ -67,9 +78,9 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  // FUNÇÃO QUE MUDA O BACKGROUND DA NAVBAR DE ACORDO COM A POSIÇÃO DA TELA
   changeBackground() {
     const positionY = this.scroll.getScrollPosition()[1];
-
     positionY > 0
       ? (this.backColor = 'colored')
       : (this.backColor = 'transparent');
