@@ -100,3 +100,44 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 500px) and (orientation: portrait) {
+
+  nav {
+    height: 4em;
+  }
+
+  .navbar {
+    justify-content: space-between;
+    padding: 0 1em;
+  }
+
+  .navbar>div:not(.img-container, .change-theme-container) {
+    display: none;
+  }
+
+  .img-container {
+    width: 30%;
+  }
+
+  label {
+    min-height: 20px;
+    height: 6vw;
+    border: 2px solid var(--normal-yellow);
+    max-width: 200px;
+  }
+
+  label:after {
+    content: '';
+    position: absolute;
+    top: .7vw;
+    left: .6vw;
+    height: 3.5vw;
+    min-height: 10px;
+    aspect-ratio: 1/1;
+    background: transparent;
+    border: 2px solid var(--normal-yellow);
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+}
