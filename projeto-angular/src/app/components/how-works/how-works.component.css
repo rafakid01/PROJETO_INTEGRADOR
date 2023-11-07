@@ -4,8 +4,7 @@ body {
     background-color: var(--background-color);
     padding-top: 7em;
     min-height: 100vh;
-    width: 100vw;
-    display: none;
+    width: 100%;
 }
 
 /* FONTE */
@@ -30,6 +29,7 @@ p {
     color: var(--title-color);
     font-weight: bold;
     font-family: "Quicksand";
+    font-size: calc(1vw + 1em);
 }
 
 /* CONTAINER IMAGEM */
@@ -41,9 +41,9 @@ p {
 }
 
 .image-container img {
-    margin-top: -3em;
+    margin-top: -8em;
     max-width: 250px;
-    width: calc(250px - 2vw);
+    width: 15vw;
 }
 
 /* CONTAINER DE EXPLICAÇÃO GERAL*/
@@ -58,33 +58,43 @@ p {
 
 /* CONTAINER DAS SETAS */
 
+.empty {
+    width: 40%;
+    max-width: 250px;
+}
+
 .arrow-container-one,
 .arrow-container-two {
     display: flex;
+    justify-content: center;
+    margin-top: 1em;
 }
 
-.arrow-container-one {
-    justify-content: flex-end;
+.arr-mob {
+    display: none;
 }
 
-.arrow-container-two {
-    justify-content: flex-start;
+.arr-1 {
+    margin-left: -2.5vw;
+}
+
+.arr-2 {
+    margin-right: -2.5vw;
 }
 
 .arr-1,
 .arr-2 {
-    max-width: 200px;
+    width: 40%;
+    max-width: 250px;
     max-height: 200px;
-    width: calc(200px - 1vw);
-    margin: 0 5.8em;
 }
 
 .arr-3,
 .arr-4 {
     max-width: 40px;
-
+    min-width: 20px;
     aspect-ratio: 1/2;
-    width: calc(40px - vw);
+    width: 3vw;
 
 }
 
@@ -109,18 +119,90 @@ p {
 .ex-2 p,
 .ex-3 p {
     font-weight: bold;
-    font-size: calc(1vw + .4em);
 }
 
 /* CONTAINER 1, 4 E 5 */
 
-.ex-1,
-.ex-4,
-.ex-5 {
-    font-size: calc(1vw + .3em);
-}
-
 .text {
     color: var(--text-two-color);
-    text-align: justify;
+    text-align: center;
+    font-size: calc(1vw + .4em);
+}
+
+@media (max-width: 500px) and (orientation: portrait) {
+
+    body {
+        padding-top: 2em;
+        min-height: 50vw;
+    }
+
+    .title h1 {
+        text-align: center;
+    }
+
+    .explanation-main {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: .5fr 1fr 1fr;
+    }
+
+    .explanation-container p {
+        font-size: calc(1vw + .6em);
+    }
+
+    .arrow-container-one {
+        justify-content: flex-end;
+        margin-right: .5em;
+        margin-top: 2em;
+    }
+
+    .arrow-container-two {
+        justify-content: flex-start;
+        margin-left: .5em;
+        margin-top: 2em;
+    }
+
+    .arr-1,
+    .arr-2 {
+        display: none;
+    }
+
+    .arr-mob {
+        display: inline-block;
+    }
+
+    .arr-mob {
+        max-width: 40px;
+        min-width: 20px;
+        aspect-ratio: 1/2;
+        width: 3vw;
+    }
+
+    .mob-1 {
+        transform: rotate(.125turn);
+    }
+
+    .mob-2 {
+        transform: rotate(-.125turn);
+    }
+
+    .image-container img {
+        display: none;
+    }
+
+    .ex-2 {
+        margin-right: -3em;
+    }
+
+    .ex-3 {
+        margin-left: -3em;
+    }
+
+    .ex-4 {
+        margin-right: -3em;
+    }
+
+    .ex-5 {
+        margin-left: -3em;
+    }
+
 }
