@@ -21,15 +21,12 @@ p {
 
 /* CONFIGURAÇÃO DO TÍTULO */
 
-.title {
-    padding-bottom: 3em;
-}
-
 .title h1 {
+    margin-bottom: 3em;
     color: var(--title-color);
     font-weight: bold;
     font-family: "Quicksand";
-    font-size: calc(1vw + 1em);
+    font-size: calc(1vw + 20px);
 }
 
 /* CONTAINER IMAGEM */

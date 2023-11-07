@@ -1,12 +1,10 @@
-* {
-    font-family: "nunito";
-}
-
 main {
     padding-top: 6.5em;
+    font-family: "Nunito";
 }
 
 .tudo {
+    width: 100%;
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -24,6 +22,7 @@ main {
 .title-container h1 {
     margin-bottom: 1em;
     color: var(--text-one-color);
+    font-size: calc(1vw + 20px);
 }
 
 .contact {
@@ -77,6 +76,7 @@ main {
 .container-box img {
     float: right;
     margin-top: -2em;
+    width: 40%;
 }
 
 .container_button {
@@ -110,4 +110,69 @@ main {
     position: absolute;
     margin-top: -8em;
     z-index: 0;
+}
+
+@media (max-width: 500px) and (orientation:portrait) {
+
+    main {
+        padding-top: 4em;
+    }
+
+    .tudo {
+        justify-content: center;
+    }
+
+    .container_informacoes {
+        display: none;
+    }
+
+    .container_geral1 {
+        width: 100%;
+    }
+
+    .title-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact {
+        text-align: center;
+    }
+
+    .descricao {
+        font-size: calc(1vw + .6em);
+        width: 90%;
+        text-align: justify;
+    }
+
+    .email-contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .barra_de_input {
+        margin: 0;
+        width: 80%;
+    }
+
+    .barra_de_input input {
+        margin-top: 4em;
+    }
+
+    .blue-strip-container {
+        display: none;
+    }
+
+    .container_button {
+        margin: 2em 0;
+        align-items: center;
+        height: auto;
+        width: 100%;
+    }
+
+    .button_entrar {
+        width: 50%;
+    }
 }
