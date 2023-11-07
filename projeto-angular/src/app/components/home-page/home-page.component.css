@@ -17,6 +17,10 @@ body {
     align-items: center;
 }
 
+.logo-main {
+    display: none;
+}
+
 .uni-container {
     display: flex;
     justify-content: center;
@@ -90,6 +94,10 @@ body {
     color: var(--black);
 }
 
+.nav-mob {
+    display: none;
+}
+
 .logo {
     border-radius: 50%;
     display: flex;
@@ -116,4 +124,81 @@ body {
 
 .logo-center img {
     width: 100%;
+}
+
+@media (max-width: 500px) and (orientation: portrait) {
+    body {
+        padding: 4em 0;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin: 1em;
+        height: 100%;
+    }
+
+    .right-section {
+        display: none;
+    }
+
+    .left-section {
+        display: block;
+        height: 100%;
+    }
+
+    .title-container {
+        margin: 3em 0 8em 0;
+    }
+
+    .uni-container {
+        width: 70vw;
+    }
+
+    .logo-main {
+        display: block;
+        width: 100%;
+    }
+
+    .quick {
+        display: none;
+    }
+
+    .nav-mob {
+        display: inline-block;
+        margin-top: 15em;
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    .nav-mob>div {
+        width: 35%;
+        display: flex;
+        justify-content: center;
+        border-radius: 20px;
+    }
+
+    .nav-mob>div a {
+        text-decoration: none;
+        line-height: 2;
+    }
+
+    .register-mob,
+    .login-mob {
+        border: 2px solid var(--text-two-color);
+    }
+
+    .register-mob a {
+        color: var(--text-two-color);
+    }
+
+    .login-mob {
+        background-color: var(--text-two-color);
+    }
+
+    .login-mob a {
+        color: var(--detail-four-color);
+    }
 }

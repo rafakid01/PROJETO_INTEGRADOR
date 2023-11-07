@@ -1,12 +1,17 @@
 <body id="home">
   <div class="container p-0">
     <section class="left-section half">
-      <div class="right-container">
+      <div class="main-container">
         <div class="title-container row justify-content-center">
           <div class="uni-container col-lg-10 col-sm-12">
             <p class="h1 quick">
               {{ "UNI MONITOR" | uppercase }}
             </p>
+            <img
+              class="logo-main"
+              src="/assets/img/u-teach-complete.png"
+              alt=""
+            />
           </div>
         </div>
         <div class="text-container row justify-content-center py-4">
@@ -30,6 +35,14 @@
             </button>
           </div>
         </form>
+      </div>
+      <div class="nav-mob">
+        <div class="register-mob">
+          <a routerLink="/register">CADASTRO</a>
+        </div>
+        <div class="login-mob">
+          <a routerLink="/">LOGIN</a>
+        </div>
       </div>
     </section>
     <section class="right-section half">
