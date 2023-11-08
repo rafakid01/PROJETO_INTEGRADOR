@@ -181,26 +181,22 @@ main {
 
 /* CONTAINER DE MONITORES */
 
-.monitors-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 1em;
-}
-
 .monitors-container>a {
     text-decoration: none;
     cursor: pointer;
     background-color: var(--detail-three-color);
     border-radius: 30px;
+    margin: 1em .5em;
 }
 
 .img-container {
+    width: 100%;
     padding-bottom: 1em;
 }
 
 .img-container img {
     width: 100%;
-    border-radius: 20px;
+    border-radius: 30px;
 }
 
 .info-container .h4 {
@@ -223,4 +219,20 @@ main {
 .rating-container .h6>i {
     color: var(--text-two-color);
     margin-right: .5em;
+}
+
+@media (max-width:500px) {
+    .selects-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .selects-container>div {
+        justify-content: flex-start;
+        margin: 0;
+    }
+
+    .middle-container {
+        flex-direction: column;
+    }
 }
