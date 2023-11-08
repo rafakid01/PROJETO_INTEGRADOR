@@ -3,7 +3,6 @@ main {
     padding-top: 7em;
     background-color: #434dac;
     background-image: linear-gradient(43deg, #434dac 0%, #C850C0 100%);
-
     width: 100%;
     height: 100vh;
 }
@@ -66,10 +65,8 @@ main {
     align-items: flex-end;
 }
 
-.visibility-container button {
-    background-color: transparent;
-    border: none;
-    border-radius: 50%;
+.visibility-container a {
+    color: var(--text-one-color);
 }
 
 /* INPUTS DE EMAIL E SENHA */
@@ -143,6 +140,7 @@ button,
     padding: .5em 3em;
     font-size: calc(1vw + .1em);
     border-radius: 20px;
+    font-size: clamp(15px, 1vw + .1em, 30px);
 }
 
 a {
@@ -162,4 +160,41 @@ a {
     background-color: var(--detail-three-color);
     border-radius: 20px;
     padding: .25em 1em;
+    font-size: clamp(15px, 1vw + .1em, 30px);
+}
+
+@media (max-width: 500px) {
+    main {
+        background-color: #434dac;
+        background-image: linear-gradient(43deg, #434dac 0%, #C850C0 100%);
+        width: 100%;
+        height: 100vh;
+        padding: 0;
+    }
+
+    .register-container {
+        width: 95%;
+    }
+
+    .data-container {
+        grid-template-columns: 1fr;
+    }
+
+    .data-container>div {
+        padding: 1em 0;
+    }
+
+    /* ORGANIZAÇÃO INPUTS */
+
+    .email-container {
+        grid-area: 1;
+    }
+
+    .pass-container {
+        grid-area: 2;
+    }
+
+    .confirm-pass-container {
+        grid-area: 3;
+    }
 }
