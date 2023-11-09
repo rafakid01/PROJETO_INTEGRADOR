@@ -28,6 +28,7 @@ footer {
 
 .info-uniso-container p {
     color: var(--white);
+    font-size: calc(1vw + .3em);
 }
 
 /* CONTAINER LINKS SOCIAIS */
@@ -46,4 +47,10 @@ footer {
 
 .links-container>div img {
     width: 100%;
+}
+
+@media (max-width:500px) and (orientation: portrait) {
+    .container {
+        grid-template-columns: 1fr 2fr 1fr;
+    }
 }
