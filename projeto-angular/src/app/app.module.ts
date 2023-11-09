@@ -13,6 +13,7 @@ import { InitialPageComponent } from './components/initial-page/initial-page.com
 import { NavegacaoMainEstudanteComponent } from './components/navegacao-main-estudante/navegacao-main-estudante.component';
 import { SingleClassComponent } from './components/single-class/single-class.component';
 import { FooterNavComponent } from './components/footer-nav/footer-nav.component';
+import { StudentDashComponent } from './components/student-dash/student-dash.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FooterNavComponent } from './components/footer-nav/footer-nav.component
     InitialPageComponent,
     NavegacaoMainEstudanteComponent,
     SingleClassComponent,
-    FooterNavComponent
+    FooterNavComponent,
+    StudentDashComponent
   ],
   imports: [
     BrowserModule,

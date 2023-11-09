@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { InitialPageComponent } from './components/initial-page/initial-page.component';
 import { NavegacaoMainEstudanteComponent } from './components/navegacao-main-estudante/navegacao-main-estudante.component';
 import { SingleClassComponent } from './components/single-class/single-class.component';
+import { StudentDashComponent } from './components/student-dash/student-dash.component';
 
 const routes: Routes = [
   { path: '', component: InitialPageComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'navegacao', component: NavegacaoMainEstudanteComponent },
   { path: 'aula', component: SingleClassComponent },
+  { path: 'aluno-dashboard', component:StudentDashComponent}
 ];
 
 @NgModule({
