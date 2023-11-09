@@ -1,6 +1,6 @@
 main {
     padding-top: 6em;
-    min-width: 100vh;
+    min-height: 100vh;
 }
 
 /* BARRA DE PESQUISA SUPERIOR */
@@ -248,4 +248,63 @@ main {
 
 .interest-button:active {
     background: var(--detail-three-color);
+}
+
+@media (max-width: 500px) and (orientation: portrait) {
+
+    .search-container {
+        width: 100%;
+    }
+
+    .monitor-container {
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 2em 0;
+    }
+
+    /* CONTAINER DO MONITOR */
+
+    .main-monitor-data {
+        margin: 0;
+    }
+
+    .subjects-single-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+
+    /* CONTAINER SUPERIOR */
+
+    .fixed-container {
+        margin-bottom: 2em;
+    }
+
+    .title-right p {
+        padding-top: 1em;
+    }
+
+    .box-container {
+        position: relative;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .box-container>div:not(.button-container) {
+        margin: 0;
+        padding: 1em 2em;
+    }
+
+    .contacts-container>p {
+        margin: 1em 0;
+    }
+
+    .button-container {
+        line-height: 3;
+    }
+
+    .interest-button {
+        font-size: calc(1vw + 1em);
+    }
 }
