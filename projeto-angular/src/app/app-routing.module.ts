@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'navegacao', component: NavegacaoMainEstudanteComponent },
   { path: 'aula', component: SingleClassComponent },
-  { path: 'aluno-dashboard', component:StudentDashComponent}
+  { path: 'dash-aluno', component: StudentDashComponent },
 ];
 
 @NgModule({
