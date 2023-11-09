@@ -8,70 +8,79 @@
       </div>
       <div class="middle-container">
         <form class="selects-container">
-          <div class="first-select-container select">
-            <a (click)="compressOne()">
-              <div class="select-title">
-                <p class="h4">Curso</p>
-              </div>
-              <div class="icon-container">
-                <i class="bi bi-arrow-down"></i>
-              </div>
-            </a>
-            <div class="select-container" [class]="compressedDivOne">
-              <div class="dropdown" *ngFor="let course of coursesList">
-                <input
-                  type="checkbox"
-                  id="dropdownOne"
-                  class="form-check-input"
-                />
-                <label for="dropdownOne" class="form-check-label">
-                  {{ course.name }}
-                </label>
-              </div>
+          <div class="select-dropdown-container">
+            <div class="dropdown-buttons-container">
+              <a (click)="compressOne()">
+                <div class="select-title">
+                  <p class="h4">Curso</p>
+                </div>
+                <div class="icon-container">
+                  <i class="bi bi-arrow-down"></i>
+                </div>
+              </a>
+
+              <a (click)="compressTwo()">
+                <div class="select-title">
+                  <p class="h4">Avaliação</p>
+                </div>
+                <div class="icon-container">
+                  <i class="bi bi-arrow-down"></i>
+                </div>
+              </a>
+
+              <a (click)="compressThree()">
+                <div class="select-title">
+                  <p class="h4">Categoria</p>
+                </div>
+                <div class="icon-container">
+                  <i class="bi bi-arrow-down"></i>
+                </div>
+              </a>
             </div>
-          </div>
-          <div class="second-select-container select">
-            <a (click)="compressTwo()">
-              <div class="select-title">
-                <p class="h4">Avaliação</p>
+
+            <div class="all-dropdown-container">
+              <div class="select-container course" [class]="compressedDivOne">
+                <div class="dropdown" *ngFor="let course of coursesList">
+                  <input
+                    type="checkbox"
+                    id="dropdownOne"
+                    class="form-check-input"
+                  />
+                  <label for="dropdownOne" class="form-check-label">
+                    {{ course.name }}
+                  </label>
+                </div>
               </div>
-              <div class="icon-container">
-                <i class="bi bi-arrow-down"></i>
+              <div class="select-container rate" [class]="compressedDivTwo">
+                <div class="dropdown" *ngFor="let rate of ratingList">
+                  <input
+                    type="checkbox"
+                    id="dropdownTwo"
+                    class="form-check-input"
+                  />
+                  <label for="dropdownTwo" class="form-check-label">
+                    {{ rate.value }}/5 <i class="bi bi-star-fill"> </i>
+                  </label>
+                </div>
               </div>
-            </a>
-            <div class="select-container rate" [class]="compressedDivTwo">
-              <div class="dropdown" *ngFor="let rate of ratingList">
-                <input
-                  type="checkbox"
-                  id="dropdownTwo"
-                  class="form-check-input"
-                />
-                <label for="dropdownTwo" class="form-check-label">
-                  {{ rate.value }}/5 <i class="bi bi-star-fill"> </i>
-                </label>
+              <div
+                class="select-container category"
+                [class]="compressedDivThree"
+              >
+                <div class="dropdown" *ngFor="let category of categoryList">
+                  <input
+                    type="checkbox"
+                    id="dropdownThree"
+                    class="form-check-input"
+                  />
+                  <label for="dropdownThree" class="form-check-label">
+                    {{ category.name }}
+                  </label>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="third-select-container select">
-            <a (click)="compressThree()">
-              <div class="select-title">
-                <p class="h4">Categoria</p>
-              </div>
-              <div class="icon-container">
-                <i class="bi bi-arrow-down"></i>
-              </div>
-            </a>
-            <div class="select-container" [class]="compressedDivThree">
-              <div class="dropdown" *ngFor="let category of categoryList">
-                <input
-                  type="checkbox"
-                  id="dropdownThree"
-                  class="form-check-input"
-                />
-                <label for="dropdownThree" class="form-check-label">
-                  {{ category.name }}
-                </label>
-              </div>
+              <!-- <div class="first-select-container select"></div>
+              <div class="second-select-container select"></div>
+            <div class="third-select-container select"></div> -->
             </div>
           </div>
           <div class="button-submit">
