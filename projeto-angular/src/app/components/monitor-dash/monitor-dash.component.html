@@ -1,0 +1,110 @@
+<section>
+  <div class="container">
+    <div class="dashboard-box row">
+      <div class="edit-pic-section col-12 col-xl-6">
+        <div class="photo-container">
+          <img src="/assets/img/photo-profile-test.png" alt="" />
+          <div class="button-edit-container">
+            <button>Alterar Foto</button>
+          </div>
+        </div>
+      </div>
+      <div class="edit-info-container col-12 col-xl-6">
+        <div class="header-name-button">
+          <p class="name">Monitor Nome</p>
+          <div class="button-delete-container">
+            <button (click)="deleteProfile()">
+              <i class="bi bi-x"></i>Excluir
+            </button>
+          </div>
+        </div>
+
+        <form action="" class="info-student">
+          <div class="name-container">
+            <div class="name-one">
+              <p>Nome</p>
+            </div>
+            <div class="name-two">
+              <input type="text" placeholder="Nome" [disabled]="typeEdit" />
+            </div>
+          </div>
+          <div class="email-container">
+            <div class="email-one">
+              <p>Email</p>
+            </div>
+            <div class="email-two">
+              <input type="text" placeholder="Email" [disabled]="typeEdit" />
+            </div>
+          </div>
+          <div class="contact-first-container">
+            <div class="contact-first-one">
+              <p>Contato 1</p>
+            </div>
+            <div class="contact-first-two">
+              <input
+                type="text"
+                placeholder="Contato 1"
+                [disabled]="typeEdit"
+              />
+            </div>
+          </div>
+          <div class="course-container">
+            <div class="course-one">
+              <p>Curso</p>
+            </div>
+            <div class="course-two">
+              <input type="text" placeholder="Curso" [disabled]="typeEdit" />
+            </div>
+          </div>
+          <div class="pass-container">
+            <div class="pass-one">
+              <p>Senha</p>
+            </div>
+            <div class="pass-two">
+              <input type="text" placeholder="Senha" [disabled]="typeEdit" />
+            </div>
+          </div>
+          <div class="contact-second-container">
+            <div class="contact-second-one">
+              <p>Contato 2</p>
+            </div>
+            <div class="contact-second-two">
+              <input
+                type="text"
+                placeholder="Contato 2"
+                [disabled]="typeEdit"
+              />
+            </div>
+          </div>
+          <div class="edit-button-container">
+            <button
+              [type]="typeButton"
+              [class]="themeButton"
+              (click)="changeEditProfile()"
+            >
+              <i class=""></i>{{ buttonContent }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="container-back-confirm" [class]="showConfirm"></div>
+    <div class="confirm-delete" [class]="showConfirm">
+      <div class="quest">
+        <p>Tem certeza que deseja deleter o seu perfil?</p>
+      </div>
+      <div class="buttons-confirm">
+        <div class="button-one-section">
+          <button class="btn btn-success" (click)="backToHome()">
+            Confirmar
+          </button>
+        </div>
+        <div class="button-two-section">
+          <button class="btn btn-danger" (click)="deleteProfile()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

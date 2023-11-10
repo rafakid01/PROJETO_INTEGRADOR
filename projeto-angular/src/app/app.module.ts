@@ -14,6 +14,7 @@ import { NavegacaoMainEstudanteComponent } from './components/navegacao-main-est
 import { SingleClassComponent } from './components/single-class/single-class.component';
 import { FooterNavComponent } from './components/footer-nav/footer-nav.component';
 import { StudentDashComponent } from './components/student-dash/student-dash.component';
+import { MonitorDashComponent } from './components/monitor-dash/monitor-dash.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { StudentDashComponent } from './components/student-dash/student-dash.com
     NavegacaoMainEstudanteComponent,
     SingleClassComponent,
     FooterNavComponent,
-    StudentDashComponent
+    StudentDashComponent,
+    MonitorDashComponent
   ],
   imports: [
     BrowserModule,
