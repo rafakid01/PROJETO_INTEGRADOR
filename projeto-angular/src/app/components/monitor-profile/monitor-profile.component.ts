@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-monitor-dash',
-  templateUrl: './monitor-dash.component.html',
-  styleUrls: ['./monitor-dash.component.css'],
+  selector: 'app-monitor-profile',
+  templateUrl: './monitor-profile.component.html',
+  styleUrls: ['./monitor-profile.component.css'],
 })
-export class MonitorDashComponent implements OnInit {
+export class MonitorProfileComponent implements OnInit {
   typeEdit: boolean = true;
   buttonContent: string = 'EDITAR PERFIL';
   themeButton: string = 'edit';

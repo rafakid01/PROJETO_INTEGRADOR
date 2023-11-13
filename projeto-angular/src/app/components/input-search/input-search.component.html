@@ -1,0 +1,19 @@
+<form
+  class="search-container"
+  (ngSubmit)="submitForm()"
+  [formGroup]="searchForm"
+>
+  <div class="input-container">
+    <input
+      formControlName="searchData"
+      type="text"
+      class="form-control"
+      placeholder="Pesquisar assunto/matéria"
+    />
+  </div>
+  <button class="lupa-container" type="submit">
+    <div class="lupa">
+      <i class="bi bi-search"></i>
+    </div>
+  </button>
+</form>

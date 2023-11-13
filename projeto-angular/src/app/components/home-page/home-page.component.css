@@ -51,7 +51,7 @@ body {
     font-weight: bold;
 }
 
-.form-control {
+/* .form-control {
     border-radius: 50px 0 0 50px;
     border: 1px solid var(--text-one-color);
     border-right: none;
@@ -60,6 +60,7 @@ body {
     text-overflow: ellipsis;
     box-shadow: none;
     color: var(--text-one-color);
+    padding-left: .7em;
 }
 
 .form-control::placeholder {
@@ -92,7 +93,7 @@ body {
 .search-icon button .bi-search {
     font-size: calc(1vw + .6em);
     color: var(--black);
-}
+} */
 
 .nav-mob {
     display: none;
@@ -152,6 +153,7 @@ body {
     .left-section {
         display: block;
         height: 100%;
+        position: relative;
     }
 
     .title-container {
@@ -172,11 +174,12 @@ body {
     }
 
     .nav-mob {
+        position: absolute;
         display: inline-block;
-        margin-top: 15em;
         display: flex;
         width: 100%;
         justify-content: space-evenly;
+        bottom: 5vh;
     }
 
     .nav-mob>div {

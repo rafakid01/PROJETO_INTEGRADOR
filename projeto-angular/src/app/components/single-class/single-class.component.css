@@ -5,7 +5,11 @@ main {
 
 /* BARRA DE PESQUISA SUPERIOR */
 
-.search-container {
+.search-component-container {
+    width: 50%;
+}
+
+/* .search-container {
     display: grid;
     grid-template-columns: 6fr 1fr;
     width: 40%;
@@ -42,7 +46,7 @@ main {
 
 .form-control:focus {
     box-shadow: none;
-}
+} */
 
 /* CONTAINER GERAL */
 
@@ -252,13 +256,13 @@ main {
 
 @media (max-width: 500px) and (orientation: portrait) {
 
-    .search-container {
+    .search-component-container {
         width: 100%;
     }
 
     .monitor-container {
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         margin: 2em 0;
     }
 

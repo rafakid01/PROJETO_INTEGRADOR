@@ -25,7 +25,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     // this.alterationProfileLocalStorage();
     this.alterationThemeLocalStorage();
-    this.localStorage.viewItems();
   }
 
   alterationProfileLocalStorage() {

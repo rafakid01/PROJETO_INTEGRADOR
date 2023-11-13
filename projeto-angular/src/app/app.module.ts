@@ -13,8 +13,10 @@ import { InitialPageComponent } from './components/initial-page/initial-page.com
 import { NavegacaoMainEstudanteComponent } from './components/navegacao-main-estudante/navegacao-main-estudante.component';
 import { SingleClassComponent } from './components/single-class/single-class.component';
 import { FooterNavComponent } from './components/footer-nav/footer-nav.component';
-import { StudentDashComponent } from './components/student-dash/student-dash.component';
-import { MonitorDashComponent } from './components/monitor-dash/monitor-dash.component';
+import { StudentProfileComponent } from './components/student-profile/student-profile.component';
+import { MonitorProfileComponent } from './components/monitor-profile/monitor-profile.component';
+import { InputSearchComponent } from './components/input-search/input-search.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,14 +31,12 @@ import { MonitorDashComponent } from './components/monitor-dash/monitor-dash.com
     NavegacaoMainEstudanteComponent,
     SingleClassComponent,
     FooterNavComponent,
-    StudentDashComponent,
-    MonitorDashComponent
+    StudentProfileComponent,
+    MonitorProfileComponent,
+    InputSearchComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

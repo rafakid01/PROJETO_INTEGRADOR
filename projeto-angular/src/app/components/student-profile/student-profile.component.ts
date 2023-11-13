@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-student-dash',
-  templateUrl: './student-dash.component.html',
-  styleUrls: ['./student-dash.component.css'],
+  selector: 'app-student-profile',
+  templateUrl: './student-profile.component.html',
+  styleUrls: ['./student-profile.component.css'],
 })
-export class StudentDashComponent implements OnInit {
+export class StudentProfileComponent implements OnInit {
   typeEdit: boolean = true;
   buttonContent: string = 'EDITAR PERFIL';
   themeButton: string = 'edit';
