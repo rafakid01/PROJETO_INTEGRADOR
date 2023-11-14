@@ -1,6 +1,6 @@
 /* ESTRUTURAÇÃO MAIN */
 main {
-    padding-top: 7em;
+    padding-top: 2em;
     background-color: #434dac;
     background-image: linear-gradient(43deg, #434dac 0%, #C850C0 100%);
     width: 100%;
@@ -18,7 +18,7 @@ main {
 
 .register-container {
     width: 80%;
-    padding: 3em 3em .5em 3em;
+    padding: 1em .5em;
     border-radius: 50px;
     background-color: var(--detail-five-color);
 }
@@ -42,10 +42,11 @@ main {
 .data-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
 .data-container>div {
-    padding: 2em 1em;
+    padding: 1em;
 }
 
 /* CONTAINER DO DADO DE SENHA */
@@ -68,6 +69,41 @@ main {
 
 .visibility-container a {
     color: var(--text-one-color);
+}
+
+/* CONTAINER DE CURSOS */
+
+.course-container {
+    position: relative;
+}
+
+.course-container button {
+    border: 1px solid var(--text-one-color);
+    color: var(--text-one-color);
+    background-color: var(--white);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.options-box {
+    position: absolute;
+    height: 30vh;
+    width: calc(100% - 15px);
+    overflow-y: auto;
+    scrollbar-width: 0;
+    z-index: 2;
+    background-color: var(--detail-four-color);
+    padding: 0 1em;
+    border-radius: 10px 0 0 10px;
+    margin-top: .5em;
+}
+
+.option {
+    margin: .5em 0;
+}
+
+.option label {
+    margin-left: .5em;
 }
 
 /* INPUTS DE EMAIL E SENHA */
@@ -180,6 +216,7 @@ a {
 
     .data-container {
         grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
     }
 
     .data-container>div {
@@ -198,5 +235,9 @@ a {
 
     .confirm-pass-container {
         grid-area: 3;
+    }
+
+    .button-register-container {
+        grid-column: 1/ span 1;
     }
 }

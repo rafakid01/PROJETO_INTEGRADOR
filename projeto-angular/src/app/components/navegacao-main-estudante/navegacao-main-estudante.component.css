@@ -104,6 +104,7 @@ main {
     display: grid;
     grid-template-columns: 1fr .5fr 1fr;
     position: absolute;
+    top: 2em;
 }
 
 .all-dropdown-container>div {
@@ -318,6 +319,7 @@ main {
     .all-dropdown-container {
         display: flex;
         justify-content: center;
+        top: 3em;
     }
 
     .all-dropdown-container>div {
