@@ -59,8 +59,10 @@
             class="form-control course"
             formControlName="curso"
           /> -->
-          <button class="">Cruso Matriculado</button>
-          <div class="options-box" [class]="compressOptions">
+          <button class="" (click)="compressOptions()">
+            Cruso Matriculado
+          </button>
+          <div class="options-box" [class]="comprimid">
             <div *ngFor="let course of coursesList" class="option">
               <input
                 id="{{ course }}"

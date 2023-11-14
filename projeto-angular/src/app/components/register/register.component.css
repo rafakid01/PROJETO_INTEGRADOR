@@ -73,6 +73,14 @@ main {
 
 /* CONTAINER DE CURSOS */
 
+.compressed {
+    display: none;
+}
+
+.descompressed {
+    display: block;
+}
+
 .course-container {
     position: relative;
 }
@@ -83,6 +91,7 @@ main {
     background-color: var(--white);
     border-radius: 10px;
     width: 100%;
+    margin-top: .3em;
 }
 
 .options-box {

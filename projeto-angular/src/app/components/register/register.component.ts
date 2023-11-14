@@ -85,7 +85,7 @@ export class RegisterComponent implements OnInit {
     tipoCadastro: ['', Validators.required],
   });
 
-  compressOptions: string = 'compressed';
+  comprimid: string = 'compressed';
 
   constructor(private fb: FormBuilder) {}
 
@@ -108,5 +108,11 @@ export class RegisterComponent implements OnInit {
     senha != senhaConfir
       ? console.log('Senhas não coincidem, tente novamente')
       : console.log(this.registerForm.value);
+  }
+
+  compressOptions() {
+    this.comprimid == 'compressed'
+      ? (this.comprimid = 'descompressed')
+      : (this.comprimid = 'compressed');
   }
 }
