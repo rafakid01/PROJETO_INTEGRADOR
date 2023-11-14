@@ -54,6 +54,7 @@ main {
 .pass-container {
     display: grid;
     grid-template-columns: 8fr 1fr;
+    grid-template-rows: 1fr 1.2fr;
 }
 
 .password {
@@ -86,10 +87,12 @@ main {
 }
 
 .course-container button {
-    border: 1px solid var(--text-one-color);
+    border-bottom: 1px solid var(--text-one-color);
+    border-top: none;
+    border-left: none;
+    border-right: none;
     color: var(--text-one-color);
-    background-color: var(--white);
-    border-radius: 10px;
+    background-color: transparent;
     width: 100%;
     margin-top: .3em;
 }
@@ -240,6 +243,8 @@ a {
 
     .pass-container {
         grid-area: 2;
+        grid-template-rows: 1fr;
+        grid-template-columns: 9.5fr .5fr;
     }
 
     .confirm-pass-container {

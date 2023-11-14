@@ -65,12 +65,12 @@
           <div class="options-box" [class]="comprimid">
             <div *ngFor="let course of coursesList" class="option">
               <input
-                id="{{ course }}"
+                id="{{ course.name }}"
                 type="radio"
                 formControlName="curso"
-                value="{{ course }}"
+                value="{{ course.name }}"
               />
-              <label for="course"> {{ course }} </label>
+              <label for="course"> {{ course.name }} </label>
             </div>
           </div>
         </div>

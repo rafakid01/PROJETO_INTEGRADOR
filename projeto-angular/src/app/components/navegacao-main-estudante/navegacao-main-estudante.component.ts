@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder } from '@angular/forms';
 import { NavDataService } from 'src/app/services/nav-data.service';
 
 @Component({
@@ -13,7 +14,14 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
   ratingList: any;
   monitorsNumber: any;
 
-  constructor(private navData: NavDataService) {}
+  selectedCourses: string[] = [];
+
+  filterForm = this.fb.group({
+    course: [''],
+    rate: [''],
+    category: [''],
+  });
+  constructor(private navData: NavDataService, private fb: FormBuilder) {}
 
   compressedDivOne: string = 'compressed';
   compressedDivTwo: string = 'compressed';
@@ -57,4 +65,6 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
       this.compressedDivOne = 'compressed';
     }
   }
+
+  submitFilter(event: any) {}
 }

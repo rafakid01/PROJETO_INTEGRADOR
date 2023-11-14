@@ -188,7 +188,7 @@ export class NavDataService {
   ];
 
   coursesList: any = [
-    { image: '', rate: '4', name: 'Administração', id: 1 },
+    { name: 'Administração', id: 1 },
     { name: 'ADS', id: 2 },
     { name: 'Arquitetura e Urbanismo', id: 3 },
     { name: 'Artes Visuais', id: 4 },
