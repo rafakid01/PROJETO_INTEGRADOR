@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,6 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
   typeInputPass: string = 'password';
   typeEye: string = 'bi bi-eye-fill';
+
+  registerForm = this.fb.group({
+    nome: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    curso: ['', Validators.required],
+    senha: ['', [Validators.required, Validators.minLength(8)]],
+    senhaConfirmacao: ['', Validators.required],
+    tipoCadastro: ['', Validators.required],
+  });
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}
 
@@ -19,5 +31,14 @@ export class RegisterComponent implements OnInit {
     this.typeEye == 'bi bi-eye-fill'
       ? (this.typeEye = 'bi bi-eye-slash-fill')
       : (this.typeEye = 'bi bi-eye-fill');
+  }
+
+  registerSubmit() {
+    const senha = this.registerForm.value.senha;
+    const senhaConfir = this.registerForm.value.senhaConfirmacao;
+
+    senha != senhaConfir
+      ? console.log('Senhas não coincidem, tente novamente')
+      : console.log(this.registerForm.value);
   }
 }

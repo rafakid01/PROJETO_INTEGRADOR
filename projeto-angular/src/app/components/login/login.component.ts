@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   typeInputPass: string = 'password';
   typeEye: string = 'bi bi-eye-fill';
-  constructor(private renderer: Renderer2, private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {}
 
   loginForm = this.fb.group({
     email: ['', Validators.required],

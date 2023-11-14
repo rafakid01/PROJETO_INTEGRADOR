@@ -51,7 +51,8 @@ main {
 /* CONTAINER DO DADO DE SENHA */
 
 .pass-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 8fr 1fr;
 }
 
 .password {
@@ -133,6 +134,7 @@ button,
     display: flex;
     justify-content: center;
     padding-bottom: 1em;
+    grid-column: 1/ span 2;
 }
 
 .button-register-container button {
