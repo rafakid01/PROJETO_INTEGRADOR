@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "rest_framework",
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -66,6 +68,17 @@ TEMPLATES = [
         },
     },
 ]
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "test",
+        "USER": "root",
+        "PASSWORD": "",
+        "HOST": "localhost",
+        "PORT": "3306"
+    }
+}
 
 WSGI_APPLICATION = 'projeto_django.wsgi.application'
 
