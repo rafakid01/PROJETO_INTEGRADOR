@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +14,17 @@ export class MonitorProfileComponent implements OnInit {
   typeButton: string = 'button';
   showConfirm: string = 'hide';
 
-  constructor(private route: Router) {}
+  editMonitorForm = this.fb.group({
+    nome: [''],
+    email: [''],
+    curso: [''],
+    senha: [''],
+    contato_numero1: [''],
+    contato_numero2: [''],
+    foto_perfil: [''],
+  });
+
+  constructor(private route: Router, private fb: FormBuilder) {}
 
   ngOnInit(): void {}
 

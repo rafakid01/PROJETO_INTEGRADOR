@@ -9,6 +9,7 @@ import { Usuario } from '../models/usuario.model';
 export class DjangoConnService {
   getURL = 'http://localhost:8000/usuarios/';
   postURL = 'http://localhost:8000/post/';
+  putURL = 'http://localhost:8000/put/';
 
   constructor(private http: HttpClient) {}
 
@@ -19,6 +20,12 @@ export class DjangoConnService {
   criarUsuario(usuario: any): Observable<any> {
     return this.http.post(this.postURL, usuario);
   }
+
+  // updateMonitor(id: any): Observable<any> {
+  //   return this.http.put(this.putURL);
+  // }
+
+  getMonitors() {}
 
   showUsers() {
     this.getUsers().subscribe((data) => {

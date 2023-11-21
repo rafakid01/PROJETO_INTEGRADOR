@@ -62,6 +62,7 @@
           <button class="" type="button" (click)="compressOptions()">
             Curso Matriculado
           </button>
+          <p class="text-center">{{ this.registerForm.value.curso }}</p>
           <div class="options-box" [class]="comprimid">
             <div *ngFor="let course of coursesList" class="option">
               <input

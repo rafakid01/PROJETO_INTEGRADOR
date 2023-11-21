@@ -17,8 +17,8 @@ section {
     border-radius: 30px;
     width: 100%;
     height: 70%;
-    /* display: grid;
-    grid-template-columns: 1fr 1fr; */
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
 }
 
 /* SEÇÃO ESQUERDA */
@@ -27,6 +27,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .photo-container {
@@ -69,6 +70,7 @@ section {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr 1fr;
     height: 100%;
+    width: 100%;
 }
 
 /* SEÇÃO DE INFORMAÇÕES */
@@ -76,7 +78,7 @@ section {
 .header-name-button {
     width: 100%;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 7fr 3fr;
 }
 
 .header-name-button>p {

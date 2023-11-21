@@ -1,6 +1,6 @@
 # from rest_framework.response import Response
-from .models import Usuarios
-from .serializers import UsuarioSerializer
+from .models import Usuarios, Monitores, Administrador
+from .serializers import UsuarioSerializer, MonitorSerializer, AdministradorSerializer
 from django.http.response import JsonResponse
 
 from rest_framework.response import Response
@@ -19,6 +19,24 @@ def getusers(request):
     usuarios = Usuarios.objects.all()
     usuario_serializer = UsuarioSerializer(usuarios, many=True)
     return JsonResponse(usuario_serializer.data, safe=False)
+
+
+@api_view(["GET"])
+def getMonitor(request, pk):
+    monitor = Monitores.objects.get(pk=pk)
+    monitor_serializer = MonitorSerializer(monitor)
+    return JsonResponse(monitor_serializer.data)
+
+
+@api_view(["PUT"])
+def updateUser(request, pk):
+    usuario = Usuarios.objects.get(pk=pk)
+    usuario_data = JSONParser().parse(request)
+    usuario_serializer = UsuarioSerializer(usuario, data=usuario_data)
+    if usuario_serializer.is_valid():
+        usuario_serializer.save()
+        return JsonResponse(usuario_serializer.data)
+    return JsonResponse(usuario_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["POST"])

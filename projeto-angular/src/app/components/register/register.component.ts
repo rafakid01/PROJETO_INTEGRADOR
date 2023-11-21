@@ -1,3 +1,4 @@
+import { LowerCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
@@ -69,7 +70,7 @@ export class RegisterComponent implements OnInit {
       this.usuario.senha = this.registerForm.value.senha;
       this.usuario.email = this.registerForm.value.email;
       this.usuario.curso = this.registerForm.value.curso;
-      this.usuario.categoria = this.registerForm.value.categoria;
+      this.usuario.categoria = this.registerForm.value.categoria?.toLowerCase();
 
       console.log(this.usuario);
 
