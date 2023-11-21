@@ -31,7 +31,3 @@ def postUser(request):
     print(usuario_serializer.errors)
 
     return Response(usuario_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(["DELETE"])
-def deleteUser(request):
-    
