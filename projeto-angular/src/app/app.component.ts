@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DjangoConnService } from './services/django-conn.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,7 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'projeto-angular';
 
-  constructor() {}
+  constructor(private back: DjangoConnService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.back.showUsers();
+  }
 }

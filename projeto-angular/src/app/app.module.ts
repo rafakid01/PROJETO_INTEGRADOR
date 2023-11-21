@@ -17,6 +17,7 @@ import { StudentProfileComponent } from './components/student-profile/student-pr
 import { MonitorProfileComponent } from './components/monitor-profile/monitor-profile.component';
 import { InputSearchComponent } from './components/input-search/input-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MonitorProfileComponent,
     InputSearchComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
