@@ -31,6 +31,13 @@
     margin-right: 200px;
 }
 
+.searchbar{
+    border-radius: 20px;
+    height: 40px;
+    width: 220px;
+    border-width: 1.5px;
+}
+
 .cabecalho{
     display: flex;
     justify-content: space-around;
@@ -54,10 +61,41 @@
     margin-left: 6%;
     display: flex;
     align-items: center;
-    justify-content: center;
+
     height: 70px;
     width: 1150px;
     background-color: #FEF4B2;
     border-radius: 15px;
     box-shadow: 1px 1px 3px;
+}
+
+
+.numeracao{
+    margin-right: 60px;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.input1{
+    margin-right: 120px;
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: grey;
+}
+
+.button{
+    background-color: red;
+    border: none;
+    height: 70px;
+    width: 50px;
+    margin-left: 75px;
+    border-radius:15px ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+img{
+    height: 32px;
 }
