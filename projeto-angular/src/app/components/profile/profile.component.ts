@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   actualUser: any;
 
   updateProfileForm = this.fb.group({
-    nome: [''],
+    nome: ['', { disabled: true }],
     email: [''],
     senha: [''],
     curso: [''],

@@ -14,7 +14,7 @@
           </div>
         </div>
 
-        <form action="" class="info-student">
+        <form [formGroup]="updateProfileForm" action="" class="info-student">
           <div class="edit-pic-section col-12 col-xl-6">
             <div class="photo-container">
               <img src="/assets/img/photo-profile-test.png" alt="" />
@@ -31,7 +31,7 @@
               <input
                 type="text"
                 placeholder=" {{ actualUser.nome }} "
-                [disabled]="typeEdit"
+                formControlName="nome"
               />
             </div>
           </div>
@@ -43,7 +43,7 @@
               <input
                 type="text"
                 placeholder=" {{ actualUser.curso }} "
-                [disabled]="typeEdit"
+                formControlName="curso"
               />
             </div>
           </div>
@@ -55,7 +55,7 @@
               <input
                 type="text"
                 placeholder=" {{ actualUser.email }} "
-                [disabled]="typeEdit"
+                formControlName="email"
               />
             </div>
           </div>
@@ -67,7 +67,7 @@
               <input
                 type="text"
                 placeholder=" {{ actualUser.contato_numero1 }} "
-                [disabled]="typeEdit"
+                formControlName="contato_numero1"
               />
             </div>
           </div>
@@ -79,7 +79,7 @@
               <input
                 type="text"
                 placeholder=" {{ actualUser.senha }} "
-                [disabled]="typeEdit"
+                formControlName="senha"
               />
             </div>
           </div>
@@ -91,7 +91,7 @@
               <input
                 type="text"
                 placeholder=" {{ actualUser.contato_numero1 }} "
-                [disabled]="typeEdit"
+                formControlName="contato_numero2"
               />
             </div>
           </div>
