@@ -1,5 +1,14 @@
 
+
 .geral{
-    background-color: #fff;
     padding-top: 6em;
+}
+
+.geral1{
+    margin-top: 40px;
+    margin-left: 316px;
+    background-color: #fff;
+    height: 400px;
+    width: 1295px;
+    border-radius: 20px;
 }
