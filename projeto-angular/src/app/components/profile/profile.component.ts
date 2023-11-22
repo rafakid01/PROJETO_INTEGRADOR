@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,10 +16,34 @@ export class ProfileComponent implements OnInit {
 
   showConfirmDelete: string = 'hide';
   showConfirmLeave: string = 'hide';
+  showBackGrnd: string = 'hide';
 
-  constructor(private route: Router) {}
+  actualUser: any;
 
-  ngOnInit(): void {}
+  updateProfileForm = this.fb.group({
+    nome: [''],
+    email: [''],
+    senha: [''],
+    curso: [''],
+    contato_numero1: [''],
+    contato_numero2: [''],
+    foto_perfil: [''],
+  });
+
+  constructor(
+    private route: Router,
+    private localstorage: LocalStorageService,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.localstorage.viewItems();
+    let userValue = this.localstorage.getItem('usuario');
+    if (userValue != null) {
+      this.actualUser = userValue;
+      console.log(this.actualUser);
+    }
+  }
 
   changeEditProfile() {
     this.typeEdit = !this.typeEdit;
@@ -33,15 +59,23 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteProfile() {
-    this.showConfirmDelete == 'hide'
-      ? (this.showConfirmDelete = 'show')
-      : (this.showConfirmDelete = 'hide');
+    if (this.showConfirmDelete == 'hide') {
+      this.showConfirmDelete = 'show';
+      this.showBackGrnd = 'show';
+    } else {
+      this.showConfirmDelete = 'hide';
+      this.showBackGrnd = 'hide';
+    }
   }
 
   exitProfile() {
-    this.showConfirmLeave == 'hide'
-      ? (this.showConfirmLeave = 'show')
-      : (this.showConfirmLeave = 'hide');
+    if (this.showConfirmLeave == 'hide') {
+      this.showConfirmLeave = 'show';
+      this.showBackGrnd = 'show';
+    } else {
+      this.showConfirmLeave = 'hide';
+      this.showBackGrnd = 'hide';
+    }
   }
 
   backToHome() {
