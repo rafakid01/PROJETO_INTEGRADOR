@@ -1,4 +1,6 @@
-
+*{
+    font-family: "Nunito";
+}
 
 .geral{
     padding-top: 6em;
@@ -8,7 +10,54 @@
     margin-top: 40px;
     margin-left: 316px;
     background-color: #fff;
-    height: 400px;
+    height: 765px;
     width: 1295px;
     border-radius: 20px;
+}
+
+.partecima{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titulo{
+    margin-left: 535px;
+    margin-top: 40px;
+}
+
+.pesquisa{
+    margin-top: 40px;
+    margin-right: 200px;
+}
+
+.cabecalho{
+    display: flex;
+    justify-content: space-around;
+    width: 950px;
+    margin-top: 70px;
+    margin-left: 70px;
+}
+
+.cabecalho ::h2{
+    border-bottom: 20px;
+}
+
+.perfis{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfis_geral{
+    margin-top: 10px;
+    margin-left: 6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width: 1150px;
+    background-color: #FEF4B2;
+    border-radius: 15px;
+    box-shadow: 1px 1px 3px;
 }
