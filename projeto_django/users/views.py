@@ -8,24 +8,33 @@ from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 
-import logging
-
-
 # Create your views here.
 
 
 @api_view(["GET"])
-def getusers(request):
+def getUsers(self, request):
     usuarios = Usuarios.objects.all()
     usuario_serializer = UsuarioSerializer(usuarios, many=True)
     return JsonResponse(usuario_serializer.data, safe=False)
 
 
 @api_view(["GET"])
-def getMonitor(request, pk):
-    monitor = Monitores.objects.get(pk=pk)
-    monitor_serializer = MonitorSerializer(monitor)
-    return JsonResponse(monitor_serializer.data)
+def getUser(self, request, *args, **kwargs):
+    email = self.kwargs.get("email")
+    senha = self.kwargs.get("senha")
+
+    try:
+        usuario = Usuarios.objects.get(email=email, senha=senha)
+        # Você pode personalizar os campos que deseja incluir na resposta JSON
+        data = {
+            "id_usuario": usuario.id_usuario,
+            "nome": usuario.nome,
+            "email": usuario.email,
+            # Adicione outros campos conforme necessário
+        }
+        return JsonResponse(data)
+    except Usuarios.DoesNotExist:
+        return JsonResponse({"error": "Usuário não encontrado"}, status=404)
 
 
 @api_view(["PUT"])
@@ -44,7 +53,11 @@ def postUser(request):
     usuario_data = JSONParser().parse(request)
     usuario_serializer = UsuarioSerializer(data=usuario_data)
     if usuario_serializer.is_valid():
-        usuario_serializer.save()
+        usuario = usuario_serializer.save()
+
+        if usuario.categoria == "monitor":
+            Monitores.objects.create(id_monitor=usuario)
+
         return JsonResponse(usuario_serializer.data, status=status.HTTP_201_CREATED)
     print(usuario_serializer.errors)
 

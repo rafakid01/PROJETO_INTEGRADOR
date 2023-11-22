@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-student-profile',
-  templateUrl: './student-profile.component.html',
-  styleUrls: ['./student-profile.component.css'],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css'],
 })
-export class StudentProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit {
   typeEdit: boolean = true;
   buttonContent: string = 'EDITAR PERFIL';
   themeButton: string = 'edit';
   typeButton: string = 'button';
-  showConfirm: string = 'hide';
+
+  showConfirmDelete: string = 'hide';
+  showConfirmLeave: string = 'hide';
 
   constructor(private route: Router) {}
 
@@ -31,9 +33,15 @@ export class StudentProfileComponent implements OnInit {
   }
 
   deleteProfile() {
-    this.showConfirm == 'hide'
-      ? (this.showConfirm = 'show')
-      : (this.showConfirm = 'hide');
+    this.showConfirmDelete == 'hide'
+      ? (this.showConfirmDelete = 'show')
+      : (this.showConfirmDelete = 'hide');
+  }
+
+  exitProfile() {
+    this.showConfirmLeave == 'hide'
+      ? (this.showConfirmLeave = 'show')
+      : (this.showConfirmLeave = 'hide');
   }
 
   backToHome() {

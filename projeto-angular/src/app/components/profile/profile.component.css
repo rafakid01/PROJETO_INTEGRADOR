@@ -95,10 +95,25 @@ section {
     font-family: "Quicksand";
 }
 
-.button-delete-container button {
+.button-delete-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
+
+.button-delete-container button:not(.leave) {
     padding: .5em 1em;
     border: none;
     background-color: var(--red);
+    color: var(--white);
+    border-radius: 20px;
+    font-family: "Nunito";
+}
+
+.leave {
+    padding: .5em 1em;
+    border: none;
+    background-color: var(--detail-six-color);
     color: var(--white);
     border-radius: 20px;
     font-family: "Nunito";

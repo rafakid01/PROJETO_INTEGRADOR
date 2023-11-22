@@ -11,11 +11,12 @@
       </div>
       <div class="edit-info-container col-12 col-xl-6">
         <div class="header-name-button">
-          <p class="name">Monitor Nome</p>
-          <div class="button-delete-container m-0 mt-3">
+          <p class="name">Aluno Nome</p>
+          <div class="button-delete-container">
             <button (click)="deleteProfile()">
               <i class="bi bi-x"></i>Excluir
             </button>
+            <button class="leave"><i class="bi bi-door-open"></i>Sair</button>
           </div>
         </div>
 
@@ -88,10 +89,30 @@
         </form>
       </div>
     </div>
-    <div class="container-back-confirm" [class]="showConfirm"></div>
-    <div class="confirm-delete" [class]="showConfirm">
+    <div
+      class="container-back-confirm"
+      [class]="showConfirmDelete || showConfirmLeave"
+    ></div>
+    <div class="confirm-delete" [class]="showConfirmDelete">
       <div class="quest">
         <p>Tem certeza que deseja deleter o seu perfil?</p>
+      </div>
+      <div class="buttons-confirm">
+        <div class="button-one-section">
+          <button class="btn btn-success" (click)="backToHome()">
+            Confirmar
+          </button>
+        </div>
+        <div class="button-two-section">
+          <button class="btn btn-danger" (click)="deleteProfile()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="confirm-leave" [class]="showConfirmLeave">
+      <div class="quest">
+        <p>Tem certeza que deseja sair do seu perfil?</p>
       </div>
       <div class="buttons-confirm">
         <div class="button-one-section">

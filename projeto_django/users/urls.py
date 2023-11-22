@@ -3,8 +3,12 @@ from .views import *
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path("usuarios/", getusers, name="lista_de_usuarios"),
+    path("usuarios/", getUsers, name="lista_de_usuarios"),
     path("post/", postUser, name="criar_usuario"),
-    path("monitor/", getMonitor, name="resgatar_monitor"),
+    path(
+        "usuarios/<str:email>/<str:senha>/",
+        getUser,
+        name="resgatar_usuario",
+    ),
     path("put/", updateUser, name="atualizar_usuario"),
 ]

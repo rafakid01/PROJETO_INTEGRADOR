@@ -13,11 +13,11 @@ import { InitialPageComponent } from './components/initial-page/initial-page.com
 import { NavegacaoMainEstudanteComponent } from './components/navegacao-main-estudante/navegacao-main-estudante.component';
 import { SingleClassComponent } from './components/single-class/single-class.component';
 import { FooterNavComponent } from './components/footer-nav/footer-nav.component';
-import { StudentProfileComponent } from './components/student-profile/student-profile.component';
-import { MonitorProfileComponent } from './components/monitor-profile/monitor-profile.component';
 import { InputSearchComponent } from './components/input-search/input-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +32,9 @@ import { HttpClientModule } from '@angular/common/http';
     NavegacaoMainEstudanteComponent,
     SingleClassComponent,
     FooterNavComponent,
-    StudentProfileComponent,
-    MonitorProfileComponent,
     InputSearchComponent,
+    ProfileComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,

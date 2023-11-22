@@ -61,6 +61,16 @@ input:checked+label:after {
   font-size: calc(1vw + .4em);
 }
 
+/* TAMANHO ICONE PERFIL */
+
+.icon-profile-container a {
+  border-radius: 50%;
+}
+
+.icon-profile-container img {
+  width: calc(1vw + 2em);
+}
+
 /* CONTAINER POSIÇÃO */
 
 .transparent {

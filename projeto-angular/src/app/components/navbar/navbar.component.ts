@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.alterationProfileLocalStorage();
+    this.alterationProfileLocalStorage();
     this.alterationThemeLocalStorage();
   }
 

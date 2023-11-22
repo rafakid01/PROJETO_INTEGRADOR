@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
 import { DjangoConnService } from 'src/app/services/django-conn.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NavDataService } from 'src/app/services/nav-data.service';
 
 @Component({
@@ -42,10 +43,15 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private navData: NavDataService,
-    private djangohttp: DjangoConnService
+    private djangohttp: DjangoConnService,
+    private localstorage: LocalStorageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.localstorage.getItem('logged') == true) {
+      document.body.innerHTML = 'Saia do perfil para registrar outro';
+    }
+  }
 
   changeVisibility() {
     this.typeInputPass == 'password'
@@ -70,12 +76,12 @@ export class RegisterComponent implements OnInit {
       this.usuario.senha = this.registerForm.value.senha;
       this.usuario.email = this.registerForm.value.email;
       this.usuario.curso = this.registerForm.value.curso;
-      this.usuario.categoria = this.registerForm.value.categoria?.toLowerCase();
+      this.usuario.categoria = this.registerForm.value.categoria;
 
       console.log(this.usuario);
 
       this.djangohttp.criarUsuario(this.usuario).subscribe((usuario) => {
-        console.log(usuario);
+        this.djangohttp.postUserLocalhost(usuario);
       });
     }
   }
