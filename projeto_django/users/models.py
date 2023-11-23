@@ -2,55 +2,74 @@ from django.db import models
 
 
 # Create your models here.
-class Usuarios(models.Model):
-    id_usuario = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=45)
-    email = models.EmailField(unique=True, max_length=45)
-    senha = models.CharField(max_length=45)
-    curso = models.CharField(max_length=45)
+class Usuario(models.Model):
+    nome = models.CharField(max_length=80)
+    email = models.EmailField(unique=True)
+    senha = models.CharField(max_length=255)
+    curso = models.CharField(max_length=50)
     categoria = models.CharField(
-        max_length=45, choices=[("aluno", "Aluno"), ("monitor", "Monitor")]
+        max_length=10, choices=[("aluno", "Aluno"), ("monitor", "Monitor")]
     )
-    contato_numero1 = models.CharField(max_length=11, blank=True)
-    contato_numero2 = models.CharField(max_length=11, blank=True)
-    foto_perfil = models.TextField(null=True, blank=True)
-
-    class Meta:
-        db_table = "usuarios"
+    contato_numero_1 = models.CharField(max_length=15, blank=True)
+    contato_numero_2 = models.CharField(max_length=15, blank=True)
+    foto_perfil = models.TextField(
+        blank=True
+    )  # Considerando que a foto seja salva em base64
 
     def __str__(self):
         return self.nome
 
+    class Meta:
+        db_table = "usuarios"
 
-class Monitores(models.Model):
-    id_monitor = models.OneToOneField(
-        "Usuarios", on_delete=models.CASCADE, primary_key=True
+
+class Monitor(models.Model):
+    user = models.OneToOneField(
+        "users.Usuario", on_delete=models.CASCADE, primary_key=True
     )
     nota_avaliacao = models.DecimalField(
         max_digits=3, decimal_places=2, null=True, blank=True
     )
-    assuntos_ensinados = models.TextField(blank=True, null=True)
+    descricao = models.TextField()
+
+    def __str__(self):
+        return f"Monitor: {self.user.nome}"
 
     class Meta:
         db_table = "monitores"
 
 
-class Interesse(models.Model):
-    aluno = models.ForeignKey(
-        Usuarios, related_name="interesses", on_delete=models.CASCADE
-    )
-    monitor = models.ForeignKey(
-        Usuarios, related_name="aulas_dadas", on_delete=models.CASCADE
-    )
+class Assunto(models.Model):
+    titulo = models.CharField(max_length=255)
+    monitores = models.ManyToManyField("users.Monitor", related_name="assuntos")
+
+    def __str__(self):
+        return self.titulo
 
     class Meta:
-        db_table = "interesse"
+        db_table = "assuntos"
 
 
-class Administrador(models.Model):
+class Admin(models.Model):
+    nome = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     senha = models.CharField(max_length=255)
-    foto_perfil = models.CharField(max_length=255, blank=True, null=True)
+    foto_perfil = models.TextField()  # Considerando que a foto seja salva em base64
+
+    def __str__(self):
+        return self.nome
 
     class Meta:
         db_table = "administradores"
+
+
+class Interesse(models.Model):
+    aluno = models.ForeignKey("users.Usuario", on_delete=models.CASCADE)
+    monitor = models.ForeignKey("users.Monitor", on_delete=models.CASCADE)
+    data_interesse = models.DateTimeField(default="1970-01-01T00:00:00Z")
+
+    def __str__(self):
+        return f"{self.aluno.nome} está interessado em {self.monitor.user.nome}"
+
+    class Meta:
+        db_table = "interesse"
