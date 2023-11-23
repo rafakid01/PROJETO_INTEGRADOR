@@ -5,10 +5,10 @@
         <div class="header-name-button">
           <p class="name">{{ actualUser.nome }}</p>
           <div class="button-delete-container">
-            <button (click)="deleteProfile()">
+            <button (click)="confirmDelete()">
               <i class="bi bi-x"></i>Excluir
             </button>
-            <button class="leave" (click)="exitProfile()">
+            <button class="leave" (click)="confirmExit()">
               <i class="bi bi-door-open"></i>Sair
             </button>
           </div>
@@ -17,9 +17,14 @@
         <form [formGroup]="updateProfileForm" action="" class="info-student">
           <div class="edit-pic-section col-12 col-xl-6">
             <div class="photo-container">
-              <img src="/assets/img/photo-profile-test.png" alt="" />
+              <img src="{{ actualUser.foto_perfil }}" alt="" />
               <div class="button-edit-container">
-                <button>Alterar Foto</button>
+                <input
+                  type="file"
+                  (change)="handleFileInput($event)"
+                  accept="image/png, image/jpeg, image/jpg"
+                  formControlName="foto_perfil"
+                />
               </div>
             </div>
           </div>
@@ -56,6 +61,7 @@
                 type="text"
                 placeholder=" {{ actualUser.email }} "
                 formControlName="email"
+                value=" {{ actualUser.email }} "
               />
             </div>
           </div>
@@ -68,6 +74,7 @@
                 type="text"
                 placeholder=" {{ actualUser.contato_numero1 }} "
                 formControlName="contato_numero1"
+                value=" {{ actualUser.contato_numero1 }} "
               />
             </div>
           </div>
@@ -90,9 +97,29 @@
             <div class="contact-second-two">
               <input
                 type="text"
-                placeholder=" {{ actualUser.contato_numero1 }} "
+                placeholder=" {{ actualUser.contato_numero2 }} "
                 formControlName="contato_numero2"
+                value=" {{ actualUser.contato_numero2 }} "
               />
+            </div>
+          </div>
+
+          <div *ngIf="isMonitor" class="assuntos-container container">
+            <div
+              *ngFor="let assunto of assuntosList"
+              class="assunto-input-container"
+            >
+              <input
+                class="form-check-input"
+                id=" assunto{{ assunto.id }} "
+                type="radio"
+                value=" {{ assunto.name }} "
+                (change)="getCategory($event)"
+                [disabled]="typeEdit"
+              />
+              <label for=" assunto{{ assunto.id }} ">
+                {{ assunto.name }}
+              </label>
             </div>
           </div>
           <div class="edit-button-container">
@@ -114,12 +141,12 @@
       </div>
       <div class="buttons-confirm">
         <div class="button-one-section">
-          <button class="btn btn-success" (click)="backToHome()">
+          <button class="btn btn-success" (click)="deleteProfile()">
             Confirmar
           </button>
         </div>
         <div class="button-two-section">
-          <button class="btn btn-danger" (click)="deleteProfile()">
+          <button class="btn btn-danger" (click)="confirmDelete()">
             Cancelar
           </button>
         </div>
@@ -131,12 +158,12 @@
       </div>
       <div class="buttons-confirm">
         <div class="button-one-section">
-          <button class="btn btn-success" (click)="backToHome()">
+          <button class="btn btn-success" (click)="exitProfile()">
             Confirmar
           </button>
         </div>
         <div class="button-two-section">
-          <button class="btn btn-danger" (click)="exitProfile()">
+          <button class="btn btn-danger" (click)="confirmExit()">
             Cancelar
           </button>
         </div>

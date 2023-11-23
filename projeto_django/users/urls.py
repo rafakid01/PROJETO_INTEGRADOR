@@ -10,5 +10,6 @@ urlpatterns = [
         getUser,
         name="resgatar_usuario",
     ),
-    path("put/", updateUser, name="atualizar_usuario"),
+    path("put/<int:pk>/", updateUser, name="atualizar_usuario"),
+    path("delete/<int:pk>/", deleteUser, name="excluir_usuario"),
 ]

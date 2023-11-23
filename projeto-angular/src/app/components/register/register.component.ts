@@ -1,6 +1,7 @@
 import { LowerCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario.model';
 import { DjangoConnService } from 'src/app/services/django-conn.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -44,7 +45,8 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private navData: NavDataService,
     private djangohttp: DjangoConnService,
-    private localstorage: LocalStorageService
+    private localstorage: LocalStorageService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
@@ -81,7 +83,10 @@ export class RegisterComponent implements OnInit {
       console.log(this.usuario);
 
       this.djangohttp.criarUsuario(this.usuario).subscribe((usuario) => {
-        this.djangohttp.postUserLocalhost(usuario);
+        this.localstorage.setItem('logged', true);
+        this.localstorage.setItem('usuario', usuario);
+        console.log(usuario);
+        this.route.navigate(['/']);
       });
     }
   }

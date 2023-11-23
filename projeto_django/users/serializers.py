@@ -12,6 +12,7 @@ class MonitorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Monitores
         fields = "__all__"
+        depth = 1
 
 
 class AdministradorSerializer(serializers.ModelSerializer):

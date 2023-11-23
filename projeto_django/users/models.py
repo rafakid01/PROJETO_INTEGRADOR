@@ -13,7 +13,7 @@ class Usuarios(models.Model):
     )
     contato_numero1 = models.CharField(max_length=11, blank=True)
     contato_numero2 = models.CharField(max_length=11, blank=True)
-    foto_perfil = models.BinaryField(null=True, blank=True)
+    foto_perfil = models.TextField(null=True, blank=True)
 
     class Meta:
         db_table = "usuarios"
@@ -33,6 +33,18 @@ class Monitores(models.Model):
 
     class Meta:
         db_table = "monitores"
+
+
+class Interesse(models.Model):
+    aluno = models.ForeignKey(
+        Usuarios, related_name="interesses", on_delete=models.CASCADE
+    )
+    monitor = models.ForeignKey(
+        Usuarios, related_name="aulas_dadas", on_delete=models.CASCADE
+    )
+
+    class Meta:
+        db_table = "interesse"
 
 
 class Administrador(models.Model):
