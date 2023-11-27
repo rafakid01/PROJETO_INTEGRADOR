@@ -6,7 +6,7 @@ import { InitialPageComponent } from './components/initial-page/initial-page.com
 import { NavegacaoMainEstudanteComponent } from './components/navegacao-main-estudante/navegacao-main-estudante.component';
 import { SingleClassComponent } from './components/single-class/single-class.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component' ;
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   { path: '', component: InitialPageComponent },
@@ -19,7 +19,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

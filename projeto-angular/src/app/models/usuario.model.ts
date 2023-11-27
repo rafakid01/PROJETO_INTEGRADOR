@@ -1,4 +1,5 @@
 export class Usuario {
+  id_usuario?: number;
   nome?: any;
   email?: any;
   senha?: any;

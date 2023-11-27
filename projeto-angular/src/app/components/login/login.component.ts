@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Monitor } from 'src/app/models/monitor.model';
 import { DjangoConnService } from 'src/app/services/django-conn.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { RefreshComponentService } from 'src/app/services/refresh-component.service';
 
 @Component({
   selector: 'app-login',
@@ -11,22 +14,24 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class LoginComponent implements OnInit {
   typeInputPass: string = 'password';
   typeEye: string = 'bi bi-eye-fill';
+
   constructor(
     private fb: FormBuilder,
-    private djangohttp: DjangoConnService,
-    private localstorage: LocalStorageService
+    private django: DjangoConnService,
+    private localstorage: LocalStorageService,
+    private route: Router,
+    private reload: RefreshComponentService
   ) {}
 
   loginForm = this.fb.group({
     email: ['', Validators.required],
     senha: ['', [Validators.required, Validators.minLength(8)]],
-    cont_logado: [false],
+    cont_logado: [true],
   });
 
   ngOnInit(): void {
     if (this.localstorage.getItem('logged') == true) {
-      document.body.innerHTML =
-        'Você já está logado. Saia do perfil para entrar em outro';
+      this.route.navigate(['/']);
     }
   }
 
@@ -41,15 +46,17 @@ export class LoginComponent implements OnInit {
   }
 
   submitLogin() {
-    let email = this.loginForm.value.email;
-    let senha = this.loginForm.value.senha;
-    let cont_logado = this.loginForm.value.cont_logado;
+    let loginFormData = this.loginForm.value;
+    console.log(loginFormData);
 
-    this.djangohttp.getUserLogin(email, senha).subscribe((value) => {
-      if (cont_logado) {
+    this.django
+      .getUserEmail(loginFormData.email, loginFormData.senha)
+      .subscribe((data) => {
         this.localstorage.setItem('logged', true);
-      }
-      console.log(value);
-    });
+        this.localstorage.setItem('usuario', data);
+        this.reload.reloadApp();
+      });
+
+    // this.route.navigate(['/']);
   }
 }

@@ -1,10 +1,12 @@
 import { LowerCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario.model';
 import { DjangoConnService } from 'src/app/services/django-conn.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NavDataService } from 'src/app/services/nav-data.service';
+import { RefreshComponentService } from 'src/app/services/refresh-component.service';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +19,8 @@ export class RegisterComponent implements OnInit {
 
   coursesList = this.navData.coursesList;
 
+  comprimid: string = 'compressed';
+
   registerForm = this.fb.group({
     nome: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -27,29 +31,18 @@ export class RegisterComponent implements OnInit {
 
   senhaConfirm = new FormControl();
 
-  comprimid: string = 'compressed';
-
-  usuario: Usuario = {
-    nome: '',
-    email: '',
-    senha: '',
-    curso: '',
-    categoria: '',
-    contato_numero1: '',
-    contato_numero2: '',
-    foto_perfil: undefined,
-  };
-
   constructor(
     private fb: FormBuilder,
     private navData: NavDataService,
-    private djangohttp: DjangoConnService,
-    private localstorage: LocalStorageService
+    private django: DjangoConnService,
+    private localstorage: LocalStorageService,
+    private route: Router,
+    private reload: RefreshComponentService
   ) {}
 
   ngOnInit(): void {
     if (this.localstorage.getItem('logged') == true) {
-      document.body.innerHTML = 'Saia do perfil para registrar outro';
+      this.route.navigate(['/']);
     }
   }
 
@@ -64,26 +57,13 @@ export class RegisterComponent implements OnInit {
   }
 
   registerSubmit() {
-    const senha = this.registerForm.value.senha;
-    const senhaConfir = this.senhaConfirm.value;
-
-    if (senha != senhaConfir) {
-      console.log('Senhas não coincidem, tente novamente');
-    } else {
-      console.log(this.registerForm.value);
-
-      this.usuario.nome = this.registerForm.value.nome;
-      this.usuario.senha = this.registerForm.value.senha;
-      this.usuario.email = this.registerForm.value.email;
-      this.usuario.curso = this.registerForm.value.curso;
-      this.usuario.categoria = this.registerForm.value.categoria;
-
-      console.log(this.usuario);
-
-      this.djangohttp.criarUsuario(this.usuario).subscribe((usuario) => {
-        this.djangohttp.postUserLocalhost(usuario);
-      });
-    }
+    let registerFormData = this.registerForm.value;
+    console.log(registerFormData);
+    this.django.postUser(registerFormData).subscribe((data) => {
+      this.localstorage.setItem('logged', true);
+      this.localstorage.setItem('usuario', data);
+      this.reload.reloadApp();
+    });
   }
 
   compressOptions() {

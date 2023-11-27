@@ -1,6 +1,12 @@
 # from rest_framework.response import Response
-from .models import Usuarios, Monitores, Administrador
-from .serializers import UsuarioSerializer, MonitorSerializer, AdministradorSerializer
+from .models import Usuario, Monitor, Admin, Assunto, Interesse
+from .serializers import (
+    UsuarioSerializer,
+    MonitorSerializer,
+    AdministradorSerializer,
+    AssuntoSerializer,
+    InteresseSerializer,
+)
 from django.http.response import JsonResponse
 
 from rest_framework.response import Response
@@ -8,57 +14,101 @@ from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 
-# Create your views here.
+from django.shortcuts import get_object_or_404
+
+from rest_framework.generics import (
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView,
+    RetrieveAPIView,
+)
+
+# # Create your views here.
 
 
-@api_view(["GET"])
-def getUsers(self, request):
-    usuarios = Usuarios.objects.all()
-    usuario_serializer = UsuarioSerializer(usuarios, many=True)
-    return JsonResponse(usuario_serializer.data, safe=False)
+# USUARIO
+class UsuarioListCreateView(ListCreateAPIView):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
 
-
-@api_view(["GET"])
-def getUser(self, request, *args, **kwargs):
-    email = self.kwargs.get("email")
-    senha = self.kwargs.get("senha")
-
-    try:
-        usuario = Usuarios.objects.get(email=email, senha=senha)
-        # Você pode personalizar os campos que deseja incluir na resposta JSON
-        data = {
-            "id_usuario": usuario.id_usuario,
-            "nome": usuario.nome,
-            "email": usuario.email,
-            # Adicione outros campos conforme necessário
-        }
-        return JsonResponse(data)
-    except Usuarios.DoesNotExist:
-        return JsonResponse({"error": "Usuário não encontrado"}, status=404)
-
-
-@api_view(["PUT"])
-def updateUser(request, pk):
-    usuario = Usuarios.objects.get(pk=pk)
-    usuario_data = JSONParser().parse(request)
-    usuario_serializer = UsuarioSerializer(usuario, data=usuario_data)
-    if usuario_serializer.is_valid():
-        usuario_serializer.save()
-        return JsonResponse(usuario_serializer.data)
-    return JsonResponse(usuario_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(["POST"])
-def postUser(request):
-    usuario_data = JSONParser().parse(request)
-    usuario_serializer = UsuarioSerializer(data=usuario_data)
-    if usuario_serializer.is_valid():
-        usuario = usuario_serializer.save()
+    def perform_create(self, serializer):
+        usuario = serializer.save()
 
         if usuario.categoria == "monitor":
-            Monitores.objects.create(id_monitor=usuario)
+            monitor_data = self.request.data.get("monitor", {})
+            monitor_data["user"] = usuario.id
 
-        return JsonResponse(usuario_serializer.data, status=status.HTTP_201_CREATED)
-    print(usuario_serializer.errors)
+            monitor_serializer = MonitorSerializer(data=monitor_data)
+            if monitor_serializer.is_valid():
+                monitor_serializer.save()
+                return Response({"id": usuario.id}, status=status.HTTP_201_CREATED)
+            else:
+                usuario.delete()  # Se a criação do monitor falhar, remova o usuário recém-criado
+                return Response(
+                    monitor_serializer.errors, status=status.HTTP_400_BAD_REQUEST
+                )
 
-    return Response(usuario_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"id": usuario.id}, status=status.HTTP_201_CREATED)
+
+
+class UsuarioRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
+
+
+class UsuarioRetrieveView(RetrieveAPIView):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
+
+    def get(self, request, email, senha):
+        try:
+            usuario = Usuario.objects.get(email=email, senha=senha)
+            serializer = UsuarioSerializer(usuario)
+            return Response(serializer.data)
+        except Usuario.DoesNotExist:
+            return Response(
+                {"detail": "Usuário não encontrado."}, status=status.HTTP_404_NOT_FOUND
+            )
+
+
+# MONITOR
+class MonitorListCreateView(ListCreateAPIView):
+    queryset = Monitor.objects.all()
+    serializer_class = MonitorSerializer
+
+
+class MonitorRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    queryset = Monitor.objects.all()
+    serializer_class = MonitorSerializer
+
+
+# ASSUNTO
+class AssuntoListCreateView(ListCreateAPIView):
+    queryset = Assunto.objects.all()
+    serializer_class = AssuntoSerializer
+
+
+class AssuntoRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    queryset = Assunto.objects.all()
+    serializer_class = AssuntoSerializer
+
+
+# ADMIN
+class AdminListCreateView(ListCreateAPIView):
+    queryset = Admin.objects.all()
+    serializer_class = AdministradorSerializer
+
+
+class AdminRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    queryset = Admin.objects.all()
+    serializer_class = AdministradorSerializer
+
+
+# INTERESSE
+class InteresseListCreateView(ListCreateAPIView):
+    queryset = Interesse.objects.all()
+    serializer_class = InteresseSerializer
+
+
+class InteresseRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    queryset = Interesse.objects.all()
+    serializer_class = InteresseSerializer

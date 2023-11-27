@@ -28,6 +28,7 @@ export class NavbarComponent implements OnInit {
   }
 
   alterationProfileLocalStorage() {
+    this.localStorage.viewItems();
     this.storedProfile = this.localStorage.getItem('logged');
   }
 
