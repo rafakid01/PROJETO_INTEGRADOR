@@ -130,7 +130,7 @@ section {
     align-self: end;
 }
 
-.info-student p {
+.info-student p.keyname {
     font-family: "Nunito";
     font-size: calc(1vw + .6em);
     color: var(--text-two-color);
@@ -159,14 +159,13 @@ section {
 .assuntos-container {
     grid-column: 1 / span 3;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     padding: 4em 2em;
     margin: 0;
 }
 
 .assuntos-container>div {
     display: grid;
-    grid-template-columns: 1fr 9fr;
+    grid-template-columns: 1fr;
     line-height: 2;
 }
 
@@ -240,6 +239,7 @@ section {
     border-radius: 20px;
     font-family: "Nunito";
     background: var(--white);
+    top: 100%;
 }
 
 .quest {

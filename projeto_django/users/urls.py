@@ -13,7 +13,7 @@ urlpatterns = [
     ),
     # GET USUARIO PELO EMAIL
     path(
-        "usuarios/<str:email>/",
+        "usuarios/<str:email>/<str:senha>/",
         UsuarioRetrieveView.as_view(),
         name="usuario-retrieve-by-email",
     ),

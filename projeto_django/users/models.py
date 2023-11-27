@@ -10,8 +10,8 @@ class Usuario(models.Model):
     categoria = models.CharField(
         max_length=10, choices=[("aluno", "Aluno"), ("monitor", "Monitor")]
     )
-    contato_numero_1 = models.CharField(max_length=15, blank=True)
-    contato_numero_2 = models.CharField(max_length=15, blank=True)
+    contato_numero_1 = models.CharField(max_length=15, blank=True, null=True)
+    contato_numero_2 = models.CharField(max_length=15, blank=True, null=True)
     foto_perfil = models.TextField(
         blank=True
     )  # Considerando que a foto seja salva em base64
@@ -30,7 +30,9 @@ class Monitor(models.Model):
     nota_avaliacao = models.DecimalField(
         max_digits=3, decimal_places=2, null=True, blank=True
     )
-    descricao = models.TextField()
+    descricao = models.TextField(blank=True)
+
+    assuntos = models.TextField(blank=True)
 
     def __str__(self):
         return f"Monitor: {self.user.nome}"
@@ -41,7 +43,6 @@ class Monitor(models.Model):
 
 class Assunto(models.Model):
     titulo = models.CharField(max_length=255)
-    monitores = models.ManyToManyField("users.Monitor", related_name="assuntos")
 
     def __str__(self):
         return self.titulo

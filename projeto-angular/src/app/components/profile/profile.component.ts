@@ -1,11 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Monitor } from 'src/app/models/monitor.model';
-import { Usuario } from 'src/app/models/usuario.model';
 import { DjangoConnService } from 'src/app/services/django-conn.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { NavDataService } from 'src/app/services/nav-data.service';
+import { RefreshComponentService } from 'src/app/services/refresh-component.service';
 
 @Component({
   selector: 'app-profile',
@@ -22,87 +21,122 @@ export class ProfileComponent implements OnInit {
   showConfirmLeave: string = 'hide';
   showBackGrnd: string = 'hide';
 
-  actualUser: any;
-  newValues: Monitor = {
-    monitor: {
-      assuntos_ensinados: undefined,
-      nota_avaliacao: undefined,
-      id_monitor_id: undefined,
-    },
-  };
+  usuarioAtualStorage = this.localstorage.getItem('usuario');
+  assuntosAtualUsuarioStorage: any;
+  isMonitor = false;
 
-  assuntosList: any;
-  isMonitor: boolean = false;
-  monitorListLearn: string = '';
+  updateUserForm: any;
 
-  updateProfileForm: any;
-  foto_perfil_blob: any;
+  listaAssuntosDatabase: any[] = [];
+  listaNovosAssuntos: any[] = [];
+
+  fotoPerfil64: any;
 
   constructor(
     private route: Router,
     private localstorage: LocalStorageService,
     private fb: FormBuilder,
-    private djangoconn: DjangoConnService,
-    private navData: NavDataService
+    private django: DjangoConnService,
+    private reload: RefreshComponentService
   ) {}
 
   ngOnInit(): void {
-    this.localstorage.viewItems();
+    console.log('Usuario atual LocalStorage');
+    console.log(this.usuarioAtualStorage);
 
-    let userValue = this.localstorage.getItem('usuario');
-    if (userValue != null) {
-      this.actualUser = userValue;
-      console.log(this.actualUser);
-    } else {
-      document.body.innerHTML = 'Usuário não cadastrado';
+    if (this.localstorage.getItem('logged') == false) {
+      this.route.navigate(['/']);
     }
 
-    if (this.actualUser.categoria == 'monitor') {
-      this.assuntosList = this.navData.categoryList;
-      this.isMonitor = true;
+    if (this.usuarioAtualStorage.categoria == 'monitor') {
+      this.assuntosAtualUsuarioStorage =
+        this.usuarioAtualStorage.monitor.assuntos;
+
+      let assuntosFromStorage = this.assuntosAtualUsuarioStorage.replace(
+        '([A-Za-z0-9]+( [A-Za-z0-9]+)+)ção'
+      );
+      this.assuntosAtualUsuarioStorage = assuntosFromStorage.split(',');
+      console.log(this.assuntosAtualUsuarioStorage);
     }
 
-    this.disableFormInit();
+    this.fotoPerfil64 = this.usuarioAtualStorage.foto_perfil;
+
+    this.createForms();
+    this.updateUserForm.disable();
   }
 
-  disableFormInit() {
-    this.updateProfileForm = this.fb.group({
-      nome: [this.actualUser.nome],
-      email: [this.actualUser.email],
-      senha: [this.actualUser.senha],
-      curso: [this.actualUser.curso],
-      contato_numero1: [this.actualUser.contato_numero1],
-      contato_numero2: [this.actualUser.contato_numero1],
-      foto_perfil: [],
+  createForms() {
+    if (this.usuarioAtualStorage.categoria == 'monitor') {
+      this.isMonitor = true;
+      this.createMonitorForm();
+    } else {
+      this.createUserForm();
+    }
+    console.log('Valores formulario de update');
+    console.log(this.updateUserForm.value);
+  }
+
+  createUserForm() {
+    this.updateUserForm = this.fb.group({
+      nome: [this.usuarioAtualStorage.nome],
+      email: [this.usuarioAtualStorage.email],
+      senha: [this.usuarioAtualStorage.senha],
+      curso: [this.usuarioAtualStorage.curso],
+      contato_numero1: [this.usuarioAtualStorage.contato_numero_1],
+      contato_numero2: [this.usuarioAtualStorage.contato_numero_2],
+      foto_perfil: [this.usuarioAtualStorage.foto_perfil],
+    });
+  }
+
+  createMonitorForm() {
+    this.updateUserForm = this.fb.group({
+      nome: [this.usuarioAtualStorage.nome],
+      email: [this.usuarioAtualStorage.email],
+      senha: [this.usuarioAtualStorage.senha],
+      curso: [this.usuarioAtualStorage.curso],
+      contato_numero1: [this.usuarioAtualStorage.contato_numero_1],
+      contato_numero2: [this.usuarioAtualStorage.contato_numero_2],
+      foto_perfil: [this.usuarioAtualStorage.foto_perfil],
+      monitor: this.fb.group({
+        descricao: [this.usuarioAtualStorage.monitor.descricao],
+        nota_avaliacao: [this.usuarioAtualStorage.monitor.nota_avaliacao],
+        assuntos: [''],
+      }),
     });
 
-    this.updateProfileForm.disable();
+    this.getAssuntos();
   }
 
-  changeEditProfile() {
-    this.typeEdit = !this.typeEdit;
+  getAssuntos() {
+    this.django.getAssuntos().subscribe((data) => {
+      this.listaAssuntosDatabase = data;
+    });
+  }
 
-    if (!this.typeEdit) {
-      this.updateProfileForm.enable();
-      this.buttonContent = 'CONCLUÍDO';
-      this.themeButton = 'conclusion';
-      this.typeButton = 'button';
+  getAssunto(event: any) {
+    const inputClicado = event.target;
+
+    if (inputClicado.checked == true) {
+      this.listaNovosAssuntos.push(inputClicado.value.trim());
     } else {
-      this.updateProfileRequest(this.updateProfileForm.value);
-
-      this.updateProfileForm.disable();
-      this.buttonContent = 'EDITAR PERFIL';
-      this.themeButton = 'edit';
-      this.typeButton = 'input';
+      let indexItem = this.listaNovosAssuntos.indexOf(inputClicado.value);
+      this.listaNovosAssuntos.splice(indexItem, 1);
     }
+
+    console.log(this.listaNovosAssuntos);
+  }
+
+  removerAssunto(index: number) {
+    console.log(this.assuntosAtualUsuarioStorage[index]);
+    this.assuntosAtualUsuarioStorage.splice(index, 1);
   }
 
   handleFileInput(event: any): void {
     const file = event.target.files[0];
     this.convertImageToBlob(file)
       .then((base64) => {
-        console.log(base64);
-        this.foto_perfil_blob = base64;
+        this.fotoPerfil64 = base64;
+        this.usuarioAtualStorage.foto_perfil = base64;
       })
       .catch((err) => {
         console.log(err);
@@ -129,38 +163,105 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  getCategory(event: any) {
-    const inputClicado = event.target;
-    this.monitorListLearn += inputClicado.value;
-
-    console.log(inputClicado.value);
-    console.log(this.monitorListLearn);
-
-    function removeSelecao() {
-      inputClicado.checked = false;
+  changeEditProfile() {
+    this.typeEdit = !this.typeEdit;
+    if (!this.typeEdit) {
+      this.updateUserForm.enable();
+      this.buttonContent = 'CONCLUÍDO';
+      this.themeButton = 'conclusion';
+      this.typeButton = 'button';
+    } else {
+      this.updateProfileRequest(this.updateUserForm.value);
+      this.updateUserForm.disable();
+      this.buttonContent = 'EDITAR PERFIL';
+      this.themeButton = 'edit';
+      this.typeButton = 'input';
     }
-
-    inputClicado.addEventListener('click', removeSelecao, { once: true });
   }
 
-  updateProfileRequest(data: any) {
-    this.newValues.id_usuario = this.actualUser.id_usuario;
-    this.newValues.categoria = this.actualUser.categoria;
-    this.newValues.nome = data.nome;
-    this.newValues.email = data.email;
-    this.newValues.senha = data.senha;
-    this.newValues.curso = data.curso;
-    this.newValues.contato_numero1 = data.contato_numero1;
-    this.newValues.contato_numero2 = data.contato_numero2;
-    this.newValues.foto_perfil = this.foto_perfil_blob;
+  async updateProfileRequest(data: any) {
+    let updateObject = data;
 
-    this.newValues.monitor.assuntos_ensinados = this.monitorListLearn;
+    updateObject.id = this.usuarioAtualStorage.id;
+    updateObject.categoria = this.usuarioAtualStorage.categoria;
+    updateObject.nome = data.nome;
+    updateObject.email = data.email;
+    updateObject.senha = data.senha;
+    updateObject.curso = data.curso;
+    updateObject.contato_numero_1 = data.contato_numero1;
+    updateObject.contato_numero_2 = data.contato_numero2;
+    updateObject.foto_perfil = this.fotoPerfil64;
 
-    this.djangoconn.updateUser(this.newValues).subscribe((value) => {
-      this.localstorage.setItem('usuario', value);
-      this.actualUser = value;
-      console.log(value);
+    this.django.updateUser(updateObject).subscribe((data) => {
+      this.localstorage.setItem('usuario', data);
+      this.usuarioAtualStorage = data;
+      console.log(data);
     });
+
+    if (this.isMonitor) {
+      let arraysDiferentes = this.verificarArrays(
+        this.listaNovosAssuntos,
+        this.assuntosAtualUsuarioStorage
+      );
+      if (!arraysDiferentes) {
+        this.throwError(
+          'Ao menos um assunto selecionado já está cadastrado no seu perfil'
+        );
+      }
+
+      let newArrayAssuntosInput: any = this.verifyTamanhoAssuntos(
+        this.listaNovosAssuntos,
+        this.assuntosAtualUsuarioStorage
+      );
+      if (!newArrayAssuntosInput) {
+        this.throwError(
+          'Não foi possível adicionar os assuntos selecionados. O total de assuntos ultrapassa o limite de 10 assuntos'
+        );
+      }
+
+      newArrayAssuntosInput = newArrayAssuntosInput.toString();
+      console.log(newArrayAssuntosInput);
+
+      let monitorUpdateObject = {
+        user: this.usuarioAtualStorage.id,
+        descricao: data.monitor.descricao,
+        assuntos: newArrayAssuntosInput,
+      };
+
+      this.django
+        .updateMonitor(monitorUpdateObject)
+        .subscribe((dataMonitor) => {
+          this.localstorage.setItem('usuario.monitor', dataMonitor);
+          this.usuarioAtualStorage.monitor = dataMonitor;
+
+          let assuntosArray = dataMonitor.assuntos.split(',');
+
+          this.localstorage.setItem('usuario.monitor.assuntos', assuntosArray);
+          this.assuntosAtualUsuarioStorage = assuntosArray;
+          console.log(dataMonitor);
+        });
+    }
+  }
+
+  verificarArrays(newArray: any[], baseArray: any[]) {
+    return newArray.every((assunto) => {
+      console.log(assunto);
+      return !baseArray.includes(assunto);
+    });
+  }
+
+  verifyTamanhoAssuntos(arr1: any[], arr2: any[]) {
+    const unitedArray = arr1.concat(arr2);
+
+    if (unitedArray.length > 10) {
+      return false;
+    }
+
+    return unitedArray;
+  }
+
+  throwError(msg: string) {
+    throw new Error(msg);
   }
 
   confirmDelete() {
@@ -174,14 +275,12 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteProfile() {
-    this.djangoconn
-      .deleteUser(this.actualUser.id_usuario)
-      .subscribe((content) => {
-        console.log(content);
-        this.localstorage.setItem('usuario', null);
-        this.localstorage.setItem('logged', false);
-      });
-    this.route.navigate(['/']);
+    this.django.deleteUser(this.usuarioAtualStorage.id).subscribe((content) => {
+      console.log(content);
+      this.localstorage.setItem('usuario', null);
+      this.localstorage.setItem('logged', false);
+    });
+    this.reload.reloadApp();
   }
 
   confirmExit() {
@@ -197,6 +296,7 @@ export class ProfileComponent implements OnInit {
   exitProfile() {
     this.localstorage.setItem('usuario', null);
     this.localstorage.setItem('logged', false);
-    this.route.navigate(['/']);
+
+    this.reload.reloadApp();
   }
 }
