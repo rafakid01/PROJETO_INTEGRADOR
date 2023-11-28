@@ -112,14 +112,17 @@
         routerLink="/aula"
       >
         <div class="img-container">
-          <img src="{{ monitor.image }}" alt="" />
+          <img src="{{ monitor.foto_perfil }}" alt="" />
         </div>
         <div class="info-container">
-          <p class="h4">{{ monitor.name }}</p>
-          <p class="h6">{{ monitor.course }}</p>
+          <p class="h4">{{ monitor.nome }}</p>
+          <p class="h6">{{ monitor.curso }}</p>
         </div>
         <div class="rating-container">
-          <p class="h6"><i class="bi bi-star-fill"></i>{{ monitor.rate }}/5</p>
+          <p class="h6">
+            <i class="bi bi-star-fill"></i
+            >{{ monitor.monitor.nota_avaliacao }}/5
+          </p>
         </div>
       </a>
     </div>

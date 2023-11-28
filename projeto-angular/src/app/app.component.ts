@@ -3,6 +3,8 @@ import { DjangoConnService } from './services/django-conn.service';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from './services/local-storage.service';
 import { RefreshComponentService } from './services/refresh-component.service';
+import { filter } from 'rxjs';
+import { MonitorsService } from './services/monitors.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

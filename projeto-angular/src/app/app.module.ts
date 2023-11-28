@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { MonitorsService } from './services/monitors.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [MonitorsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,5 +1,115 @@
-<div class="geral">
+<section>
   <div class="container">
-    <h1>batata</h1>
+    <div class="all-info-container">
+      <div class="title-search-container">
+        <div class="title"><h1 class="h2">Dashboard</h1></div>
+        <form
+          [formGroup]="searchForm"
+          class="search-user"
+          (ngSubmit)="filterUsers()"
+        >
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar usuário"
+            formControlName="searchInput"
+          />
+          <button type="submit">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+      </div>
+      <div class="users-info-box">
+        <div class="header-info">
+          <div class="info">
+            <p>ID</p>
+          </div>
+          <div class="info">
+            <p>Usuário</p>
+          </div>
+          <div class="info">
+            <p>Categoria</p>
+          </div>
+          <div class="info">
+            <p>Curso</p>
+          </div>
+        </div>
+        <div class="all-users-box">
+          <div class="user-box" *ngFor="let user of allUsers">
+            <div class="user-id">
+              <p>{{ user.id }}</p>
+            </div>
+            <div class="user-name">
+              <p>
+                {{ user.nome }}
+              </p>
+            </div>
+            <div class="user-category">
+              <p>
+                {{ user.categoria | titlecase }}
+              </p>
+            </div>
+            <div class="user-course">
+              <p>
+                {{ user.curso }}
+              </p>
+            </div>
+            <div class="user-edit">
+              <button (click)="editUser(user.id)" class="btn btn-primary">
+                <i class="bi bi-pencil-fill"></i>
+              </button>
+              <button (click)="deleteUser(user.id)" class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+  <div *ngIf="formCreated" class="editFormContainer">
+    <form class="container editForm" [formGroup]="editForm" action="">
+      <h3>Editar usuário</h3>
+      <div class="row gy-3">
+        <div>
+          <label for="nome">Nome</label>
+          <input class="form-control" type="text" formControlName="nome" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input class="form-control" type="text" formControlName="email" />
+        </div>
+        <div>
+          <label for="senha">Senha</label>
+          <input class="form-control" type="text" formControlName="senha" />
+        </div>
+        <div>
+          <label for="Curso">Curso</label>
+          <input class="form-control" type="text" formControlName="curso" />
+        </div>
+        <div>
+          <label for="contato_numero_1">Contato 1</label>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="contato_numero_1"
+          />
+        </div>
+        <div>
+          <label for="contato_numero_2">Contato 2</label>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="contato_numero_2"
+          />
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-evenly">
+        <button class="btn btn-primary" (click)="updateUser()">
+          ATUALIZAR USUÁRIO
+        </button>
+        <button class="btn btn-danger" (click)="hideForm()">CANCELAR</button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { MonitorsService } from 'src/app/services/monitors.service';
 import { NavDataService } from 'src/app/services/nav-data.service';
 
 @Component({
@@ -14,25 +17,34 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
   ratingList: any;
   monitorsNumber: any;
 
-  selectedCourses: string[] = [];
-
   filterForm = this.fb.group({
     course: [''],
     rate: [''],
     category: [''],
   });
-  constructor(private navData: NavDataService, private fb: FormBuilder) {}
+  constructor(
+    private nav: NavDataService,
+    private fb: FormBuilder,
+    private localstorage: LocalStorageService,
+    private route: Router,
+    private moniService: MonitorsService
+  ) {}
 
   compressedDivOne: string = 'compressed';
   compressedDivTwo: string = 'compressed';
   compressedDivThree: string = 'compressed';
 
   ngOnInit(): void {
-    this.monitorList = this.navData.monitorsList;
-    this.coursesList = this.navData.coursesList;
-    this.categoryList = this.navData.categoryList;
-    this.ratingList = this.navData.ratingList;
-    this.monitorsNumber = this.navData.monitorsList.length;
+    if (!this.localstorage.getItem('logged')) {
+      this.route.navigate(['/']);
+    }
+    this.moniService.obterMonitoresFiltrados().subscribe((data) => {
+      this.monitorList = data;
+    });
+    this.monitorsNumber = this.monitorList.length;
+    this.coursesList = this.nav.coursesList;
+    this.categoryList = this.nav.categoryList;
+    this.ratingList = this.nav.ratingList;
   }
 
   compressOne() {

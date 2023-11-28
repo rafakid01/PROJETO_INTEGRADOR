@@ -23,6 +23,12 @@ export class DjangoConnService {
     return this.http.get<Usuario[]>(this.usersURL);
   }
 
+  // RECUPERAR TODOS OS MONITORES
+
+  getAllMonitors(): Observable<any> {
+    return this.http.get<any>(this.monitorsURL);
+  }
+
   // RECUPERAR UM ÚNICO USUÁRIO
   getSingleUser(id: any): Observable<any> {
     return this.http.get(`${this.usersURL}${id}/`);
