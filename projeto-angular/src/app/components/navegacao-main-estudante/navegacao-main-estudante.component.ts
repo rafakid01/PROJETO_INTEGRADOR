@@ -38,10 +38,10 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
     if (!this.localstorage.getItem('logged')) {
       this.route.navigate(['/']);
     }
-    this.moniService.obterMonitoresFiltrados().subscribe((data) => {
-      this.monitorList = data;
-    });
-    this.monitorsNumber = this.monitorList.length;
+
+    this.monitorList = this.localstorage.getItem('monitoresFiltrados');
+
+    this.monitorsNumber = 30;
     this.coursesList = this.nav.coursesList;
     this.categoryList = this.nav.categoryList;
     this.ratingList = this.nav.ratingList;

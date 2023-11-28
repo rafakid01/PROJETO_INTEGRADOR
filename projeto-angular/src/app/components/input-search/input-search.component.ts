@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DjangoConnService } from 'src/app/services/django-conn.service';
 import { MonitorsService } from 'src/app/services/monitors.service';
-import { NavDataService } from 'src/app/services/nav-data.service';
 import { RefreshComponentService } from 'src/app/services/refresh-component.service';
 
 @Component({
@@ -25,7 +23,7 @@ export class InputSearchComponent {
 
   submitForm() {
     let filter = this.searchForm.value.searchData;
-    // this.moniService.filtrarMonitores(filter);
+    this.moniService.filterMonitors(filter);
     this.route.navigate(['/navegacao']);
 
     if (this.route.url == '/navegacao') {

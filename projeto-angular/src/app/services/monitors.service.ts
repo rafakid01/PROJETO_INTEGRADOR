@@ -1,46 +1,61 @@
 import { Injectable } from '@angular/core';
-import Dexie from 'dexie';
-import { BehaviorSubject, Observable, from, of, switchMap, tap } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
 import { DjangoConnService } from './django-conn.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MonitorsService extends Dexie {
-  monitores: any[] = [];
-  monitoresFiltrados: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-
-  constructor() {
-    super('MeuBancoDeDados');
-    this.version(1).stores({ monitores: 'id' });
-
-    this.inicializarDados();
+export class MonitorsService {
+  constructor(
+    private localstorage: LocalStorageService,
+    private django: DjangoConnService
+  ) {
+    this.getMonitors();
   }
 
-  private inicializarDados() {
-    this.table('monitores')
-      .toArray()
-      .then((dados) => {
-        this.monitores = dados;
-        this.monitoresFiltrados.next([...this.monitores]);
+  getMonitors() {
+    let monitores: any[] = [];
 
-        console.log(this.monitores);
+    this.django.getUsers().subscribe((user) => {
+      monitores = user.filter((usuario: any) => {
+        return usuario.categoria == 'monitor';
       });
+
+      monitores.forEach((monitor) => {
+        delete monitor.senha;
+        delete monitor.monitor.nota_avaliacao;
+      });
+
+      this.localstorage.setItem('monitores', monitores);
+    });
   }
 
-  obterTodosMonitores(): Observable<any[]> {
-    return from(this.table('monitores').toArray());
-  }
+  filterMonitors(filter: any) {
+    let monitors: any[] = [];
+    monitors = this.localstorage.getItem('monitores');
 
-  obterMonitoresFiltrados(): Observable<any[]> {
-    return this.monitoresFiltrados.asObservable();
-  }
+    let filteredAssunto = monitors.filter((monitor) => {
+      return monitor.monitor.assuntos
+        .toLowerCase()
+        .includes(filter.toLowerCase());
+    });
 
-  filtrarMonitores(filtro: string) {
-    this.monitoresFiltrados.next(
-      this.monitores.filter((monitor) =>
-        monitor.nome.toLowerCase().includes(filtro.toLowerCase())
-      )
+    let filteredCurso = monitors.filter((monitor) => {
+      return monitor.curso.toLowerCase().includes(filter.toLowerCase());
+    });
+
+    let filteredNome = monitors.filter((monitor) => {
+      return monitor.nome.toLowerCase().includes(filter.toLowerCase());
+    });
+
+    let monitorsFiltered: any[] = filteredAssunto.concat(filteredCurso);
+    monitorsFiltered = monitorsFiltered.concat(filteredNome);
+
+    monitorsFiltered = monitorsFiltered.filter(
+      (monitor, index, self) =>
+        index === self.findIndex((m) => m.id === monitor.id)
     );
+
+    this.localstorage.setItem('monitoresFiltrados', monitorsFiltered);
   }
 }
