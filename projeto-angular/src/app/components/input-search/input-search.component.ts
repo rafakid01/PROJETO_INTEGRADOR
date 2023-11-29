@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { MonitorsService } from 'src/app/services/monitors.service';
 import { RefreshComponentService } from 'src/app/services/refresh-component.service';
 
@@ -14,7 +15,8 @@ export class InputSearchComponent {
     private fb: FormBuilder,
     private route: Router,
     private moniService: MonitorsService,
-    private reload: RefreshComponentService
+    private reload: RefreshComponentService,
+    private localstorage: LocalStorageService
   ) {}
 
   searchForm = this.fb.group({
@@ -27,6 +29,7 @@ export class InputSearchComponent {
     this.route.navigate(['/navegacao']);
 
     if (this.route.url == '/navegacao') {
+      this.localstorage.setItem('filter', filter);
       this.reload.reloadApp();
     }
   }

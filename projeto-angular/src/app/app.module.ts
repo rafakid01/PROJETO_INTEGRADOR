@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { MonitorsService } from './services/monitors.service';
+import { SharedModule } from './shared/shared.module';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,8 +45,9 @@ import { MonitorsService } from './services/monitors.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SharedModule,
   ],
-  providers: [MonitorsService],
+  providers: [MonitorsService, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

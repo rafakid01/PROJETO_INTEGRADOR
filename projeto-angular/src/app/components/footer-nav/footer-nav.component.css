@@ -1,6 +1,7 @@
 footer {
     background: var(--normal-blue);
     padding: 1em;
+    height: 7vh;
 }
 
 /* CONTAINER GERAL */

@@ -11,6 +11,7 @@ export class DjangoConnService {
   usersURL = 'http://localhost:8000/usuarios/';
   monitorsURL = 'http://localhost:8000/monitores/';
   assuntosURL = 'http://localhost:8000/assuntos/';
+  interessesURL = 'http://localhost:8000/interesses/';
 
   postURL = 'http://localhost:8000/post/';
   putURL = 'http://localhost:8000/put/';
@@ -63,6 +64,11 @@ export class DjangoConnService {
   // RECUPERAR INTERESSES
   getInteresses(): Observable<any> {
     return this.http.get<any>('http://localhost:8000/interesses/');
+  }
+
+  // ADICIONAR INTERESSE
+  postInteresse(interesse: any): Observable<any> {
+    return this.http.post(`${this.interessesURL}`, interesse);
   }
 
   // RECUPERAR LISTA ASSUNTOS GERAIS

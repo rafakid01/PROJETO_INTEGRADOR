@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { MonitorsService } from 'src/app/services/monitors.service';
@@ -16,6 +16,7 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
   categoryList: any;
   ratingList: any;
   monitorsNumber: any;
+  filterString: string = '';
 
   filterForm = this.fb.group({
     course: [''],
@@ -27,7 +28,7 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
     private fb: FormBuilder,
     private localstorage: LocalStorageService,
     private route: Router,
-    private moniService: MonitorsService
+    private moni: MonitorsService
   ) {}
 
   compressedDivOne: string = 'compressed';
@@ -40,11 +41,17 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
     }
 
     this.monitorList = this.localstorage.getItem('monitoresFiltrados');
-
-    this.monitorsNumber = 30;
+    console.log(this.monitorList);
+    this.monitorsNumber = this.monitorList.length;
     this.coursesList = this.nav.coursesList;
     this.categoryList = this.nav.categoryList;
     this.ratingList = this.nav.ratingList;
+
+    this.getFilter();
+  }
+
+  getFilter() {
+    this.filterString = this.localstorage.getItem('filter');
   }
 
   compressOne() {

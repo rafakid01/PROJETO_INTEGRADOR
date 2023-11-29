@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'navegacao', component: NavegacaoMainEstudanteComponent },
-  { path: 'aula', component: SingleClassComponent },
+  { path: 'aula/:id', component: SingleClassComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'admindashboard', component: AdminDashboardComponent },
 ];

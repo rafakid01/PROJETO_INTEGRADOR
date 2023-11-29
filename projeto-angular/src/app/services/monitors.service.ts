@@ -18,12 +18,11 @@ export class MonitorsService {
 
     this.django.getUsers().subscribe((user) => {
       monitores = user.filter((usuario: any) => {
-        return usuario.categoria == 'monitor';
+        return usuario.categoria == 'monitor' && usuario.foto_perfil != '';
       });
 
       monitores.forEach((monitor) => {
         delete monitor.senha;
-        delete monitor.monitor.nota_avaliacao;
       });
 
       this.localstorage.setItem('monitores', monitores);
