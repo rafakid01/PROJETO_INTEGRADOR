@@ -7,6 +7,7 @@ import { NavegacaoMainEstudanteComponent } from './components/navegacao-main-est
 import { SingleClassComponent } from './components/single-class/single-class.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { MonitorDashboardComponent } from './components/monitor-dashboard/monitor-dashboard.component';
 
 const routes: Routes = [
   { path: '', component: InitialPageComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'navegacao', component: NavegacaoMainEstudanteComponent },
   { path: 'aula/:id', component: SingleClassComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'admindashboard', component: AdminDashboardComponent },
+  { path: 'admin', component: AdminDashboardComponent },
+  { path: 'dash-monitor', component: MonitorDashboardComponent },
 ];
 
 @NgModule({

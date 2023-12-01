@@ -50,15 +50,12 @@
             class="form-control con-password"
             [formControl]="senhaConfirm"
           />
+          <p *ngIf="errorMessage != ''" class="error-msg">
+            {{ errorMessage }}
+          </p>
         </div>
         <!-- CONTAINER CURSO -->
         <div class="course-container">
-          <!-- <input
-            type="text"
-            placeholder="Curso matriculado"
-            class="form-control course"
-            formControlName="curso"
-          /> -->
           <button class="" type="button" (click)="compressOptions()">
             Curso Matriculado
           </button>

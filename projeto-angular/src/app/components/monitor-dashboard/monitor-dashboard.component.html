@@ -1,0 +1,60 @@
+<section>
+  <div class="container">
+    <div class="all-info-container">
+      <div class="title-search-container">
+        <div class="title"><h1 class="h2">Dashboard</h1></div>
+      </div>
+      <div class="users-info-box">
+        <div *ngIf="arrayAlunosFinal.length != 0" class="header-info">
+          <div class="info">
+            <p>Aluno</p>
+          </div>
+          <div class="info">
+            <p>Curso</p>
+          </div>
+          <div class="info">
+            <p>Contato</p>
+          </div>
+          <div class="info">
+            <p>Data</p>
+          </div>
+        </div>
+        <p
+          class="h2 text-center border-bottom"
+          *ngIf="arrayAlunosFinal.length == 0"
+        >
+          NENHUM ALUNO MOSTROU INTERESSE EM SUAS AULAS
+        </p>
+        <div class="all-users-box">
+          <div class="user-box" *ngFor="let user of arrayAlunosFinal">
+            <div class="user-name">
+              <p>
+                {{ user?.nome }}
+              </p>
+            </div>
+            <div class="user-course">
+              <p>
+                {{ user?.curso }}
+              </p>
+            </div>
+            <div class="user-contact">
+              <p>
+                {{ user?.contato_numero1 }}
+              </p>
+            </div>
+            <div class="user-date">
+              <p>
+                {{ user?.data_interesse }}
+              </p>
+            </div>
+            <div class="user-edit">
+              <button (click)="deleteInteresse(user.id)" class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

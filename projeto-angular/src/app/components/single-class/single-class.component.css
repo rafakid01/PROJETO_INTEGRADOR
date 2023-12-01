@@ -7,6 +7,17 @@ main {
     min-height: calc(94vh - 6em);
 }
 
+p {
+    color: var(--text-one-color);
+    font-family: "Quicksand";
+}
+
+h2,
+span.h3,
+button {
+    font-family: "Nunito";
+}
+
 /* BARRA DE PESQUISA SUPERIOR */
 
 .search-component-container {
@@ -106,7 +117,12 @@ main {
 .subjects-single-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 50%;
+    width: 100%;
+}
+
+.subjects-single-container p {
+    font-weight: 500;
+    padding: .5em 0;
 }
 
 .contatos>div {
@@ -139,7 +155,6 @@ main {
     padding: .5em 1.5em;
     width: 100%;
     box-shadow: 0 0 0 0 var(--pulse-color);
-    cursor: pointer;
     -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
     -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
     -ms-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
@@ -150,12 +165,26 @@ main {
     background: var(--detail-three-color);
 }
 
+.interest-button:disabled {
+    -webkit-animation: none;
+    -moz-animation: none;
+    -ms-animation: none;
+    animation: none;
+    opacity: .8;
+}
+
 .pulse-button:hover {
     -webkit-animation: none;
     -moz-animation: none;
     -ms-animation: none;
     animation: none;
 }
+
+.btn-warning {
+    border-radius: 20px;
+    font-size: calc(1vw + .4em);
+}
+
 
 @-webkit-keyframes pulse {
     to {
@@ -185,6 +214,63 @@ main {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+/*  CONTAINER D CONFIRMAÇÃO DE ENVIO */
+.send-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.301);
+    z-index: 4;
+}
+
+.send-container p {
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 1em;
+    text-align: center;
+    width: 50%;
+}
+
+/* CONTAINER DE ENVIO DA NOTA MONITOR */
+.rate-form-back {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.301);
+    top: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rate-form-box {
+    background-color: var(--white);
+    padding: 1em;
+    font-size: calc(1vw + 1em);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.stars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: .5em;
+    margin-top: .5em;
+}
+
+.stars span .bi-star-fill:hover::before {
+    color: var(--detail-two-color);
+    cursor: pointer;
 }
 
 @media (max-width: 500px) and (orientation: portrait) {

@@ -12,23 +12,36 @@
             <img src="/assets/img/u-teach-complete.png" alt="" />
           </a>
         </div>
-        <div *ngIf="storedProfile" class="profile-container">
+        <div *ngIf="storedProfile && !isAdmin" class="profile-container">
           <div class="icon-profile-container">
-            <a routerLink="profile"
-              ><img src="/assets/img/profile-icon.png" alt=""
-            /></a>
+            <a routerLink="profile">
+              <img src="/assets/img/profile-icon.png" alt="" />
+              <p *ngIf="invalidateUser"></p>
+            </a>
           </div>
+        </div>
+        <div *ngIf="isMonitor" class="dashboard-container">
+          <p class="h4">
+            <a routerLink="dash-monitor" class="anchor-link home">
+              DASHBOARD MONITOR</a
+            >
+          </p>
+        </div>
+        <div *ngIf="isAdmin" class="dashboard-container">
+          <p class="h4">
+            <a routerLink="admin" class="anchor-link home"> DASHBOARD ADMIN</a>
+          </p>
         </div>
         <div *ngIf="!storedProfile" class="login-container px-sm-1">
           <p class="h4">
-            <a routerLink="/login" class="anchor-link home">
+            <a routerLink="/login" class="anchor-link home pulse">
               {{ "Login" | uppercase }}
             </a>
           </p>
         </div>
         <div *ngIf="!storedProfile" class="registro-container px-sm-1">
           <p class="h4">
-            <a routerLink="/register" class="anchor-link home">
+            <a routerLink="/register" class="anchor-link home pulse">
               {{ "Registre-se" | uppercase }}
             </a>
           </p>

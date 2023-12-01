@@ -14,6 +14,7 @@ from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
     RetrieveAPIView,
+    ListAPIView,
 )
 
 # # Create your views here.
@@ -101,6 +102,16 @@ class AdminRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
 class InteresseListCreateView(ListCreateAPIView):
     queryset = Interesse.objects.all()
     serializer_class = InteresseSerializer
+
+
+class InteressePorMonitor(ListAPIView):
+    serializer_class = InteresseSerializer
+
+    def get_queryset(self):
+        monitor_id = self.kwargs[
+            "monitor_id"
+        ]  # Assumindo que você está passando o ID do monitor na URL
+        return Interesse.objects.filter(monitor=monitor_id)
 
 
 class InteresseRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):

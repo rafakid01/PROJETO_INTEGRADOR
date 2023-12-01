@@ -1,8 +1,6 @@
-import { LowerCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario.model';
 import { DjangoConnService } from 'src/app/services/django-conn.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NavDataService } from 'src/app/services/nav-data.service';
@@ -21,9 +19,20 @@ export class RegisterComponent implements OnInit {
 
   comprimid: string = 'compressed';
 
+  errorMessage: string = '';
+
   registerForm = this.fb.group({
     nome: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.email,
+        Validators.pattern(
+          "[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+(?:.[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?.)+[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?"
+        ),
+      ],
+    ],
     curso: ['', Validators.required],
     senha: ['', [Validators.required, Validators.minLength(8)]],
     categoria: ['', Validators.required],
@@ -46,6 +55,11 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  throwError(message: string) {
+    this.errorMessage = message;
+    throw new Error(message);
+  }
+
   changeVisibility() {
     this.typeInputPass == 'password'
       ? (this.typeInputPass = 'text')
@@ -58,11 +72,21 @@ export class RegisterComponent implements OnInit {
 
   registerSubmit() {
     let registerFormData = this.registerForm.value;
-    console.log(registerFormData);
+
+    if (registerFormData.senha != this.senhaConfirm.value) {
+      let message = 'A senha e a confirmação da senha não coincidem';
+      this.throwError(message);
+    }
+
     this.django.postUser(registerFormData).subscribe((data) => {
       this.localstorage.setItem('logged', true);
       this.localstorage.setItem('usuario', data);
-      this.reload.reloadApp();
+
+      if (data.categoria == 'monitor') {
+        this.django.setRateFive(data.id).subscribe((monitor: any) => {
+          this.reload.reloadApp();
+        });
+      }
     });
   }
 

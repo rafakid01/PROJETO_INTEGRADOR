@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DjangoConnService } from 'src/app/services/django-conn.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { MonitorsService } from 'src/app/services/monitors.service';
 import { NavDataService } from 'src/app/services/nav-data.service';
+import { RefreshComponentService } from 'src/app/services/refresh-component.service';
 
 @Component({
   selector: 'app-navegacao-main-estudante',
@@ -14,7 +16,7 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
   monitorList: any;
   coursesList: any;
   categoryList: any;
-  ratingList: any;
+  ratingList: any[] = [1, 2, 3, 4, 5];
   monitorsNumber: any;
   filterString: string = '';
 
@@ -28,6 +30,7 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
     private fb: FormBuilder,
     private localstorage: LocalStorageService,
     private route: Router,
+    private django: DjangoConnService,
     private moni: MonitorsService
   ) {}
 
@@ -38,16 +41,15 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
   ngOnInit(): void {
     if (!this.localstorage.getItem('logged')) {
       this.route.navigate(['/']);
+    } else {
+      this.monitorList = this.localstorage.getItem('monitoresFiltrados');
+      this.monitorsNumber = this.monitorList.length;
+      this.coursesList = this.nav.coursesList;
+      this.django.getAssuntos().subscribe((assuntos: any) => {
+        this.categoryList = assuntos;
+        this.getFilter();
+      });
     }
-
-    this.monitorList = this.localstorage.getItem('monitoresFiltrados');
-    console.log(this.monitorList);
-    this.monitorsNumber = this.monitorList.length;
-    this.coursesList = this.nav.coursesList;
-    this.categoryList = this.nav.categoryList;
-    this.ratingList = this.nav.ratingList;
-
-    this.getFilter();
   }
 
   getFilter() {
@@ -85,5 +87,7 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
     }
   }
 
-  submitFilter(event: any) {}
+  submitFilter(event: any) {
+    this.monitorList = this.moni.filterMonitorRadios(this.filterForm.value);
+  }
 }

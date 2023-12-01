@@ -18,11 +18,18 @@ export class MonitorsService {
 
     this.django.getUsers().subscribe((user) => {
       monitores = user.filter((usuario: any) => {
-        return usuario.categoria == 'monitor' && usuario.foto_perfil != '';
+        return (
+          usuario.categoria == 'monitor' &&
+          usuario.foto_perfil != '' &&
+          usuario.contato_numero_1 != null
+        );
       });
 
       monitores.forEach((monitor) => {
         delete monitor.senha;
+
+        let notaFormatada = monitor.monitor.nota_avaliacao[0];
+        monitor.monitor.nota_avaliacao = notaFormatada;
       });
 
       this.localstorage.setItem('monitores', monitores);
@@ -31,6 +38,7 @@ export class MonitorsService {
 
   filterMonitors(filter: any) {
     let monitors: any[] = [];
+    this.localstorage.setItem('filter', filter);
     monitors = this.localstorage.getItem('monitores');
 
     let filteredAssunto = monitors.filter((monitor) => {
@@ -56,5 +64,36 @@ export class MonitorsService {
     );
 
     this.localstorage.setItem('monitoresFiltrados', monitorsFiltered);
+  }
+
+  filterMonitorRadios(filters: any) {
+    console.log(filters);
+
+    let monitoresAtuais: any[] =
+      this.localstorage.getItem('monitoresFiltrados');
+
+    console.log(monitoresAtuais);
+
+    let moniCurso = monitoresAtuais.filter((monitor) => {
+      return monitor.curso.toLowerCase().includes(filters.course.toLowerCase());
+    });
+    console.log(moniCurso);
+
+    let moniNota = moniCurso.filter((monitor) => {
+      let notaMonitor: any = Number(monitor.monitor.nota_avaliacao);
+      notaMonitor = notaMonitor.toFixed();
+      return notaMonitor.includes(filters.rate);
+    });
+    console.log(moniNota);
+
+    let moniAssunto = moniNota.filter((monitor) => {
+      return monitor.monitor.assuntos
+        .toString()
+        .toLowerCase()
+        .includes(filters.category.toLowerCase());
+    });
+    console.log(moniAssunto);
+
+    return moniAssunto;
   }
 }

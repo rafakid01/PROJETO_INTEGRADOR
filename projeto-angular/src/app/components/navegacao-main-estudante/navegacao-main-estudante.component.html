@@ -47,13 +47,16 @@
                 <div class="dropdown" *ngFor="let course of coursesList">
                   <input
                     type="radio"
-                    id="dropdownOne"
+                    id="dropdownCourse{{ course.id }}"
                     class="form-check-input"
                     formControlName="course"
                     [value]="course.name"
                     name="course"
                   />
-                  <label for="dropdownOne" class="form-check-label">
+                  <label
+                    for="dropdownCourse{{ course.id }}"
+                    class="form-check-label"
+                  >
                     {{ course.name }}
                   </label>
                 </div>
@@ -62,14 +65,14 @@
                 <div class="dropdown" *ngFor="let rate of ratingList">
                   <input
                     type="radio"
-                    id="dropdownTwo"
+                    id="dropdownRate{{ rate }}"
                     class="form-check-input"
                     formControlName="rate"
-                    [value]="rate.value"
+                    [value]="rate"
                     name="rate"
                   />
-                  <label for="dropdownTwo" class="form-check-label">
-                    {{ rate.value }}/5 <i class="bi bi-star-fill"> </i>
+                  <label for="dropdownRate{{ rate }}" class="form-check-label">
+                    {{ rate }} <i class="bi bi-star-fill"> </i>
                   </label>
                 </div>
               </div>
@@ -80,14 +83,17 @@
                 <div class="dropdown" *ngFor="let category of categoryList">
                   <input
                     type="radio"
-                    id="dropdownThree"
+                    id="dropdownCategory{{ category?.id }}"
                     class="form-check-input"
                     formControlName="category"
-                    [value]="category.name"
+                    [value]="category?.titulo"
                     name="category"
                   />
-                  <label for="dropdownThree" class="form-check-label">
-                    {{ category.name }}
+                  <label
+                    for="dropdownCategory{{ category?.id }}"
+                    class="form-check-label"
+                  >
+                    {{ category?.titulo }}
                   </label>
                 </div>
               </div>
@@ -105,9 +111,9 @@
         </p>
       </div>
     </div>
-    <div class="monitors-container row justify-content-center">
+    <div class="monitors-container justify-content-center">
       <a
-        class="single-container p-0 col-12 col-sm-6 col-md-4 col-lg-3"
+        class="single-container"
         *ngFor="let monitor of monitorList"
         routerLink="/aula/{{ monitor.id }}"
       >
@@ -126,7 +132,7 @@
         </div>
       </a>
     </div>
-    <div *ngIf="monitorList.length == 0" class="no-monitors-container">
+    <div *ngIf="monitorList?.length == 0" class="no-monitors-container">
       <p class="h3 text-center py-5">Nenhum monitor encontrado</p>
     </div>
   </div>

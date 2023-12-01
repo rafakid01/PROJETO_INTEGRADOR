@@ -113,8 +113,8 @@ button,
 
 /* CHECKBOX INPUT */
 
-.form-check-input:checked {
-    box-shadow: none;
+.error-container p {
+    color: var(--red);
 }
 
 /* BOTAO DE ENTRADA LOGIN */

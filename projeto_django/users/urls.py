@@ -43,8 +43,25 @@ urlpatterns = [
         "interesses/", InteresseListCreateView.as_view(), name="interesse-list-create"
     ),
     path(
-        "interesses/<int:pk>/",
+        "interesses/del/<int:pk>/",
         InteresseRetrieveUpdateDestroyView.as_view(),
         name="interesse-retrieve-update-destroy",
+    ),
+    path(
+        "interesses/<int:monitor_id>/",
+        InteressePorMonitor.as_view(),
+        name="interesse-por-monitor",
+    ),
+    # GET ADMIN
+    path(
+        "administradores/<int:pk>/",
+        AdminRetrieveUpdateDestroyView.as_view(),
+        name="administrador",
+    ),
+    # POST ADMIN
+    path(
+        "administradores/",
+        AdminListCreateView.as_view(),
+        name="tabela-admin",
     ),
 ]

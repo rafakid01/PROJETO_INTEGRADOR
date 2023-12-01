@@ -1,11 +1,7 @@
-export class Usuario {
-  id_usuario?: number;
+export class AlunoInteresse {
+  id?: any;
   nome?: any;
-  email?: any;
-  senha?: any;
   curso?: any;
-  categoria?: any;
   contato_numero1?: any;
-  contato_numero2?: any;
-  foto_perfil?: any;
+  data_interesse?: any;
 }

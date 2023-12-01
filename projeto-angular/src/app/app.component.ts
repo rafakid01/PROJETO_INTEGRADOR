@@ -21,10 +21,25 @@ export class AppComponent {
 
     if (this.localstorage.getItem('logged') != false) {
       let userID = this.localstorage.getItem('usuario').id;
+      let emailUser = this.localstorage.getItem('usuario').email;
 
-      this.django.getSingleUser(userID).subscribe((data) => {
-        this.localstorage.setItem('usuario', data);
-      });
+      if (emailUser == 'admin.projeto@gmail.com') {
+        this.django.getAdmin(userID).subscribe((admin) => {
+          this.localstorage.setItem('usuario', admin);
+        });
+      } else {
+        this.django.getSingleUser(userID).subscribe((data) => {
+          if (data.categoria == 'monitor') {
+            let assuntosDatabase = data.monitor.assuntos;
+
+            assuntosDatabase == ''
+              ? (data.monitor.assuntos = [])
+              : (data.monitor.assuntos = assuntosDatabase.split(','));
+          }
+
+          this.localstorage.setItem('usuario', data);
+        });
+      }
     }
   }
 }

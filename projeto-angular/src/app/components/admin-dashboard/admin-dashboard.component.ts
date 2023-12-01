@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { filter } from 'rxjs';
 import { DjangoConnService } from 'src/app/services/django-conn.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { RefreshComponentService } from 'src/app/services/refresh-component.service';
 
 @Component({
@@ -32,14 +32,15 @@ export class AdminDashboardComponent implements OnInit {
   constructor(
     private django: DjangoConnService,
     private fb: FormBuilder,
-    private reload: RefreshComponentService
+    private reload: RefreshComponentService,
+    private localstorage: LocalStorageService
   ) {}
 
   ngOnInit(): void {
-    this.django.getUsers().subscribe((data) => {
-      this.allUsers = data;
-      console.log(this.allUsers);
-    });
+    if (this.localstorage.getItem('usuario'))
+      this.django.getUsers().subscribe((data) => {
+        this.allUsers = data;
+      });
   }
 
   buildEditForm(user: any) {
@@ -61,7 +62,6 @@ export class AdminDashboardComponent implements OnInit {
 
   editUser(userID: number) {
     let usuarioasereditado = this.allUsers[userID - 1];
-    console.log(usuarioasereditado);
 
     this.usuarioToEdit = usuarioasereditado;
 
@@ -74,7 +74,6 @@ export class AdminDashboardComponent implements OnInit {
     userData.foto_perfil = this.usuarioToEdit.foto_perfil;
 
     this.django.updateUser(this.editForm.value).subscribe((data) => {
-      console.log(data);
       this.reload.reloadApp();
     });
   }
@@ -91,7 +90,6 @@ export class AdminDashboardComponent implements OnInit {
 
   deleteUser(userID: number) {
     this.django.deleteUser(userID).subscribe((data) => {
-      console.log(data);
       this.reload.reloadApp();
     });
   }

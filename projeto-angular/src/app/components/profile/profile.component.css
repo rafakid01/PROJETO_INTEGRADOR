@@ -100,6 +100,8 @@ section {
 
 .photo-container img {
     width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     border-radius: 30px;
 }
 
@@ -117,6 +119,12 @@ section {
     border-radius: 15px;
     color: var(--title-color);
     font-family: "Nunito";
+}
+
+.assuntos-todos label,
+p,
+input:disabled {
+    color: var(--text-one-color);
 }
 
 .info-student {
@@ -154,19 +162,46 @@ section {
     color: var(--title-color);
 }
 
+.about-container {
+    grid-column: 1 / span 3;
+    margin: 0 3em;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-container label {
+    font-size: 20px;
+}
+
 /* CONTAINER ASSUNTOS MONITORES */
+
 
 .assuntos-container {
     grid-column: 1 / span 3;
-    display: grid;
-    padding: 4em 2em;
-    margin: 0;
+    padding: 1em 3em;
+
 }
 
 .assuntos-container>div {
     display: grid;
-    grid-template-columns: 1fr;
-    line-height: 2;
+    grid-template-columns: 2fr 8fr;
+    width: 100%;
+}
+
+.assuntos-atuais div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.assuntos-atuais>div p {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
 }
 
 .assunto-input-container input {
@@ -175,6 +210,32 @@ section {
     align-self: center;
     justify-self: center;
     padding: 0;
+}
+
+.assunto-box .btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.assuntos-todos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.assunto-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: .5em 0;
+}
+
+.assunto-input-container .form-check-input {
+    margin-right: .5em;
 }
 
 /* BOTÃO DE EDIÇÃO */
@@ -230,16 +291,19 @@ section {
     top: 0;
     left: 0;
     opacity: .7;
+    z-index: 3;
 }
 
 .confirm-delete,
 .confirm-leave {
     position: absolute;
+    top: 50vh;
+    transform: translate(0, -50%);
     padding: 2em;
     border-radius: 20px;
     font-family: "Nunito";
     background: var(--white);
-    top: 100%;
+    z-index: 4;
 }
 
 .quest {
@@ -255,4 +319,102 @@ section {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+}
+
+@media (max-width: 1400px) {
+    .assuntos-todos {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 1000px) {
+
+    .assunto-box {
+        padding-left: 2em;
+    }
+
+    .assuntos-todos {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .header-name-button {
+        grid-template-columns: 1fr;
+    }
+
+    .button-delete-container {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+
+    .info-student {
+        grid-template-columns: 1fr;
+        margin: 0 2em;
+    }
+
+    .info-student>div {
+        margin: .5em 0;
+    }
+
+    .info-student p.keyname {
+        font-size: calc(1vw + 1em);
+        font-weight: bold;
+    }
+
+    .edit-pic-section {
+        grid-row: 1 / span 1;
+    }
+
+    div.photo-container {
+        padding: 0;
+    }
+
+    .about-container,
+    .assuntos-container,
+    .edit-pic-section {
+        grid-column: 1 / span 1;
+    }
+
+    .about-container {
+        margin: 0;
+    }
+
+    .text-container label {
+        font-size: 18px;
+        text-align: justify;
+    }
+
+    .assuntos-container {
+        padding: 0;
+    }
+
+    .photo-container {
+        align-items: center;
+        padding: 0;
+        width: 100%;
+        padding: 0 3em;
+    }
+
+    .photo-container img {
+        width: 65%;
+    }
+
+    .assuntos-todos {
+        grid-template-columns: 1fr;
+    }
+
+    .assuntos-container>div {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-button-container {
+        grid-column: 1 / span 1;
+    }
+
+    .assunto-box {
+        padding: 0;
+    }
 }

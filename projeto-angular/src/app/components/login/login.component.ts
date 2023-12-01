@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Monitor } from 'src/app/models/monitor.model';
 import { DjangoConnService } from 'src/app/services/django-conn.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { RefreshComponentService } from 'src/app/services/refresh-component.service';
@@ -15,6 +14,8 @@ export class LoginComponent implements OnInit {
   typeInputPass: string = 'password';
   typeEye: string = 'bi bi-eye-fill';
 
+  errorMessage: string = '';
+
   constructor(
     private fb: FormBuilder,
     private django: DjangoConnService,
@@ -26,13 +27,17 @@ export class LoginComponent implements OnInit {
   loginForm = this.fb.group({
     email: ['', Validators.required],
     senha: ['', [Validators.required, Validators.minLength(8)]],
-    cont_logado: [true],
   });
 
   ngOnInit(): void {
     if (this.localstorage.getItem('logged') == true) {
       this.route.navigate(['/']);
     }
+  }
+
+  throwError(message: string) {
+    this.errorMessage = message;
+    throw new Error(message);
   }
 
   changeVisibility() {
@@ -47,16 +52,29 @@ export class LoginComponent implements OnInit {
 
   submitLogin() {
     let loginFormData = this.loginForm.value;
-    console.log(loginFormData);
 
-    this.django
-      .getUserEmail(loginFormData.email, loginFormData.senha)
-      .subscribe((data) => {
+    if (
+      loginFormData.email == 'admin.projeto@gmail.com' &&
+      loginFormData.senha == '31415926'
+    ) {
+      this.django.getAdmin('1').subscribe((admin: any) => {
         this.localstorage.setItem('logged', true);
-        this.localstorage.setItem('usuario', data);
+        this.localstorage.setItem('usuario', admin);
         this.reload.reloadApp();
       });
-
-    // this.route.navigate(['/']);
+    } else {
+      this.django
+        .getUserEmail(loginFormData.email, loginFormData.senha)
+        .subscribe({
+          next: (data) => {
+            this.localstorage.setItem('logged', true);
+            this.localstorage.setItem('usuario', data);
+            this.reload.reloadApp();
+          },
+          error: (error) => {
+            this.throwError(error.error.detail);
+          },
+        });
+    }
   }
 }

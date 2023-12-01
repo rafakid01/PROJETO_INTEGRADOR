@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from '../models/usuario.model';
-import { Monitor } from '../models/monitor.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,15 +11,13 @@ export class DjangoConnService {
   assuntosURL = 'http://localhost:8000/assuntos/';
   interessesURL = 'http://localhost:8000/interesses/';
 
-  postURL = 'http://localhost:8000/post/';
-  putURL = 'http://localhost:8000/put/';
-  deleteURL = 'http://localhost:8000/delete/';
+  adminURL = 'http://localhost:8000/administradores/';
 
   constructor(private http: HttpClient) {}
 
   // RECUPERAR TODOS OS USUARIOS
-  getUsers(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.usersURL);
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(this.usersURL);
   }
 
   // RECUPERAR TODOS OS MONITORES
@@ -33,6 +29,11 @@ export class DjangoConnService {
   // RECUPERAR UM ÚNICO USUÁRIO
   getSingleUser(id: any): Observable<any> {
     return this.http.get(`${this.usersURL}${id}/`);
+  }
+
+  // RECUPERAR DADOS UNICO MONITOR
+  getSingleMonitor(id: any): Observable<any> {
+    return this.http.get(`${this.monitorsURL}${id}/`);
   }
 
   // RECUPERAR USUÁRIO PELO EMAIL E SENHA
@@ -51,6 +52,24 @@ export class DjangoConnService {
     return this.http.put(`${this.usersURL}${user.id}/`, user);
   }
 
+  // NOTA 5 DO MONITOR AO SE REGISTRAR
+  setRateFive(id: any): Observable<any> {
+    let monitor = {
+      user: id,
+      nota_avaliacao: '5',
+    };
+    return this.http.put(`${this.monitorsURL}${id}/`, monitor);
+  }
+
+  // ATUALIZAR NOTA DO MONITOR
+  updateRate(id: any, value: any): Observable<any> {
+    let monitor = {
+      user: id,
+      nota_avaliacao: value,
+    };
+    return this.http.put(`${this.monitorsURL}${id}/`, monitor);
+  }
+
   // ATUALIZAR USUÁRIO MONITOR
   updateMonitor(monitor: any): Observable<any> {
     return this.http.put(`${this.monitorsURL}${monitor.user}/`, monitor);
@@ -62,8 +81,8 @@ export class DjangoConnService {
   }
 
   // RECUPERAR INTERESSES
-  getInteresses(): Observable<any> {
-    return this.http.get<any>('http://localhost:8000/interesses/');
+  getInteressesMonitor(id: any): Observable<any> {
+    return this.http.get<any>(`${this.interessesURL}${id}/`);
   }
 
   // ADICIONAR INTERESSE
@@ -71,8 +90,18 @@ export class DjangoConnService {
     return this.http.post(`${this.interessesURL}`, interesse);
   }
 
+  // EXCLUIR INTERESSE
+  deleteInteresse(id: any): Observable<any> {
+    return this.http.delete(`${this.interessesURL}del/${id}/`);
+  }
+
   // RECUPERAR LISTA ASSUNTOS GERAIS
   getAssuntos(): Observable<any> {
     return this.http.get(`${this.assuntosURL}`);
+  }
+
+  // RECUPERAR DADOS ADMIN
+  getAdmin(id: any): Observable<any> {
+    return this.http.get<any>(`${this.adminURL}${id}/`);
   }
 }

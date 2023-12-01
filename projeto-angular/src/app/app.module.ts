@@ -21,6 +21,55 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { MonitorsService } from './services/monitors.service';
 import { SharedModule } from './shared/shared.module';
 import { DatePipe } from '@angular/common';
+import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
+import { MonitorDashboardComponent } from './components/monitor-dashboard/monitor-dashboard.component';
+
+const dbConfig: DBConfig = {
+  name: 'myDB',
+  version: 1,
+  objectStoresMeta: [
+    {
+      store: 'usuarios',
+      storeConfig: { keyPath: 'id', autoIncrement: true },
+      storeSchema: [
+        { name: 'nome', keypath: 'nome', options: { unique: false } },
+        { name: 'email', keypath: 'email', options: { unique: true } },
+        { name: 'senha', keypath: 'senha', options: { unique: false } },
+        { name: 'curso', keypath: 'curso', options: { unique: false } },
+        {
+          name: 'contato_numero1',
+          keypath: 'contato_numero1',
+          options: { unique: false },
+        },
+        {
+          name: 'contato_numero2',
+          keypath: 'contato_numero2',
+          options: { unique: false },
+        },
+        {
+          name: 'foto_perfil',
+          keypath: 'foto_perfil',
+          options: { unique: false },
+        },
+        {
+          name: 'monitor',
+          keypath: 'monitor.descricao',
+          options: { unique: false },
+        },
+        {
+          name: 'monitor.nota_avaliacao',
+          keypath: 'monitor.nota_avaliacao',
+          options: { unique: false },
+        },
+        {
+          name: 'monitor.assuntos',
+          keypath: 'monitor.assuntos',
+          options: { unique: false },
+        },
+      ],
+    },
+  ],
+};
 
 @NgModule({
   declarations: [
@@ -38,6 +87,7 @@ import { DatePipe } from '@angular/common';
     InputSearchComponent,
     ProfileComponent,
     AdminDashboardComponent,
+    MonitorDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +96,7 @@ import { DatePipe } from '@angular/common';
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
+    NgxIndexedDBModule.forRoot(dbConfig),
   ],
   providers: [MonitorsService, DatePipe],
   bootstrap: [AppComponent],

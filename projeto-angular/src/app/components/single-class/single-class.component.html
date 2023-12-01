@@ -25,19 +25,25 @@
                 <span>{{ monitorBody?.monitor?.nota_avaliacao }}</span
                 >/5
               </p>
-              <button class="btn">Avalie esse monitor</button>
+              <button
+                class="btn"
+                (click)="openForm()"
+                [disabled]="!selfMonitor"
+              >
+                Avalie esse monitor
+              </button>
             </div>
           </div>
         </div>
         <div class="learning-container">
           <div class="about-container">
-            <p class="h3">Sobre esse monitor</p>
+            <span class="h3">Sobre esse monitor</span>
             <p>
               {{ monitorBody?.monitor?.descricao }}
             </p>
           </div>
           <div class="subject-container">
-            <p class="h3">Assuntos ensinados</p>
+            <span class="h3">Assuntos ensinados</span>
             <div class="subjects-single-container">
               <p
                 *ngFor="let assunto of monitorBody?.monitor?.assuntos"
@@ -49,7 +55,7 @@
           </div>
         </div>
         <div class="contacts-container">
-          <p class="h3">Contatos</p>
+          <span class="h3">Contatos</span>
           <div class="contatos">
             <div class="contato1">
               <p
@@ -79,8 +85,15 @@
       </div>
       <div class="fixed-container">
         <div class="button-container">
-          <button class="interest-button" (click)="adicionarInteresse()">
+          <button
+            *ngIf="!selfMonitor || !jaInteressou"
+            class="interest-button"
+            (click)="adicionarInteresse()"
+          >
             TENHO INTERESSE NA AULA
+          </button>
+          <button *ngIf="jaInteressou" class="btn btn-warning">
+            VOCÊ JÁ SE INTERESSOU POR ESSA AULA
           </button>
         </div>
       </div>
@@ -89,5 +102,20 @@
   <div class="footer-box">
     <app-footer-nav></app-footer-nav>
   </div>
-  <p *ngIf="interesseSend" class="h1">SEU INTERESSE FOI ENVIADO COM SUCESSO</p>
+  <div *ngIf="interesseSend" class="send-container">
+    <p class="h3">Seu interesse foi enviado com sucesso</p>
+  </div>
+  <div *ngIf="rateSend" class="rate-form-back">
+    <div class="rate-form-box">
+      <p>Avalie esse(a) monitor(a)</p>
+      <div class="stars">
+        <span *ngFor="let number of [1, 2, 3, 4, 5]">
+          <p class="bi bi-star-fill" (click)="enviarAvaliacao(number)"></p>
+        </span>
+        <span *ngFor="let number of [1, 2, 3, 4, 5]">
+          <p class="text-center h5">{{ number }}</p>
+        </span>
+      </div>
+    </div>
+  </div>
 </main>

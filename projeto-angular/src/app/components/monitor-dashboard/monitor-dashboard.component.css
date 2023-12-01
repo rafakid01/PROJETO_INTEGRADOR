@@ -1,0 +1,104 @@
+section {
+    padding-top: 6em;
+    min-height: 100vh;
+}
+
+/* CONTAINER GERAL */
+
+.all-info-container {
+    background: var(--detail-seven-color);
+    padding: 2em;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+/* CONTAINER DO TITULO E BARRA DE BUSCA */
+.title {
+    color: var(--text-one-color);
+}
+
+/* CONTAINER DOS USUARIOS */
+
+.users-info-box {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 2em 0;
+}
+
+.header-info {
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 3fr;
+    margin-bottom: 1em;
+}
+
+.header-info>div {
+    padding: 0 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--text-one-color);
+}
+
+.all-users-box {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 1em;
+}
+
+.user-box {
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 2fr 1fr;
+    border-radius: 10px;
+    background: var(--detail-three-color);
+}
+
+.user-box>div {
+    padding: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.user-box>div>input {
+    color: var(--text-one-color);
+    width: 100%;
+}
+
+/* CONTAINER BOTÕES */
+
+.user-edit {
+    display: flex;
+}
+
+.user-edit button {
+    width: 100%;
+}
+
+/* CONTAINER DE EDIÇÃO */
+
+.editFormContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--detail-five-color);
+}
+
+.editFormContainer form {
+    position: relative;
+    top: 15em;
+}
+
+.editForm {
+    background: var(--white);
+    padding: 2em;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 2em;
+    border-radius: 20px;
+}
+
+.editForm .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

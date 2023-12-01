@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { DjangoConnService } from 'src/app/services/django-conn.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -13,6 +13,13 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class SingleClassComponent implements OnInit {
   monitorBody?: any;
   interesseSend = false;
+  rateSend = false;
+
+  rateInput = new FormControl();
+
+  selfMonitor: boolean = true;
+
+  jaInteressou: boolean = false;
 
   constructor(
     private django: DjangoConnService,
@@ -32,7 +39,10 @@ export class SingleClassComponent implements OnInit {
       delete monitor.senha;
       monitor.monitor.assuntos = monitor.monitor.assuntos.split(',');
       this.monitorBody = monitor;
-      console.log(monitor);
+
+      this.selfMonitor = this.monitorBody.id == id;
+
+      this.verificarInteresse(id);
     });
   }
 
@@ -50,7 +60,45 @@ export class SingleClassComponent implements OnInit {
     interesse.monitor = this.monitorBody?.id;
 
     this.django.postInteresse(interesse).subscribe((interesse: any) => {
-      console.log(interesse);
+      this.interesseSend = true;
+      this.confirmaEnvio();
+    });
+  }
+
+  confirmaEnvio() {
+    setTimeout(() => {
+      this.interesseSend = false;
+    }, 3000);
+  }
+
+  verificarInteresse(id: any) {
+    this.django.getInteressesMonitor(id).subscribe((listaInteresses) => {
+      this.jaInteressou = listaInteresses.some((interesse: any) => {
+        return interesse.aluno == this.localstorage.getItem('usuario').id;
+      });
+    });
+  }
+
+  openForm() {
+    this.rateSend = true;
+  }
+
+  enviarAvaliacao(nota: number) {
+    const id = Number(this.activeRoute.snapshot.paramMap.get('id'));
+
+    this.django.getSingleMonitor(id).subscribe((monitor: any) => {
+      let notaMonitor = Number(monitor.nota_avaliacao);
+
+      let soma = notaMonitor + nota;
+
+      let novaMedia = soma / 2;
+      const novaMediaString = novaMedia.toString();
+
+      this.django.updateRate(id, novaMediaString).subscribe((data) => {
+        setTimeout(() => {
+          this.rateSend = false;
+        }, 1500);
+      });
     });
   }
 }

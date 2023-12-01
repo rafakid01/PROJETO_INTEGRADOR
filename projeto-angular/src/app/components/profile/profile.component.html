@@ -3,7 +3,7 @@
     <div class="dashboard-box row">
       <div class="edit-info-container col-12 col-xl-6">
         <div class="header-name-button">
-          <p class="name">{{ usuarioAtualStorage.nome }}</p>
+          <p class="name">{{ usuarioAtualStorage?.nome }}</p>
           <div class="button-delete-container">
             <button (click)="confirmDelete()">
               <i class="bi bi-x"></i>Excluir
@@ -15,15 +15,16 @@
         </div>
 
         <form [formGroup]="updateUserForm" action="" class="info-student">
-          <div class="edit-pic-section col-12 col-xl-6">
+          <div class="edit-pic-section">
             <div class="photo-container">
-              <img src="{{ usuarioAtualStorage.foto_perfil }}" alt="" />
+              <img src="{{ usuarioAtualStorage?.foto_perfil }}" alt="" />
               <div class="button-edit-container">
                 <input
                   type="file"
                   (change)="handleFileInput($event)"
                   accept="image/png, image/jpeg, image/jpg"
                   [disabled]="typeEdit"
+                  class="form-control"
                 />
               </div>
             </div>
@@ -35,7 +36,7 @@
             <div class="name-two">
               <input
                 type="text"
-                placeholder=" {{ usuarioAtualStorage.nome }} "
+                placeholder=" {{ usuarioAtualStorage?.nome }} "
                 formControlName="nome"
               />
             </div>
@@ -47,7 +48,7 @@
             <div class="course-two">
               <input
                 type="text"
-                placeholder=" {{ usuarioAtualStorage.curso }} "
+                placeholder=" {{ usuarioAtualStorage?.curso }} "
                 formControlName="curso"
               />
             </div>
@@ -58,10 +59,10 @@
             </div>
             <div class="email-two">
               <input
-                type="text"
-                placeholder=" {{ usuarioAtualStorage.email }} "
+                type="email"
+                placeholder=" {{ usuarioAtualStorage?.email }} "
                 formControlName="email"
-                value=" {{ usuarioAtualStorage.email }} "
+                value=" {{ usuarioAtualStorage?.email }} "
               />
             </div>
           </div>
@@ -71,10 +72,11 @@
             </div>
             <div class="contact-first-two">
               <input
-                type="text"
-                placeholder=" {{ usuarioAtualStorage.contato_numero1 }} "
+                appOnlyNumbers
+                type="tel"
+                placeholder=" {{ usuarioAtualStorage?.contato_numero1 }} "
                 formControlName="contato_numero1"
-                value=" {{ usuarioAtualStorage.contato_numero1 }} "
+                value=" {{ usuarioAtualStorage?.contato_numero1 }} "
               />
             </div>
           </div>
@@ -85,7 +87,7 @@
             <div class="pass-two">
               <input
                 type="text"
-                placeholder=" {{ usuarioAtualStorage.senha }} "
+                placeholder=" {{ usuarioAtualStorage?.senha }} "
                 formControlName="senha"
               />
             </div>
@@ -97,61 +99,77 @@
             <div class="contact-second-two">
               <input
                 type="text"
-                placeholder=" {{ usuarioAtualStorage.contato_numero2 }} "
+                placeholder=" {{ usuarioAtualStorage?.contato_numero2 }} "
                 formControlName="contato_numero2"
-                value=" {{ usuarioAtualStorage.contato_numero2 }} "
+                value=" {{ usuarioAtualStorage?.contato_numero2 }} "
               />
             </div>
           </div>
           <div *ngIf="isMonitor" class="about-container">
+            <p class="keyname">Descrição</p>
             <div class="text-container" formGroupName="monitor">
+              <label for="description"
+                >Faça um resumo sobre você como aluno e como aborda as aulas
+                dentro da monitoria</label
+              >
               <textarea
                 formControlName="descricao"
                 name=""
-                id=""
-                cols="50"
-                rows="10"
+                id="description"
+                cols=""
+                rows="5"
               ></textarea>
             </div>
           </div>
 
           <div *ngIf="isMonitor" class="assuntos-container container">
             <div>
-              <h2>Assuntos Atuais</h2>
-              <div
-                *ngFor="
-                  let assunto of assuntosAtualUsuarioStorage;
-                  let index = index
-                "
-              >
-                <p class="border">
-                  {{ assunto }}
-                </p>
-                <button
-                  [disabled]="typeEdit"
-                  class="btn btn-danger"
-                  (click)="removerAssunto(index)"
+              <div class="assuntos-atuais">
+                <p class="keyname">Assuntos Atuais</p>
+                <div
+                  *ngFor="
+                    let assunto of assuntosAtualUsuarioStorage;
+                    let index = index
+                  "
                 >
-                  Remover assunto
-                </button>
+                  <p>
+                    {{ assunto }}
+                  </p>
+                  <button
+                    [disabled]="typeEdit"
+                    class="btn btn-danger"
+                    (click)="removerAssunto(index)"
+                  >
+                    Remover assunto
+                  </button>
+                </div>
               </div>
-              <button class="btn btn-light">Adicionar assuntos</button>
-              <div
-                *ngFor="let assunto of listaAssuntosDatabase"
-                class="assunto-input-container"
-              >
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=" {{ assunto.titulo }} "
+              <div class="assunto-box">
+                <button
+                  class="{{ buttonAddClass }}"
                   [disabled]="typeEdit"
-                  (change)="getAssunto($event)"
-                />
-                <label for=" assunto{{ assunto.id }} ">
-                  {{ assunto.titulo }}
-                </label>
+                  (click)="addAssunto()"
+                >
+                  {{ buttonAddString }}
+                </button>
+                <div *ngIf="addConfirm" class="assuntos-todos">
+                  <div
+                    *ngFor="let assunto of listaAssuntosDatabase"
+                    class="assunto-input-container"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=" {{ assunto.titulo }} "
+                      [disabled]="typeEdit"
+                      (change)="getAssunto($event)"
+                    />
+                    <label for=" assunto{{ assunto.id }} ">
+                      {{ assunto.titulo }}
+                    </label>
+                  </div>
+                </div>
               </div>
-              <button class="btn btn-success">Confirmar</button>
             </div>
           </div>
           <div class="edit-button-container">
