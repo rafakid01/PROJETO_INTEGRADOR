@@ -1,9 +1,10 @@
-import { LowerCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Usuario } from 'src/app/models/usuario.model';
+import { Router } from '@angular/router';
 import { DjangoConnService } from 'src/app/services/django-conn.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { NavDataService } from 'src/app/services/nav-data.service';
+import { RefreshComponentService } from 'src/app/services/refresh-component.service';
 
 @Component({
   selector: 'app-register',
@@ -16,9 +17,22 @@ export class RegisterComponent implements OnInit {
 
   coursesList = this.navData.coursesList;
 
+  comprimid: string = 'compressed';
+
+  errorMessage: string = '';
+
   registerForm = this.fb.group({
     nome: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.email,
+        Validators.pattern(
+          "[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+(?:.[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?.)+[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?"
+        ),
+      ],
+    ],
     curso: ['', Validators.required],
     senha: ['', [Validators.required, Validators.minLength(8)]],
     categoria: ['', Validators.required],
@@ -26,26 +40,25 @@ export class RegisterComponent implements OnInit {
 
   senhaConfirm = new FormControl();
 
-  comprimid: string = 'compressed';
-
-  usuario: Usuario = {
-    nome: '',
-    email: '',
-    senha: '',
-    curso: '',
-    categoria: '',
-    contato_numero1: '',
-    contato_numero2: '',
-    foto_perfil: undefined,
-  };
-
   constructor(
     private fb: FormBuilder,
     private navData: NavDataService,
-    private djangohttp: DjangoConnService
+    private django: DjangoConnService,
+    private localstorage: LocalStorageService,
+    private route: Router,
+    private reload: RefreshComponentService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.localstorage.getItem('logged') == true) {
+      this.route.navigate(['/']);
+    }
+  }
+
+  throwError(message: string) {
+    this.errorMessage = message;
+    throw new Error(message);
+  }
 
   changeVisibility() {
     this.typeInputPass == 'password'
@@ -58,26 +71,23 @@ export class RegisterComponent implements OnInit {
   }
 
   registerSubmit() {
-    const senha = this.registerForm.value.senha;
-    const senhaConfir = this.senhaConfirm.value;
+    let registerFormData = this.registerForm.value;
 
-    if (senha != senhaConfir) {
-      console.log('Senhas não coincidem, tente novamente');
-    } else {
-      console.log(this.registerForm.value);
-
-      this.usuario.nome = this.registerForm.value.nome;
-      this.usuario.senha = this.registerForm.value.senha;
-      this.usuario.email = this.registerForm.value.email;
-      this.usuario.curso = this.registerForm.value.curso;
-      this.usuario.categoria = this.registerForm.value.categoria?.toLowerCase();
-
-      console.log(this.usuario);
-
-      this.djangohttp.criarUsuario(this.usuario).subscribe((usuario) => {
-        console.log(usuario);
-      });
+    if (registerFormData.senha != this.senhaConfirm.value) {
+      let message = 'A senha e a confirmação da senha não coincidem';
+      this.throwError(message);
     }
+
+    this.django.postUser(registerFormData).subscribe((data) => {
+      this.localstorage.setItem('logged', true);
+      this.localstorage.setItem('usuario', data);
+
+      if (data.categoria == 'monitor') {
+        this.django.setRateFive(data.id).subscribe((monitor: any) => {
+          this.reload.reloadApp();
+        });
+      }
+    });
   }
 
   compressOptions() {

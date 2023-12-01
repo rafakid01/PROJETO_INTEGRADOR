@@ -61,6 +61,29 @@ input:checked+label:after {
   font-size: calc(1vw + .4em);
 }
 
+/* TAMANHO ICONE PERFIL */
+
+.icon-profile-container a {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.icon-profile-container img {
+  width: calc(1vw + 2em);
+}
+
+.icon-profile-container p {
+  font-size: 5px;
+  width: 18px;
+  height: 18px;
+  background-color: var(--red);
+  border-radius: 50%;
+  position: relative;
+  right: 3em;
+  top: 3em;
+}
+
 /* CONTAINER POSIÇÃO */
 
 .transparent {
@@ -81,6 +104,46 @@ nav {
   position: fixed;
 }
 
+/* CONTAINERS DE LOGIN E REGISTRO DESLOGADO  */
+
+.pulse {
+  background: var(--detail-two-color);
+  border: none;
+  border-radius: 20px;
+  color: var(--text-one-color);
+  padding: .5em 1em;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 var(--pulse-color);
+  -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@-webkit-keyframes pulse {
+  to {
+    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+  }
+}
+
+@-moz-keyframes pulse {
+  to {
+    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+  }
+}
+
+@-ms-keyframes pulse {
+  to {
+    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+  }
+}
+
+@keyframes pulse {
+  to {
+    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+  }
+}
+
 /* LINK */
 
 .anchor-link {
@@ -95,7 +158,7 @@ nav {
   align-items: center;
 }
 
-.navbar div {
+.navbar>div {
   display: flex;
   justify-content: center;
   align-items: center;

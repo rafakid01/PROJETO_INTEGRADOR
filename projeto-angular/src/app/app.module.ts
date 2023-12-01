@@ -13,11 +13,63 @@ import { InitialPageComponent } from './components/initial-page/initial-page.com
 import { NavegacaoMainEstudanteComponent } from './components/navegacao-main-estudante/navegacao-main-estudante.component';
 import { SingleClassComponent } from './components/single-class/single-class.component';
 import { FooterNavComponent } from './components/footer-nav/footer-nav.component';
-import { StudentProfileComponent } from './components/student-profile/student-profile.component';
-import { MonitorProfileComponent } from './components/monitor-profile/monitor-profile.component';
 import { InputSearchComponent } from './components/input-search/input-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { MonitorsService } from './services/monitors.service';
+import { SharedModule } from './shared/shared.module';
+import { DatePipe } from '@angular/common';
+import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
+import { MonitorDashboardComponent } from './components/monitor-dashboard/monitor-dashboard.component';
+
+const dbConfig: DBConfig = {
+  name: 'myDB',
+  version: 1,
+  objectStoresMeta: [
+    {
+      store: 'usuarios',
+      storeConfig: { keyPath: 'id', autoIncrement: true },
+      storeSchema: [
+        { name: 'nome', keypath: 'nome', options: { unique: false } },
+        { name: 'email', keypath: 'email', options: { unique: true } },
+        { name: 'senha', keypath: 'senha', options: { unique: false } },
+        { name: 'curso', keypath: 'curso', options: { unique: false } },
+        {
+          name: 'contato_numero1',
+          keypath: 'contato_numero1',
+          options: { unique: false },
+        },
+        {
+          name: 'contato_numero2',
+          keypath: 'contato_numero2',
+          options: { unique: false },
+        },
+        {
+          name: 'foto_perfil',
+          keypath: 'foto_perfil',
+          options: { unique: false },
+        },
+        {
+          name: 'monitor',
+          keypath: 'monitor.descricao',
+          options: { unique: false },
+        },
+        {
+          name: 'monitor.nota_avaliacao',
+          keypath: 'monitor.nota_avaliacao',
+          options: { unique: false },
+        },
+        {
+          name: 'monitor.assuntos',
+          keypath: 'monitor.assuntos',
+          options: { unique: false },
+        },
+      ],
+    },
+  ],
+};
 
 @NgModule({
   declarations: [
@@ -32,9 +84,10 @@ import { HttpClientModule } from '@angular/common/http';
     NavegacaoMainEstudanteComponent,
     SingleClassComponent,
     FooterNavComponent,
-    StudentProfileComponent,
-    MonitorProfileComponent,
     InputSearchComponent,
+    ProfileComponent,
+    AdminDashboardComponent,
+    MonitorDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +95,10 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SharedModule,
+    NgxIndexedDBModule.forRoot(dbConfig),
   ],
-  providers: [],
+  providers: [MonitorsService, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

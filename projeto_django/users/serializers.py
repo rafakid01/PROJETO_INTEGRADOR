@@ -1,20 +1,36 @@
 from rest_framework import serializers
-from .models import Usuarios, Monitores, Administrador
+from .models import Usuario, Monitor, Admin, Assunto, Interesse
 
 
-class UsuarioSerializer(serializers.ModelSerializer):
+class InteresseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Usuarios
+        model = Interesse
+        fields = "__all__"
+
+
+class AssuntoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Assunto
         fields = "__all__"
 
 
 class MonitorSerializer(serializers.ModelSerializer):
+    interesses = InteresseSerializer(many=True, read_only=True, source="monitores")
+
     class Meta:
-        model = Monitores
+        model = Monitor
+        fields = "__all__"
+
+
+class UsuarioSerializer(serializers.ModelSerializer):
+    monitor = MonitorSerializer(read_only=True)
+
+    class Meta:
+        model = Usuario
         fields = "__all__"
 
 
 class AdministradorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Administrador
+        model = Admin
         fields = "__all__"

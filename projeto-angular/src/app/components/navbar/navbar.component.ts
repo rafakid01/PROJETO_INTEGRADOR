@@ -14,7 +14,11 @@ export class NavbarComponent implements OnInit {
   storedTheme: any;
   backColor: string = 'transparent';
 
-  storedProfile: any = true;
+  storedProfile: any = false;
+
+  isAdmin = false;
+  isMonitor = false;
+  invalidateUser = true;
 
   constructor(
     private localStorage: LocalStorageService,
@@ -23,12 +27,33 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.alterationProfileLocalStorage();
+    this.alterationProfileLocalStorage();
     this.alterationThemeLocalStorage();
   }
 
   alterationProfileLocalStorage() {
+    this.localStorage.viewItems();
     this.storedProfile = this.localStorage.getItem('logged');
+
+    if (this.storedProfile) {
+      this.verifyIsMonitorOrAdmin();
+    }
+  }
+
+  verifyIsMonitorOrAdmin() {
+    let user = this.localStorage.getItem('usuario');
+
+    if (user?.categoria == 'monitor') {
+      this.isMonitor = true;
+    }
+
+    if (user?.email == 'admin.projeto@gmail.com') {
+      this.isAdmin = true;
+    }
+
+    if (user?.foto_perfil != '') {
+      this.invalidateUser = false;
+    }
   }
 
   alterationThemeLocalStorage() {

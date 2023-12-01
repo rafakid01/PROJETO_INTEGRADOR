@@ -45,6 +45,9 @@
     --detail-four-color: #FFFFFF;
     --detail-five-color: rgba(255, 255, 255, 0.70);
     --detail-six-color: #7079E3;
+    --detail-seven-color: #FFFFFF;
+
+    --pulse-color: rgb(252, 231, 95);
 }
 
 .dark:root {
@@ -72,7 +75,9 @@
     --detail-four-color: #000000;
     --detail-five-color: rgba(0, 0, 0, 0.7);
     --detail-six-color: #FEF4B2;
+    --detail-seven-color: #333DAB;
 
+    --pulse-color: rgb(86, 94, 191);
 }
 
 @font-face {

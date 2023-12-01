@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DjangoConnService } from 'src/app/services/django-conn.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { MonitorsService } from 'src/app/services/monitors.service';
 import { NavDataService } from 'src/app/services/nav-data.service';
+import { RefreshComponentService } from 'src/app/services/refresh-component.service';
 
 @Component({
   selector: 'app-navegacao-main-estudante',
@@ -11,28 +16,44 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
   monitorList: any;
   coursesList: any;
   categoryList: any;
-  ratingList: any;
+  ratingList: any[] = [1, 2, 3, 4, 5];
   monitorsNumber: any;
-
-  selectedCourses: string[] = [];
+  filterString: string = '';
 
   filterForm = this.fb.group({
     course: [''],
     rate: [''],
     category: [''],
   });
-  constructor(private navData: NavDataService, private fb: FormBuilder) {}
+  constructor(
+    private nav: NavDataService,
+    private fb: FormBuilder,
+    private localstorage: LocalStorageService,
+    private route: Router,
+    private django: DjangoConnService,
+    private moni: MonitorsService
+  ) {}
 
   compressedDivOne: string = 'compressed';
   compressedDivTwo: string = 'compressed';
   compressedDivThree: string = 'compressed';
 
   ngOnInit(): void {
-    this.monitorList = this.navData.monitorsList;
-    this.coursesList = this.navData.coursesList;
-    this.categoryList = this.navData.categoryList;
-    this.ratingList = this.navData.ratingList;
-    this.monitorsNumber = this.navData.monitorsList.length;
+    if (!this.localstorage.getItem('logged')) {
+      this.route.navigate(['/']);
+    } else {
+      this.monitorList = this.localstorage.getItem('monitoresFiltrados');
+      this.monitorsNumber = this.monitorList.length;
+      this.coursesList = this.nav.coursesList;
+      this.django.getAssuntos().subscribe((assuntos: any) => {
+        this.categoryList = assuntos;
+        this.getFilter();
+      });
+    }
+  }
+
+  getFilter() {
+    this.filterString = this.localstorage.getItem('filter');
   }
 
   compressOne() {
@@ -66,5 +87,7 @@ export class NavegacaoMainEstudanteComponent implements OnInit {
     }
   }
 
-  submitFilter(event: any) {}
+  submitFilter(event: any) {
+    this.monitorList = this.moni.filterMonitorRadios(this.filterForm.value);
+  }
 }

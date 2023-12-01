@@ -3,115 +3,119 @@
     <div class="search-component-container">
       <app-input-search></app-input-search>
     </div>
-    <!-- <form class="search-container">
-      <div class="input-container">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Pesquisar assunto/matéria"
-        />
-      </div>
-      <button type="submit" class="lupa-container">
-        <div class="lupa">
-          <i class="bi bi-search"></i>
-        </div>
-      </button>
-    </form> -->
     <div class="monitor-container">
       <div class="main-monitor-data">
         <div class="monitor-info-container">
           <div class="profile-container">
             <div class="profile-pic">
-              <img src="/assets/img/photo-profile-test.png" alt="" />
+              <img src="{{ monitorBody?.foto_perfil }}" alt="" />
             </div>
             <div class="profile-name">
-              <h2>Nome Monitor</h2>
+              <h2>{{ monitorBody?.nome | titlecase }}</h2>
             </div>
           </div>
           <div class="course-rate-container">
-            <p class="h5">Aluno do curso de <span>CURSO</span></p>
+            <p class="h5">
+              Aluno do curso de
+              <span>{{ monitorBody?.curso }}</span>
+            </p>
             <div class="rate-button">
               <p class="rating">
                 <i class="bi bi-star-fill"></i>
-                <span>4.5</span>/5
+                <span>{{ monitorBody?.monitor?.nota_avaliacao }}</span
+                >/5
               </p>
-              <button class="btn">Avalie esse monitor</button>
+              <button
+                class="btn"
+                (click)="openForm()"
+                [disabled]="!selfMonitor"
+              >
+                Avalie esse monitor
+              </button>
             </div>
           </div>
         </div>
         <div class="learning-container">
           <div class="about-container">
-            <p class="h3">Sobre esse monitor</p>
+            <span class="h3">Sobre esse monitor</span>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus at
-              facilis delectus et, est voluptatem dolorum qui? Architecto, odit
-              iste inventore excepturi sit itaque nisi, cupiditate quisquam
-              similique fuga nostrum.
+              {{ monitorBody?.monitor?.descricao }}
             </p>
           </div>
           <div class="subject-container">
-            <p class="h3">Assuntos ensinados</p>
+            <span class="h3">Assuntos ensinados</span>
             <div class="subjects-single-container">
-              <p class="subject">- Assunto</p>
-              <p class="subject">- Assunto</p>
-              <p class="subject">- Assunto</p>
-              <p class="subject">- Assunto</p>
-              <p class="subject">- Assunto</p>
+              <p
+                *ngFor="let assunto of monitorBody?.monitor?.assuntos"
+                class="subject"
+              >
+                - {{ assunto }}
+              </p>
             </div>
           </div>
         </div>
-        <div class="rating-container">
-          <div class="title">
-            <p class="h4">Avaliações</p>
-          </div>
-          <div class="all-rates">
-            <div class="rate">
-              <div class="photo-container">
-                <img src="/assets/img/photo-profile-test.png" alt="" />
-              </div>
-              <div class="name-user">
-                <p class="h5">Nome Usuário</p>
-              </div>
-              <div class="empty"></div>
-              <div class="info-rate-container">
-                <div class="course-user">
-                  <p class="h6">Curso usuário</p>
-                </div>
-                <div class="stars-container">
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill special-star"></i>
-                </div>
-                <div class="text-container">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Autem hic sint accusantium consequuntur numquam, saepe, non
-                    eaque iste sit iure error, pariatur esse quae aut
-                    exercitationem est natus porro eum?
-                  </p>
-                </div>
-              </div>
+        <div class="contacts-container">
+          <span class="h3">Contatos</span>
+          <div class="contatos">
+            <div class="contato1">
+              <p
+                class="h5"
+                *ngIf="
+                  monitorBody?.contato_numero_1[0] == '1' &&
+                  monitorBody?.contato_numero_1.length > 10
+                "
+              >
+                Celular
+              </p>
+              <p *ngIf="monitorBody?.contato_numero_1[0] != '1'" class="h5">
+                Telefone
+              </p>
+              <p>{{ monitorBody?.contato_numero_1 | phone }}</p>
+            </div>
+            <div *ngIf="monitorBody?.contato_numero_2 != ''" class="contato2">
+              <p class="h5">Contato Secundário</p>
+              <p>{{ monitorBody?.contato_numero_2 | phone }}</p>
+            </div>
+            <div class="email contato">
+              <p class="h5">Email</p>
+              <p>{{ monitorBody?.email }}</p>
             </div>
           </div>
         </div>
       </div>
       <div class="fixed-container">
-        <div class="box-container">
-          <div class="title-right">
-            <p class="h4">CONTATO MONITOR</p>
-          </div>
-          <div class="contacts-container">
-            <p class="h5">Whatsapp (15)98818-8336</p>
-            <p class="h5">Instagram r.afasilvaa</p>
-          </div>
-          <div class="button-container">
-            <button class="interest-button">TENHO INTERESSE</button>
-          </div>
+        <div class="button-container">
+          <button
+            *ngIf="!selfMonitor || !jaInteressou"
+            class="interest-button"
+            (click)="adicionarInteresse()"
+          >
+            TENHO INTERESSE NA AULA
+          </button>
+          <button *ngIf="jaInteressou" class="btn btn-warning">
+            VOCÊ JÁ SE INTERESSOU POR ESSA AULA
+          </button>
         </div>
       </div>
     </div>
   </div>
-  <app-footer-nav></app-footer-nav>
+  <div class="footer-box">
+    <app-footer-nav></app-footer-nav>
+  </div>
+  <div *ngIf="interesseSend" class="send-container">
+    <p class="h3">Seu interesse foi enviado com sucesso</p>
+  </div>
+  <div *ngIf="rateSend" class="rate-form-back">
+    <div class="rate-form-box">
+      <p>Avalie esse(a) monitor(a)</p>
+      <div class="stars">
+        <span *ngFor="let number of [1, 2, 3, 4, 5]">
+          <p class="bi bi-star-fill" (click)="enviarAvaliacao(number)"></p>
+        </span>
+        <span *ngFor="let number of [1, 2, 3, 4, 5]">
+          <p class="text-center h5">{{ number }}</p>
+        </span>
+      </div>
+    </div>
+  </div>
 </main>
