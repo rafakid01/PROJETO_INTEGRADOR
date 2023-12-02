@@ -100,6 +100,11 @@ export class DjangoConnService {
     return this.http.get(`${this.assuntosURL}`);
   }
 
+  // ADICIONAR ASSUNTO
+  postAssunto(assunto: any): Observable<any> {
+    return this.http.post(`${this.assuntosURL}`, assunto);
+  }
+
   // RECUPERAR DADOS ADMIN
   getAdmin(id: any): Observable<any> {
     return this.http.get<any>(`${this.adminURL}${id}/`);

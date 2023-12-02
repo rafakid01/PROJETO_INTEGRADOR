@@ -45,6 +45,9 @@ export class NavbarComponent implements OnInit {
 
     if (user?.categoria == 'monitor') {
       this.isMonitor = true;
+      if (user?.monitor.assuntos.length == 0) {
+        this.invalidateUser = false;
+      }
     }
 
     if (user?.email == 'admin.projeto@gmail.com') {

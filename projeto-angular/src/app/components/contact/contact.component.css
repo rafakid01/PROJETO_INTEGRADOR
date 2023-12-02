@@ -1,17 +1,18 @@
 main {
-    padding-top: 10vh;
+    padding-top: 7em;
     font-family: "Nunito";
+    min-height: 100vh;
 }
 
 .tudo {
     width: 100%;
     align-items: center;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 10fr 7fr;
 }
 
 .container_geral1 {
-    width: 50%;
+    width: 80%;
 }
 
 .container_geral1>div {
@@ -52,7 +53,7 @@ main {
     display: flex;
     align-items: center;
     justify-items: center;
-    align-self: flex-start;
+    align-self: center;
 }
 
 .container-box {
@@ -60,23 +61,27 @@ main {
     width: 100%;
     height: 100%;
     border-radius: 70px;
-    align-self: flex-start;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
 }
 
 .container-box p {
-    margin: 3em;
     font-size: calc(1vw + .3em);
+    margin: 2em 1em;
 }
 
 .info {
     text-align: center;
     font-weight: bold;
+    grid-column: 1 / span 2;
 }
 
 .container-box img {
-    float: right;
-    margin-top: -2em;
-    width: 40%;
+    width: 100%;
+    max-width: 280px;
+    align-self: center;
+    padding: 1em;
+
 }
 
 .container_button {
@@ -122,10 +127,11 @@ main {
 
     main {
         padding-top: 4em;
+        min-height: fit-content;
     }
 
     .tudo {
-        justify-content: center;
+        grid-template-columns: 1fr;
     }
 
     .container_informacoes {
@@ -140,10 +146,6 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .contact {
-        text-align: center;
     }
 
     .descricao {

@@ -182,9 +182,9 @@ export class ProfileComponent implements OnInit {
     updateObject.contato_numero_2 = data.contato_numero2;
     updateObject.foto_perfil = this.fotoPerfil64;
 
-    this.django.updateUser(updateObject).subscribe((data) => {
-      this.localstorage.setItem('usuario', data);
-      this.usuarioAtualStorage = data;
+    this.django.updateUser(updateObject).subscribe((userUpdated) => {
+      this.localstorage.setItem('usuario', userUpdated);
+      this.usuarioAtualStorage = userUpdated;
 
       if (this.isMonitor) {
         let arraysDiferentes = this.verificarArrays(
@@ -214,6 +214,8 @@ export class ProfileComponent implements OnInit {
           descricao: data.monitor.descricao,
           assuntos: assuntosString,
         };
+
+        console.log(monitorUpdateObject);
 
         this.django
           .updateMonitor(monitorUpdateObject)
