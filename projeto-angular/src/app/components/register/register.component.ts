@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
 
       if (data.categoria == 'monitor') {
         this.django.setRateFive(data.id).subscribe((monitor: any) => {
-          this.reload.reloadApp();
+          this.route.navigate(['/']);
         });
       }
     });
